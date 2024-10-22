@@ -3,8 +3,7 @@ This is the repository for the Trip Planner project by CMSC495 Team1. The projec
 
 ## Team Members:
 - Galia (Project Manager)
-- Deepak Bhandari (Test Director)
-- Terence Boyce (Software Designer)
+- Terence Boyce (Test Director)
 - Jared Brick (Software Designer)
 - Greg Chelchowski (Requirements Manager/UX/UI Designer)
 
