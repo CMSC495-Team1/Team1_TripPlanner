@@ -23,7 +23,7 @@ release.properties
 build/
 
 # IntelliJ IDEA files
-.idea/
+../.idea/
 *.iml
 *.iws
 out/
