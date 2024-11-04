@@ -1,3 +1,6 @@
+import requests
+
+
 def test_get_locations():
     headers = {
         "Authorization": "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"  # Replace with a valid token if needed
