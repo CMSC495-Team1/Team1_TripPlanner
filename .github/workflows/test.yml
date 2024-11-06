@@ -30,10 +30,10 @@ jobs:
       - name: Start server and log output
         run: |
           nohup python src/main_menu.py > server.log 2>&1 &
-          sleep 10  # Wait longer for the server to initialize
+          sleep 10  # Wait longer to ensure the server starts
 
       - name: Check server log for startup issues
-        run: cat server.log  # Display the server log to troubleshoot startup issues
+        run: cat server.log  # Display the server log for troubleshooting
 
       - name: Verify server is running
         run: |
