@@ -31,8 +31,8 @@ jobs:
       # Start the server in the background
       - name: Start the backend server
         run: |
-          nohup python src/your_server_file.py &  # Replace with actual command to start your server
-          sleep 5  # Allow some time for the server to start
+          nohup python src/your_server_file.py &  # Adjust this to the path of your server file
+          sleep 5  # Wait for the server to start
 
       - name: Run tests
         run: pytest test/
