@@ -13,6 +13,7 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
@@ -27,10 +28,11 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      # Start the server in the background
       - name: Start the backend server
         run: |
-          python src/your_server_file.py &  # replace with your actual server start command
-          sleep 5  # wait a few seconds to ensure the server is running
+          nohup python src/your_server_file.py &  # Replace with actual command to start your server
+          sleep 5  # Allow some time for the server to start
 
       - name: Run tests
         run: pytest test/
