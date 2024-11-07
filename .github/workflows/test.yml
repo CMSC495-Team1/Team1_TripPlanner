@@ -27,8 +27,11 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: List directory structure for debugging
+        run: ls -R  # Lists files to confirm `main_menu.py` location
+
       - name: Initialize Database
-        run: python -c "from main_menu import db; db.create_all()"  # Ensures the database and tables are created
+        run: python -c "import sys; sys.path.append('src'); from main_menu import db; db.create_all()"  # Import with the correct path
 
       - name: Start server
         run: |
@@ -37,8 +40,8 @@ jobs:
 
       - name: Verify server is running
         run: |
-          ps aux | grep main_menu.py     # Check if the server process is running
-          netstat -an | grep 5000        # Check if port 5000 is listening
+          ps aux | grep main_menu.py
+          netstat -an | grep 5000
 
       - name: Run tests
-        run: pytest test/  # Adjust this path if your test files are in a different directory
+        run: pytest test/
