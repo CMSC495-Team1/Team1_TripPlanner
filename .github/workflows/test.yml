@@ -31,7 +31,10 @@ jobs:
         run: ls -R  # Lists files to confirm `main_menu.py` location
 
       - name: Initialize Database
-        run: python -c "import sys; sys.path.append('src'); from main_menu import db; db.create_all()"  # Import with the correct path
+        env:
+          PYTHONPATH: "${{ github.workspace }}/src"  # Ensure correct path for imports
+        run: |
+          python -c "from main_menu import db; db.create_all()"  # Import with the correct path
 
       - name: Start server
         run: |
