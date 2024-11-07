@@ -28,24 +28,23 @@ jobs:
           pip install -r requirements.txt
 
       - name: List directory structure for debugging
-        run: ls -R  # Lists files to confirm `main_menu.py` location
+        run: |
+          ls -R .  # Lists all files to confirm structure
 
       - name: Set up Database Path
         run: |
-          mkdir -p instance  # Create the instance folder for the database
+          mkdir -p src/instance
         env:
-          DATABASE_URL: sqlite:///instance/trip_planner.db
+          SQLALCHEMY_DATABASE_URI: sqlite:///src/instance/trip_planner.db
 
       - name: Initialize Database
+        run: |
+          python -c "from main_menu import db; db.create_all()"
         env:
           PYTHONPATH: "${{ github.workspace }}/src"
-          DATABASE_URL: sqlite:///instance/trip_planner.db  # Ensure correct path for imports
-        run: |
-          python -c "from main_menu import db; db.create_all()"  # Import with the correct path
+          SQLALCHEMY_DATABASE_URI: sqlite:///src/instance/trip_planner.db
 
       - name: Start server
-        env:
-          DATABASE_URL: sqlite:///instance/trip_planner.db
         run: |
           nohup python src/main_menu.py &  # Start the server in the background
           sleep 5  # Wait a few seconds to ensure the server starts
