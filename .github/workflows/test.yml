@@ -27,16 +27,33 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: List directory structure for debugging
-        run: ls -R  # Lists files to confirm `main_menu.py` location
-
       - name: Set up Database Path
         run: |
-          mkdir -p /home/runner/work/Team1_TripPlanner/Team1_TripPlanner/instance
+          mkdir -p instance  # Create the instance folder for the database
         env:
           DATABASE_URL: sqlite:///instance/trip_planner.db
 
       - name: Initialize Database
+        env:
+          PYTHONPATH: "${{ github.workspace }}/src"
+          DATABASE_URL: sqlite:///instance/trip_planner.db
+        run: |
+          python -c "from main_menu import db; db.create_all()"
+
+      - name: Start server
+        env:
+          DATABASE_URL: sqlite:///instance/trip_planner.db
+        run: |
+          nohup python src/main_menu.py &  # Start the server in the background
+          sleep 5  # Wait a few seconds to ensure the server starts
+
+      - name: Verify server is running
+        run: |
+          ps aux | grep main_menu.py
+          netstat -an | grep 5000
+
+      - name: Run tests
+        run: pytest test/
         env:
           PYTHONPATH: "${{ github.workspace }}/src"
           DATABASE_URL: sqlite:///instance/trip_planner.db  # Ensure correct path for imports
