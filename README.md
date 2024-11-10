@@ -1,6 +1,7 @@
 # Team1 Trip Planner
 
-This is the repository for the Trip Planner project by CMSC495 Team1. The project aims to create a user-friendly tool to plan trips, considering preferences such as destination, budget, and available activities.
+This is the repository for the Trip Planner project by CMSC 495 Team1. The project aims to create a user-friendly tool
+to plan trips, considering preferences such as destination, budget, and available activities.
 
 - Galia Adelshin (Project Manager)
 - Terence Boyce (Test Director)
