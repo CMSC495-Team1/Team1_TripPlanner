@@ -1,0 +1,76 @@
+{% extends "layout_main.html" %}
+
+{% block title %}Plan Trip{% endblock %}
+
+{% block pagebody %}
+<div id="plancontent">
+    <div class="sidebar">
+        <h1>Plan a Trip</h1>
+        <label for="state-list">Destination</label>
+        <div id="state-list">
+            <select size="21" name="" id="statesinalist" class="form-control" onchange="changeState();" onfocus="this.selectedIndex = -1;">
+                {% for destination in destinations %}
+                    <option value="{{ loop.index0 }}">{{ destination.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+
+    <div class="mainarea">
+        <div class="state-image">
+            <img id="destination-image" src="{% if destinations %}{{ destinations[0].image_url }}{% else %}{{ url_for('static', filename='images/default_image.jpg') }}{% endif %}"
+                 alt="{% if destinations %}{{ destinations[0].name }}{% else %}Default{% endif %}" style="width:300px;height:200px;">
+        </div>
+        <div id="state-info">
+            <h2 id="state-name"><span class="state-name-text">{% if destinations %}{{ destinations[0].name }}{% else %}Destination{% endif %}</span></h2><br>
+            <p id="state-description">{% if destinations %}{{ destinations[0].description }}{% else %}Description not available.{% endif %}</p>
+            <br>
+            <div class="plan-form">
+                <button class="button tripbutton" id="flightbutton" onclick="changeTrip('flight');">
+                    <img src="{{ url_for('static', filename='images/flight_icon.png') }}" width="75" height="75" style="vertical-align:middle">
+                    <br><br>Book a flight to <span class="state-name-text" id="flight-text">{% if destinations %}{{ destinations[0].name }}{% endif %}</span>
+                </button>
+                <button class="button tripbutton" id="hotelbutton" onclick="changeTrip('hotel');">
+                    <img src="{{ url_for('static', filename='images/hotel_icon.png') }}" width="75" height="75" style="vertical-align:middle">
+                    <br><br>Book a hotel in <span class="state-name-text" id="hotel-text">{% if destinations %}{{ destinations[0].name }}{% endif %}</span>
+                </button>
+                <button class="button tripbutton" id="carbutton" onclick="changeTrip('car');">
+                    <img src="{{ url_for('static', filename='images/car_icon.png') }}" width="75" height="75" style="vertical-align:middle">
+                    <br><br>Rent a car in <span class="state-name-text" id="car-text">{% if destinations %}{{ destinations[0].name }}{% endif %}</span>
+                </button>
+            </div>
+            <br>
+            <button class="button startplanning" id="startplanningbutton" onclick="startPlanning();">Start Planning</button>
+        </div>
+    </div>
+</div>
+
+<script>
+// Convert destinations data from Jinja to JavaScript
+const destinations = {{ destinations | tojson | safe }};
+
+const selection = document.getElementById('statesinalist');
+const stateImage = document.getElementById('destination-image');
+const stateNameText = document.getElementById('state-name');
+const stateDescription = document.getElementById('state-description');
+const flightText = document.getElementById('flight-text');
+const hotelText = document.getElementById('hotel-text');
+const carText = document.getElementById('car-text');
+
+function changeState() {
+    const selectedIndex = selection.selectedIndex;
+    const destination = destinations[selectedIndex];
+
+    // Update destination details
+    stateNameText.innerHTML = `<span class="state-name-text">${destination.name}</span>`;
+    stateImage.src = destination.image_url ? destination.image_url : "{{ url_for('static', filename='images/default_image.jpg') }}";
+    stateDescription.innerText = destination.description;
+
+    // Update button texts to reflect the selected destination
+    flightText.innerText = destination.name;
+    hotelText.innerText = destination.name;
+    carText.innerText = destination.name;
+}
+</script>
+
+{% endblock %}

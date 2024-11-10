@@ -1,0 +1,307 @@
+  h1 {
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 35px;
+    text-align: center;
+  }
+
+  h2 {
+    color: #87CEEB;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    text-align: center;
+    margin: 0px;
+  }
+
+
+  p {
+    padding: 20px;
+    color: black;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin: auto;
+    text-align: center;
+  }
+
+  body {
+    margin: 0;
+    border: none;
+    background-color: #d8ca9f;
+    color: white;
+    font-family: Verdana, Arial, sans-serif;
+    padding: 0px;
+    position: relative;
+  }
+
+
+  #footer {
+    position: fixed;
+    bottom: 0%;
+    right: 1%;
+  }
+
+
+  a:link {
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+  }
+
+  a:visited {
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: red;
+    font-weight: bold;
+    text-decoration: none;
+  }
+
+
+  .button {
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 24px;
+    width: 100px;
+    padding: 10px 10px;
+  }
+
+  .signup {
+    background-color: #2C3E50;
+    border: 2px solid #87CEEB;
+    color: #87CEEB;
+    position: absolute;
+    right: 120px;
+    top: 5px;
+
+  }
+
+  .signup:hover {
+    background-color: #87CEEB;
+    border: 2px solid #87CEEB;
+    color: #2C3E50;
+    position: absolute;
+    right: 120px;
+    top: 5px;
+
+  }
+
+
+  .login {
+    background-color: #000000;
+    border: 2px solid #0000CC;
+    position: absolute;
+    right: 10px;
+    top: 5px;
+  }
+
+  .login:hover {
+    background-color: #0000CC;
+    border: 2px solid #0000CC;
+    position: absolute;
+    right: 10px;
+    top: 5px;
+  }
+
+  .plan {
+    background-color: #000077;
+    height: 58px;
+    width: 270px;
+    border-radius: 4px;
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  .plan:hover {
+    background-color: #000077;
+    height: 58px;
+    width: 270px;
+    border-radius: 4px;
+    font-size: 24px;
+    font-weight: bold;
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  .contact {
+    background-color: #2C3E50;
+    height: 45px;
+    width: 150px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 24px 24px 0px 0px;
+  }
+
+  .contact:hover {
+    background-color: #000077;
+  }
+
+  .tripbutton{
+    background-color: #0000CC;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 24px;
+    height: 250px;
+    width: 250px;
+    padding: 10px 10px;
+  }
+
+  .tripbutton:hover {
+    background-color: #0000CC;
+    border: 2px solid #2C3E50;
+    transform: scale(1.1);
+  }
+
+.startplanning {
+  background-color: gray;
+}
+
+
+  #topnav {
+    background-color: #2C3E50;
+    height: 51px;
+    position: relative;
+  }
+
+  #indexcontent {
+    height: 58px;
+    width: 270px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -29px;
+    margin-left: -135px;
+  }
+
+  #plancontent {
+    height: 764px;
+    width: 1304px;
+    display: flex;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -382px;
+    margin-left: -652px;
+  }
+
+  #smallwindow {
+    height: 400px;
+    width: 500px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -200px;
+    margin-left: -250px;
+    background-color: #2C3E50;
+    color: white;
+    padding: 0px;
+    border-radius: 15px 15px 15px 15px;
+  }
+
+  .sidebar {
+    width: 259px;
+    background-color: #0D1F31;
+    color: white;
+    padding: 0px;
+    border-radius: 15px 0px 0px 15px;
+    text-align: center;
+  }
+
+  .titlebar {
+    height: 55px;
+    background-color: #0D1F31;
+    color: white;
+    padding: 0px;
+    border-radius: 15px 15px 0px 0px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .state-image {
+    width: 1064px;
+    height: 240px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 0px 15px 0px 0px;
+  }
+
+  .mainarea {
+    width: 1064px;
+    background-color: #2C3E50;
+    color: white;
+    padding: 0px;
+    border-radius: 0px 15px 15px 0px;
+    text-align: center;
+  }
+
+
+  #state-list {
+    width: 200px;
+    padding: 20px;
+    height: 150px;
+  }
+
+  #statesinalist {
+    font-size: 22px;
+  }
+
+  .plan-form {
+    padding: 20px;
+    text-align: left;
+  }
+
+  #tripForm {
+    width: 400px;
+    padding: 5px;
+    border: 2px solid #868686;
+  }
+
+  #state-info {
+    padding: 10px;
+  }
+
+
+  #contact_table {
+    background-color: white;
+    color: black;
+    border-collapse: collapse;
+    font-size: 10px;
+  }
+
+  #contact_table tr th {
+    background-color: black;
+    color: white;
+    border: solid 2px;
+    border-color: black;
+    vertical-align: top;
+    padding: 6px;
+  }
+
+  #contact_table tr td {
+    border: solid 2px;
+    border-color: black;
+    vertical-align: top;
+    padding: 6px;
+  }
+  #contact_table tr td a {
+    color: #0000CC;
+  }
+  #contact_table tr td a:hover {
+    color: #0D1F31;
+  }
