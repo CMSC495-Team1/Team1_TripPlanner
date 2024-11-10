@@ -99,96 +99,11 @@ class Flight(db.Model):
 with app.app_context():
     db.create_all()  # Create all tables in the database
 
-
-# Route for the home page
 @app.route('/')
-def home():
-    return """
-    <h1>Trip Planner Application</h1>
-    <ul>
-        <li><a href="/flights">Book a Flight</a></li>
-        <li><a href="/rentals">Rent a Car</a></li>
-        <li><a href="/hotels">Book a Hotel</a></li>
-        <li><a href="/destinations">Explore Destinations</a></li>
-        <li><a href="/login">Login</a></li>
-        <li><a href="/create_account">Create Account</a></li>
-    </ul>
-    """
+def index():
+    return render_template('index.html')
 
-
-@app.route('/create_account', methods=['GET', 'POST'])
-def create_account():
-    if request.method == 'POST':
-        username = request.form['username']
-        email = request.form['email']
-        password = request.form['password']
-
-        hashed_password = generate_password_hash(password)
-        new_customer = Customer(username=username, email=email, password=hashed_password)
-
-        db.session.add(new_customer)
-        db.session.commit()
-
-        flash("Account created successfully!", "success")
-        return redirect(url_for('home'))
-
-    return """
-    <h1>Create Account</h1>
-    <form method="POST">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required><br>
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required><br>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required><br>
-        <input type="submit" value="Create Account">
-    </form>
-    """
-
-
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-    if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
-
-        customer = Customer.query.filter_by(username=username).first()
-
-        if customer and check_password_hash(customer.password, password):
-            flash(f"Logged in as {username}", "success")
-            return redirect(url_for('home'))
-        else:
-            flash("Login failed. Check your username and/or password.", "danger")
-            return redirect(url_for('login'))
-
-    return """
-    <h1>Login</h1>
-    <form method="POST">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required><br>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required><br>
-        <input type="submit" value="Login">
-    </form>
-    """
-
-
-@app.route('/flights')
-def flights():
-    return render_template('flights.html')
-
-
-@app.route('/rentals')
-def rentals():
-    return render_template('rentals.html')
-
-
-@app.route('/hotels')
-def hotels():
-    return render_template('hotels.html')
-
-
-@app.route('/destinations')
+@app.route('/plan_trip/')
 def destinations():
     # Query all destinations from the database
     all_destinations = Destination.query.all()
@@ -204,6 +119,27 @@ def destinations():
     ]
 
     return render_template('plan_trip.html', destinations=destinations_list)
+
+@app.route('/sign_up/')
+def sign_up():
+    return render_template('sign_up.html')
+
+@app.route('/forgot_password/')
+def forgot_password():
+    return render_template('forgot_password.html')
+
+@app.route('/view_trips/')
+def view_trips():
+    return render_template('view_trips.html')
+
+@app.route('/account_settings/')
+def account_settings():
+    return render_template('account_settings.html')
+
+
+
+
+
 
 
 if __name__ == '__main__':
