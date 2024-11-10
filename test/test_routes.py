@@ -1,7 +1,23 @@
+import os
+import requests
+from dotenv import load_dotenv
+
+# Load environment variables from the .env file
+load_dotenv()
 def test_get_locations():
+    # Get the token from the environment variable (ensure you set this in your environment)
+    token = os.getenv("GITHUB_TOKEN")  # Replace with the environment variable storing the token
+
+    # Ensure the token is available
+    if not token:
+        raise ValueError("GitHub token not found. Please set the GITHUB_TOKEN environment variable.")
+
+    # Set headers with the token
     headers = {
-        "Authorization": "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"  # Replace with a valid token if needed
+        "Authorization": f"ghp_{token}"  # Use the token from the environment variable
     }
+
+    # Make the GET request to the API
     response = requests.get("http://localhost:5000/locations", headers=headers)
 
     # Check status code

@@ -1,8 +1,16 @@
+import os
+from dotenv import load_dotenv
 import requests  # Make sure this line is included
 
+
+# Load environment variables from the .env file
+load_dotenv()
 # Define the authorization headers with your GitHub Personal Access Token (PAT)
+# Get the token from an environment variable
+token = os.getenv("GITHUB_TOKEN")  # Make sure you set this in your environment
+
 headers = {
-    "Authorization": "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"  # Replace with your actual token
+    "Authorization": f"ghp_{token}"  # Fetch the token from the environment
 }
 
 # Make the GET request to your API
