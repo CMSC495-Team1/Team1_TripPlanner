@@ -20,3 +20,6 @@ build/
 coverage/
 *.cover
 *.log
+
+# Ignore personal environment variables
+.env
