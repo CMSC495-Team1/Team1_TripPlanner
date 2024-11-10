@@ -10,7 +10,7 @@ load_dotenv()
 token = os.getenv("GITHUB_TOKEN")  # Make sure you set this in your environment
 
 headers = {
-    "Authorization": f"ghp_{token}"  # Fetch the token from the environment
+    "Authorization": f"Bearer {token}"  # Fetch the token from the environment
 }
 
 # Make the GET request to your API

@@ -14,7 +14,7 @@ def test_get_hotels():
 
     # Set headers with the token
     headers = {
-        "Authorization": f"ghp_{token}"  # Use the token from the environment variable
+        "Authorization": f"Bearer {token}"  # Use the token from the environment variable
     }
 
     # Make the GET request to the hotels endpoint

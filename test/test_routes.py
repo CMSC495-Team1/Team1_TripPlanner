@@ -14,7 +14,7 @@ def test_get_locations():
 
     # Set headers with the token
     headers = {
-        "Authorization": f"ghp_{token}"  # Use the token from the environment variable
+        "Authorization": f"Bearer {token}"  # Use the token from the environment variable
     }
 
     # Make the GET request to the API
