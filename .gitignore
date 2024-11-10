@@ -1,0 +1,22 @@
+# Ignore Python bytecode
+__pycache__/
+*.pyc
+*.pyo
+
+# Ignore virtual environment directories
+.venv/
+env/
+venv/
+
+# Ignore IDE specific files (e.g., PyCharm)
+.idea/
+
+# Ignore build and distribution directories
+dist/
+build/
+*.egg-info/
+
+# Ignore test coverage and other generated files
+coverage/
+*.cover
+*.log
