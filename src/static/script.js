@@ -1,15 +1,5 @@
-const selection = document.getElementById('statesinalist');
-const statetexts = Array.from(document.getElementsByClassName('state-name-text'));
-const flightButton = document.getElementById('flightbutton');
-const hotelButton = document.getElementById('hotelbutton');
-const carButton = document.getElementById('carbutton');
-const startPlanningButton = document.getElementById('startplanningbutton');
 const navBar = document.getElementById('topnav');
 var userName = "username";
-var flightButtonActive = false;
-var hotelButtonActive = false;
-var carButtonActive = false;
-var startPlanningActive = false;
 
 
 displayNavBar();
@@ -67,66 +57,6 @@ document.addEventListener('click', function (event) {
     }
 });
 
-//changes text related to the selected state on Plan Trips
-function changeState() {
-    var text = selection.options[selection.selectedIndex].text;
-    statetexts.forEach(element => {
-        element.innerHTML = text;
-    });
-}
-
-//when selecting trip types on Plan Trip, causes them to be highlighted and records it in a boolean
-function changeTrip(tripType) {
-    if (tripType === "car") {
-        if (carButtonActive == true) {
-            carButtonActive = false;
-            carButton.style.border = "none";
-        }
-        else {
-            carButtonActive = true;
-            carButton.style.border = "2px solid yellow";
-        }
-    }
-    else if (tripType === "hotel") {
-        if (hotelButtonActive == true) {
-            hotelButtonActive = false;
-            hotelButton.style.border = "none";
-        }
-        else {
-            hotelButtonActive = true;
-            hotelButton.style.border = "2px solid yellow";
-        }
-    }
-    else if (tripType === "flight") {
-        if (flightButtonActive) {
-            flightButtonActive = false;
-            flightButton.style.border = "none";
-        }
-        else {
-            flightButtonActive = true;
-            flightButton.style.border = "2px solid yellow";
-        }
-    }
-    if (flightButtonActive || hotelButtonActive || carButtonActive) {
-        startPlanningButton.style.backgroundColor = "blue";
-        startPlanningActive = true;
-    }
-    else {
-        startPlanningButton.style.backgroundColor = "gray";
-        startPlanningActive = false;
-    }
-}
-
-//functionality needs ot be added to book whatever is active from here.
-function startPlanning() {
-    if (startPlanningActive) {
-        alert("Start planning active!");
-    }
-    else {
-        alert("Start planning NOT active!");
-    }
-}
-
 
 //Used to create the navigation bar at the top of the page. differs depending on whether a user is logged in or not.
 function displayNavBar() {
@@ -163,6 +93,3 @@ function logIn() {
     userName = "username";
     displayNavBar();
 }
-
-
-selection.addEventListener('change', changeState);

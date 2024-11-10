@@ -7,27 +7,16 @@
 </head>
 
 <body>
-    <!-- Top Navigation Links -->
-    <div id="topnav">
-        <a href="{{ url_for('home') }}">Home</a>
-        <a href="{{ url_for('destinations') }}">Destinations</a>
-        <a href="{{ url_for('flights') }}">Flights</a>
-        <a href="{{ url_for('rentals') }}">Rentals</a>
-        <a href="{{ url_for('hotels') }}">Hotels</a>
-        <a href="{{ url_for('login') }}">Login</a>
-        <a href="{{ url_for('create_account') }}">Sign Up</a>
-    </div>
+    <div id="topnav"></div>
 
-    <!-- Main Page Content -->
     {% block pagebody %}{% endblock %}
 
-    <!-- Footer with Contact Section -->
+
     <div id="footer">
-        <div id='contact-container'>
-            <button class="button contact" id='contact-button' onclick='toggleContactInfo();'>
-                <img src="/static/images/email_icon.png" width="25" style="vertical-align:middle"> &nbsp;Contact Us
-            </button>
-            <div id="subcontact" style="display:none;">
+        <div id='contact-container'><button class="button contact" id='contact-button'
+                onclick='toggleContactInfo();'><img src="/static/images/email_icon.png" width="25"
+                    style="vertical-align:middle"> &nbsp;Contact Us</button>
+            <div id="subcontact">
                 <div id="subcontact-container">
                     <table id="contact_table">
                         <tr>
@@ -51,6 +40,11 @@
                             <td><a href="mailto: jbrick@student.umgc.edu">jbrick@student.umgc.edu</a></td>
                         </tr>
                         <tr>
+                            <td>Xavier Watson</td>
+                            <td>Software Designer</td>
+                            <td><a href="mailto: xwatson@student.umgc.edu">xwatson@student.umgc.edu</a></td>
+                        </tr>
+                        <tr>
                             <td>Greg Chelchowski</td>
                             <td>Requirements Manager / UX/UI Designer</td>
                             <td><a href="mailto: gchelchowski@student.umgc.edu">gchelchowski@student.umgc.edu</a></td>
@@ -60,15 +54,8 @@
             </div>
         </div>
     </div>
-
-    <!-- JavaScript to Toggle Contact Info -->
     <script type='text/javascript' src="/static/script.js"></script>
-    <script>
-        function toggleContactInfo() {
-            var contactInfo = document.getElementById("subcontact");
-            contactInfo.style.display = contactInfo.style.display === "none" ? "block" : "none";
-        }
-    </script>
+{% block extrabody %}{% endblock %}
 </body>
 
 </html>
