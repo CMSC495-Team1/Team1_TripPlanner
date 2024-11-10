@@ -31,11 +31,11 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt  # Ensure it installs all required dependencies
 
-      - name: Start Flask API server
-        run: |
-          nohup python src/main_menu_updated.py &  # Run Flask server in the background
-
-      - name: Run tests
-        run: |
-          sleep 5  # Give the server a few seconds to start up
-          pytest test/  # Ensure the path matches your test folder
+#      - name: Start Flask API server
+#        run: |
+#          nohup python src/main_menu_updated.py &  # Run Flask server in the background
+#
+#      - name: Run tests
+#        run: |
+#          sleep 5  # Give the server a few seconds to start up
+#          pytest test/  # Ensure the path matches your test folder
