@@ -2,7 +2,7 @@ import requests  # Make sure this line is included
 
 # Define the authorization headers with your GitHub Personal Access Token (PAT)
 headers = {
-    "Authorization": "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"  # Replace with your actual token
+    "Authorization": "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"  # Replace with your actual token
 }
 
 # Make the GET request to your API
