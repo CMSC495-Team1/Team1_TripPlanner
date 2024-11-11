@@ -1,4 +1,4 @@
-name: Python CI
+name: Python CI - Destination Landing Page Test
 
 on:
   push:
@@ -54,5 +54,7 @@ jobs:
           ps aux | grep main_menu.py
           netstat -an | grep 5000
 
-      - name: Run tests
-        run: pytest test/
+      - name: Run destination landing page tests
+        # Replace `test/test_destination.py` with the specific test file or function
+        # that tests the destination landing page functionality.
+        run: pytest test/test_destination.py::test_landing_page  # Adjust as needed
