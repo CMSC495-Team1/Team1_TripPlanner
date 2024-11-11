@@ -99,9 +99,14 @@ class Flight(db.Model):
 with app.app_context():
     db.create_all()  # Create all tables in the database
 
+    # Export app, db, Customer, and Destination for use in the test file
+    __all__ = ['app', 'db', 'Customer', 'Destination']
+
+
 @app.route('/')
 def index():
     return render_template('index.html')
+
 
 @app.route('/plan_trip/')
 def destinations():
@@ -120,26 +125,25 @@ def destinations():
 
     return render_template('plan_trip.html', destinations=destinations_list)
 
+
 @app.route('/sign_up/')
 def sign_up():
     return render_template('sign_up.html')
+
 
 @app.route('/forgot_password/')
 def forgot_password():
     return render_template('forgot_password.html')
 
+
 @app.route('/view_trips/')
 def view_trips():
     return render_template('view_trips.html')
 
+
 @app.route('/account_settings/')
 def account_settings():
     return render_template('account_settings.html')
-
-
-
-
-
 
 
 if __name__ == '__main__':

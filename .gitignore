@@ -20,6 +20,8 @@ build/
 coverage/
 *.cover
 *.log
+Test\ Results\ -\ .html
+
 
 # Ignore personal environment variables
 .env
