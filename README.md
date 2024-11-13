@@ -37,7 +37,7 @@ To set up the Trip Planner application locally, follow these steps:
      ```
    - Run the script to install the required dependencies with the desired virtual environment name: 
      ``` bash
-     ./setup.sh <venv_name>
+      . ./setup.sh <venv_name>
      ```
      
 3. **Run the Application**
