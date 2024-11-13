@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
-
 <head>
+    <meta charset="UTF-8">
     <title>{% block title %}{% endblock %} - Team1 Trip Planner</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
 </head>
@@ -10,11 +10,11 @@
     <div id="topnav"></div>
 
     {% block pagebody %}{% endblock %}
-
+    
     <div id="footer">
         <div id='contact-container'><button class="button contact" id='contact-button'
-                onclick='toggleContactInfo();'><img src="/images/email_icon.png" width="25"
-                                                    style="vertical-align:middle"> &nbsp;Contact Us</button>
+                onclick='toggleContactInfo();'><img src="/static/images/email_icon.png" width="25"
+                                                    style="vertical-align:middle" alt="Email Icon"> &nbsp;Contact Us</button>
             <div id="subcontact">
                 <div id="subcontact-container">
                     <table id="contact_table">
@@ -53,7 +53,7 @@
             </div>
         </div>
     </div>
-    <script type='text/javascript' src="/script.js"></script>
+    <script type='text/javascript' src="/static/script.js"></script>
 {% block extrabody %}{% endblock %}
 </body>
 

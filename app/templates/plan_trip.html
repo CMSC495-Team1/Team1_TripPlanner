@@ -1,4 +1,4 @@
-{% extends "layout_main.html" %}
+{% extends "base.html" %}
 
 {% block title %}Plan Trip{% endblock %}
 
@@ -37,17 +37,17 @@
             <div class="plan-form">
                 <button class="button tripbutton" id="flightbutton" onclick="changeTrip('flight');">
                     <img src="{{ url_for('static', filename='images/flight_icon.png') }}" width="75" height="75"
-                         style="vertical-align:middle">
+                         style="vertical-align:middle" alt="Flight Icon">
                     <br><br>Book a flight to <br/><span id="flight-text">{% if destinations %}{{ destinations[0].name }}{% endif %}</span>
                 </button>
                 <button class="button tripbutton" id="hotelbutton" onclick="changeTrip('hotel');">
                     <img src="{{ url_for('static', filename='images/hotel_icon.png') }}" width="75" height="75"
-                         style="vertical-align:middle">
+                         style="vertical-align:middle" alt="Hotel Icon">
                     <br><br>Book a hotel in <br/><span id="hotel-text">{% if destinations %}{{ destinations[0].name }}{% endif %}</span>
                 </button>
                 <button class="button tripbutton" id="carbutton" onclick="changeTrip('car');">
                     <img src="{{ url_for('static', filename='images/car_icon.png') }}" width="75" height="75"
-                         style="vertical-align:middle">
+                         style="vertical-align:middle" alt="Car Icon">
                     <br><br>Rent a car in <br/><span id="car-text">{% if destinations %}{{ destinations[0].name }}{% endif %}</span>
                 </button>
             </div>
@@ -99,7 +99,7 @@
     //when selecting trip types on Plan Trip, causes them to be highlighted and records it in a boolean
     function changeTrip(tripType) {
         if (tripType === "car") {
-            if (carButtonActive == true) {
+            if (carButtonActive === true) {
                 carButtonActive = false;
                 carButton.style.border = "none";
             }
@@ -109,7 +109,7 @@
             }
         }
         else if (tripType === "hotel") {
-            if (hotelButtonActive == true) {
+            if (hotelButtonActive === true) {
                 hotelButtonActive = false;
                 hotelButton.style.border = "none";
             }
