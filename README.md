@@ -28,9 +28,9 @@ To set up the Trip Planner application locally, follow these steps:
  
 2. **Set Up Local Environment**
    - Make sure the latest version of Python is installed on your system.
-   - Give permissions to the `setup.sh` script in the project directory:
+   - Give permissions to the `setup.sh` script in the bin folder of the project:
      ``` bash
-     cd Team1_TripPlanner
+     cd Team1_TripPlanner/bin
      ```
      ``` bash
      chmod +x setup.sh
@@ -43,7 +43,7 @@ To set up the Trip Planner application locally, follow these steps:
 3. **Run the Application**
    - Start the server:
      ```
-     python app.py
+     flask run
      ```
    - Open your browser and navigate to `http://localhost:5000` to access the application.
 
