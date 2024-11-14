@@ -1,8 +1,12 @@
-from flask import render_template
+from flask import abort, render_template
+from jinja2 import TemplateNotFound
+from app.main import main
 
-from app.main import blueprint
 
-@blueprint.route('/')
-@blueprint.route('/index')
-def index():
-    return render_template('index.html')
+@main.route('/', defaults={'page': 'index'})
+@main.route('/<page>')
+def show(page):
+    try:
+        return render_template(f'main/{page}.html')
+    except TemplateNotFound:
+        abort(404)

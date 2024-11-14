@@ -30,17 +30,21 @@ def create_app(config_class=Config):
 
     os.makedirs(app.instance_path, exist_ok=True)
 
+    # Create all tables in the database
     with app.app_context():
-        db.create_all()  # Create all tables in the database
+        db.create_all()
 
         # Export app, db, Customer, and Destination for use in the test file
         __all__ = ['app', 'db', 'Customer', 'Destination', 'Hotel', 'Rental', 'Flight']
 
-    from app.main import blueprint as main_blueprint
-    app.register_blueprint(main_blueprint)
+    from app.main import main
+    app.register_blueprint(main)
 
-    from app.trip import blueprint as trip_blueprint
-    app.register_blueprint(trip_blueprint)
+    from app.trip import trip
+    app.register_blueprint(trip)
+
+    from app.auth import auth
+    app.register_blueprint(auth)
 
     return app
 

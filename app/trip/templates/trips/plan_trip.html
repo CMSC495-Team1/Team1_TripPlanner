@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "main/base.html" %}
 
 {% block title %}Plan Trip{% endblock %}
 
@@ -8,8 +8,9 @@
         <h1>Plan a Trip</h1>
         <label for="state-list">Destination</label>
         <div id="state-list">
-            <select size="21" name="" id="statesinalist" class="form-control" onchange="changeState();"
-                    onfocus="this.selectedIndex = -1;">
+            <label for="states-in-a-list"></label>
+            <select size="21" name="" id="states-in-a-list" class="form-control" onchange="changeState();"
+                                                          onfocus="this.selectedIndex = -1;">
                 {% for destination in destinations %}
                 <option value="{{ loop.index }}">{{ destination.name }}</option>
                 {% endfor %}
@@ -21,13 +22,19 @@
         <div id="state-top">
             <div class="state-image">
                 <img id="destination-image"
-                     src="{% if destinations %}{{ destinations[0].image_url }}{% else %}{{ url_for('static', filename='images/default_image.jpg') }}{% endif %}"
-                     alt="{% if destinations %}{{ destinations[0].name }}{% else %}Default{% endif %}">
+                     src="{% if destinations %}{{ destinations[0].image_url }}
+                          {% else %} {{ url_for('trips.static', filename='images/default_image.jpg') }}{% endif %}"
+                     alt="{% if destinations %}{{ destinations[0].name }}
+                          {% else %}Default{% endif %}">
             </div>
-            <div class="state-name-text"><h2 id="state-name">{% if destinations %}{{ destinations[0].name }}{% else %}Destination{% endif %}
+            <div class="state-name-text"><h2 id="state-name">
+                {% if destinations %}{{ destinations[0].name }}{% else %}Destination{% endif %}
             </h2>
-            <p id="state-description">{% if destinations %}{{ destinations[0].description }}{% else %}Description not
-                available.{% endif %}</p></div>
+            <p id="state-description">
+                {% if destinations %}{{ destinations[0].description }}
+                {% else %}Description not available.
+                {% endif %}</p>
+            </div>
         </div>
 
         <div id="state-info">
@@ -36,17 +43,17 @@
             <br>
             <div class="plan-form">
                 <button class="button tripbutton" id="flightbutton" onclick="changeTrip('flight');">
-                    <img src="{{ url_for('static', filename='images/flight_icon.png') }}" width="75" height="75"
+                    <img src="{{ url_for('trips.static', filename='icons/flight_icon.png') }}" width="75" height="75"
                          style="vertical-align:middle" alt="Flight Icon">
                     <br><br>Book a flight to <br/><span id="flight-text">{% if destinations %}{{ destinations[0].name }}{% endif %}</span>
                 </button>
                 <button class="button tripbutton" id="hotelbutton" onclick="changeTrip('hotel');">
-                    <img src="{{ url_for('static', filename='images/hotel_icon.png') }}" width="75" height="75"
+                    <img src="{{ url_for('trips.static', filename='icons/hotel_icon.png') }}" width="75" height="75"
                          style="vertical-align:middle" alt="Hotel Icon">
                     <br><br>Book a hotel in <br/><span id="hotel-text">{% if destinations %}{{ destinations[0].name }}{% endif %}</span>
                 </button>
                 <button class="button tripbutton" id="carbutton" onclick="changeTrip('car');">
-                    <img src="{{ url_for('static', filename='images/car_icon.png') }}" width="75" height="75"
+                    <img src="{{ url_for('trips.static', filename='icons/car_icon.png') }}" width="75" height="75"
                          style="vertical-align:middle" alt="Car Icon">
                     <br><br>Rent a car in <br/><span id="car-text">{% if destinations %}{{ destinations[0].name }}{% endif %}</span>
                 </button>
@@ -64,7 +71,7 @@
 <script type='text/javascript'>
     const destinations = {{ destinations | tojson | safe }};
 
-    const selection = document.getElementById('statesinalist');
+    const selection = document.getElementById('states-in-a-list');
     const stateImage = document.getElementById('destination-image');
     const stateNameText = document.getElementById('state-name');
     const stateDescription = document.getElementById('state-description');
@@ -79,7 +86,8 @@
         // Update destination details
 
         stateNameText.innerText = destination.name;
-        stateImage.src = destination.image_url ? destination.image_url : "{{ url_for('static', filename='images/default_image.jpg') }}";
+        stateImage.src = destination.image_url ? destination.image_url :
+            "{{ url_for('trips.static', filename='images/default_image.jpg') }}";
         stateDescription.innerText = destination.description;
 
         // Update button texts to reflect the selected destination
@@ -96,7 +104,7 @@
     var carButtonActive = false;
     var startPlanningActive = false;
 
-    //when selecting trip types on Plan Trip, causes them to be highlighted and records it in a boolean
+    //when selecting trips types on Plan Trip, causes them to be highlighted and records it in a boolean
     function changeTrip(tripType) {
         if (tripType === "car") {
             if (carButtonActive === true) {

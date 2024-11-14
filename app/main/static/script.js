@@ -61,7 +61,7 @@ document.addEventListener('click', function (event) {
 //Used to create the navigation bar at the top of the page. differs depending on whether a user is logged in or not.
 function displayNavBar() {
     if (userName !== "") {
-        navBar.innerHTML = "<a href='/static'><img src='/static/images/banner.png' alt='Team 1 Travel Planner banner'"
+        navBar.innerHTML = "<a href='/static'><img src='/images/states/banner.png' alt='Team 1 Travel Planner banner'"
             + " width='961' height='51'></a> <button class='button signup' id='usernameButton'" +
             " onclick='toggleMenu();'>" + userName + "</button>"
             + "<div id='submenu-container'><div id='submenu'><a href='/view_trips'><button class='submenu-button'>View Trips</button></a>"
@@ -69,7 +69,7 @@ function displayNavBar() {
             + "<button class='submenu-button' onclick='logOut();'>Log Out</button></div></div>";
     }
     else {
-        navBar.innerHTML = "<a href='/static'><img src='/static/images/banner.png' alt='Team 1 Travel Planner banner'"
+        navBar.innerHTML = "<a href='/static'><img src='/images/states/banner.png' alt='Team 1 Travel Planner banner'"
             + " width='961' height='51'></a> <a href='/sign_up'><button class='button signup'>SIGN UP</button></a> "
             + "<button class='button login' id='login-button' onclick='toggleLoginMenu();'>LOGIN</button>"
             + "<div id='loginmenu-container'><div id='loginmenu'><div class='plan-form'><form id='tripForm'><table id='logintable'>"

@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}{% endblock %} - Team1 Trip Planner</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('main.static', filename='style.css') }}" />
 </head>
 
 <body>
     <div id="topnav"></div>
 
     {% block pagebody %}{% endblock %}
-    
+
     <div id="footer">
         <div id='contact-container'><button class="button contact" id='contact-button'
-                onclick='toggleContactInfo();'><img src="/static/images/email_icon.png" width="25"
+                onclick='toggleContactInfo();'><img src="{{ url_for('main.static', filename='icons/email_icon.png') }}" width="25"
                                                     style="vertical-align:middle" alt="Email Icon"> &nbsp;Contact Us</button>
             <div id="subcontact">
                 <div id="subcontact-container">
@@ -53,7 +53,7 @@
             </div>
         </div>
     </div>
-    <script type='text/javascript' src="/static/script.js"></script>
+   <script type='text/javascript' src="{{ url_for('main.static', filename='script.js') }}"></script>
 {% block extrabody %}{% endblock %}
 </body>
 

@@ -1,5 +1,9 @@
 from flask import Blueprint
 
-blueprint = Blueprint('trip', __name__)
+trip = Blueprint('trips',
+                 __name__,
+                 template_folder='templates',
+                 static_url_path='/trips/static',
+                 static_folder='static')
 
 from app.trip import routes
