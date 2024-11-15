@@ -21,9 +21,9 @@ def forgot_password(page):
         abort(404)
 
 
-@auth.route('/account_settings/', defaultss={'page': 'account_settings'})
+@auth.route('/account_settings/', defaults={'page': 'account_settings'})
 @auth.route('/auth/<page>')
-def account_settings():
+def account_settings(page):
     try:
         return render_template(f'auth/{page}.html')
     except TemplateNotFound:
