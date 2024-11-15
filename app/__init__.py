@@ -17,26 +17,34 @@ Course: CMSC 495 7380
 
 import os
 from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 from config import Config
-from app.extensions.db import db, migrate
-from app.models.entities import Customer, Destination, Hotel, Rental, Flight
+# from app.models.models import Customer, Destination, Hotel, Rental, Flight
+
+# Flask extensions
+
+# Global variables to be used in models.py
+database = SQLAlchemy()
+migrate = Migrate()
 
 def create_app(config_class=Config):
     app = Flask(__name__)
     app.config.from_object(config_class)
 
-    db.init_app(app)
-    migrate.init_app(app, db)
+    # Initialize database extensions
+    database.init_app(app)
+    migrate.init_app(app, database)
 
-    os.makedirs(app.instance_path, exist_ok=True)
+    # TODO: Do we need this?
+    # os.makedirs(app.instance_path, exist_ok=True)
 
-    # Create all tables in the database
-    with app.app_context():
-        db.create_all()
+        #TODO: Do we need this?
+        # # Export app, db, Customer, and Destination for use in the test file
+        # __all__ = ['app', 'db', 'Customer', 'Destination', 'Hotel', 'Rental', 'Flight']
 
-        # Export app, db, Customer, and Destination for use in the test file
-        __all__ = ['app', 'db', 'Customer', 'Destination', 'Hotel', 'Rental', 'Flight']
 
+    # Register blueprints
     from app.main import main
     app.register_blueprint(main)
 
@@ -51,3 +59,5 @@ def create_app(config_class=Config):
 if __name__ == '__main__':
     tripPlanner = create_app()
     tripPlanner.run(debug=True)
+
+
