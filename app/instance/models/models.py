@@ -13,10 +13,12 @@ class User(database.Model):
     """
 
     id: orm.Mapped[int] = orm.mapped_column(primary_key = True)
+
     username: orm.Mapped[str] = orm.mapped_column(sqlString(256),
                                                   index = True,
                                                   unique = True,
                                                   nullable = False)
+
     email: orm.Mapped[str] = orm.mapped_column(sqlString(256),
                                                index = True,
                                                unique = True,
@@ -26,25 +28,27 @@ class User(database.Model):
 
     # __repr__ method tells Python how to print objects of this class, which is going to be useful for debugging.
     def __repr__(self):
-        return f'<User {self.username}>'
+        return f'<Use {self.username}>'
 
 class Destination(database.Model):
     id: orm.Mapped[int] = orm.mapped_column(primary_key = True)
+
     country: orm.Mapped[Optional[str]] = orm.mapped_column(sqlString(256),
                                                            index=True,
                                                            unique=True)
+
     state: orm.Mapped[Optional[str]] = orm.mapped_column(sqlString(256),
                                                          index=True,
                                                          unique=True)
-    city: orm.Mapped[Optional[str]] = orm.mapped_column(sqlString(256),
-                                                index= True,
-                                                nullable=False)
+
+    city: orm.Mapped[Optional[str]] = orm.mapped_column(sqlString(256), index= True)
+
     description: orm.Mapped[Optional[str]] = orm.mapped_column(sqlString(512))
+
     image_filename: orm.Mapped[Optional[str]] = orm.mapped_column(sqlString(256))
-        # id = database.Column(database.Integer, primary_key=True)
-        # name = database.Column(database.String(100), unique=True, nullable=False)
-        # description = database.Column(database.String(500), nullable=False)
-        # image_url = database.Column(database.String(500), nullable=True)
+
+    def __repr__(self):
+        return f'<Destination: {self.country}, {self.state}, {self.city}>'
 
 # class Hotel(database.Model):
 #     id = database.Column(database.Integer, primary_key=True)

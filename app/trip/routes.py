@@ -1,7 +1,7 @@
 from flask import abort, render_template
 from jinja2 import TemplateNotFound
 from app.trip import trip
-from app.models.models import Destination
+from instance.models.models import Destination
 
 @trip.route('/plan_trip/', defaults={'page': 'plan_trip'})
 @trip.route('/trip/<page>')

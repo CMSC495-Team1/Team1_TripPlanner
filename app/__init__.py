@@ -19,7 +19,7 @@ import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 import flask_migrate
-from config import Config
+from config.config import Config
 # from app.models.models import Customer, Destination, Hotel, Rental, Flight
 
 # Flask extensions
@@ -66,7 +66,15 @@ def create_app(config_class=Config):
 
             # Step 4: Apply the migration to the database
             flask_migrate.upgrade()
+
+            # Import here to avoid circular import
+            from instance.import_data import import_data
+            # Call the import_data function to import the data from JSON data file
+            import_data(database)
+
         except Exception as e:
             print(f"Migration error: {e}")
+
+
 
     return app

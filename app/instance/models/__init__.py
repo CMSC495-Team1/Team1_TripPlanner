@@ -2,4 +2,4 @@ from flask import Blueprint
 
 blueprint = Blueprint('models', __name__)
 
-from app.models import models
+from instance.models import models
