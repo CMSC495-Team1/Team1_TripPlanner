@@ -39,7 +39,7 @@ class Destination(database.Model):
     city: orm.Mapped[Optional[str]] = orm.mapped_column(sqlString(256),
                                                 index= True,
                                                 nullable=False)
-    description: orm.Mapped[Optional[str]] = orm.mapped_column(sqlString(513))
+    description: orm.Mapped[Optional[str]] = orm.mapped_column(sqlString(512))
     image_filename: orm.Mapped[Optional[str]] = orm.mapped_column(sqlString(256))
         # id = database.Column(database.Integer, primary_key=True)
         # name = database.Column(database.String(100), unique=True, nullable=False)
