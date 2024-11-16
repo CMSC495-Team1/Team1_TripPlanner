@@ -142,32 +142,32 @@
     {
         "state": "New Hampshire",
         "description": "Joining the Union in 1788, New Hampshire boasts the White Mountain National Forest, perfect for outdoor adventure.",
-        "image_filename": "newhampshire.jpg"
+        "image_filename": " new_hampshire.jpg"
     },
     {
         "state": "New Jersey",
         "description": "As a state since 1787, New Jersey draws visitors to the Atlantic City Boardwalk, a bustling seaside attraction.",
-        "image_filename": "newjersey.jpg"
+        "image_filename": " new_jersey.jpg"
     },
     {
         "state": "New Mexico",
         "description": "Since 1912, New Mexico has been famous for Carlsbad Caverns, where unique cave formations attract explorers.",
-        "image_filename": "newmexico.jpg"
+        "image_filename": "  new_mexico.jpg"
     },
     {
         "state": "New York",
         "description": "New York, established in 1788, is globally recognized for the Statue of Liberty, a beacon of freedom in New York Harbor.",
-        "image_filename": "newyork.jpg"
+        "image_filename": " new_york.jpg"
     },
     {
         "state": "North Carolina",
         "description": "Founded in 1789, North Carolina is admired for Great Smoky Mountains National Park, a biodiverse haven.",
-        "image_filename": "northcarolina.jpg"
+        "image_filename": "north_carolina.jpg"
     },
     {
         "state": "North Dakota",
         "description": "Since 1889, North Dakota\u2019s pride is Theodore Roosevelt National Park, showcasing rugged landscapes and wildlife.",
-        "image_filename": "northdakota.jpg"
+        "image_filename": "north_dakota.jpg"
     },
     {
         "state": "Ohio",
@@ -192,17 +192,17 @@
     {
         "state": "Rhode Island",
         "description": "Founded in 1790, Rhode Island is celebrated for The Breakers, a mansion reflecting the opulence of the Gilded Age.",
-        "image_filename": "rhodeisland.jpg"
+        "image_filename": "rhode_island.jpg"
     },
     {
         "state": "South Carolina",
         "description": "South Carolina, since 1788, is known for Charleston\u2019s Historic District, rich with antebellum charm.",
-        "image_filename": "southcarolina.jpg"
+        "image_filename": "south_carolina.jpg"
     },
     {
         "state": "South Dakota",
         "description": "Added in 1889, South Dakota is iconic for Mount Rushmore, where presidents are carved into the Black Hills.",
-        "image_filename": "southdakota.jpg"
+        "image_filename": "south_dakota.jpg"
     },
     {
         "state": "Tennessee",
@@ -237,7 +237,7 @@
     {
         "state": "West Virginia",
         "description": "Founded in 1863, West Virginia is home to New River Gorge Bridge, an iconic spot for outdoor adventure.",
-        "image_filename": "westvirginia.jpg"
+        "image_filename": "west_virginia.jpg"
     },
     {
         "state": "Wisconsin",
@@ -252,6 +252,6 @@
     {
         "state": "Washington DC",
         "description": "Established as the nation\u2019s capital in 1790, Washington DC is home to iconic landmarks such as the U.S. Capitol and the Lincoln Memorial.",
-        "image_filename": "washingtondc.jpg"
+        "image_filename": "washington_dc.jpg"
     }
 ]

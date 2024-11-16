@@ -2,27 +2,27 @@ import json
 from app import create_app, database
 from app.models.models import Destination  # Adjust import based on your project structure
 
-# Path to your JSON file
-json_file_path = 'destination_data_with_images_corrected.json'
 
-# Create Flask application context
-app = create_app()
 
-with app.app_context():
-    # Load the JSON data
-    with open(json_file_path, 'r') as file:
-        data = json.load(file)
+def import_data(app):
+    # Path to your JSON file relative to import.py
+    destinations_data = 'destination_data.json'
 
-    # Insert data into the database
-    for entry in data:
-        destination = Destination(
-            state=entry['state'],
-            description=entry['description'],
-            image_filename=entry['image_filename']
-        )
-        database.session.add(destination)
+    with app.app_context():
+        # Load the JSON data
+        with open(destinations_data, 'r') as file:
+            destinations = json.load(file)
 
-    # Commit the changes to the database
-    database.session.commit()
+        # Insert data into the database
+        for destination in destinations:
+            destination = Destination(
+                state=destination['state'],
+                description=destination['description'],
+                image_filename=destination['image_filename']
+            )
+            database.session.add(destination)
 
-    print("Data has been successfully imported!")
+        # Commit the changes to the database
+        database.session.commit()
+
+        print("Data has been successfully imported!")
