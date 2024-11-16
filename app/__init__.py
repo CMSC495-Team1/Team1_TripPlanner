@@ -15,7 +15,6 @@ and book hotels, providing an integrated travel planning experience.
 Course: CMSC 495 7380
 """
 
-import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
@@ -55,9 +54,3 @@ def create_app(config_class=Config):
     app.register_blueprint(auth)
 
     return app
-
-if __name__ == '__main__':
-    tripPlanner = create_app()
-    tripPlanner.run(debug=True)
-
-
