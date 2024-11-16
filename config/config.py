@@ -3,6 +3,7 @@ import os
 
 project_dir = pathlib.Path(__file__).resolve().parent.parent
 
+# Path to the database file if environment variable is not set
 database_path = project_dir / 'app' / 'instance' / 'app.db'
 
 class Config:
