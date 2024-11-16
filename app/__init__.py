@@ -15,23 +15,24 @@ and book hotels, providing an integrated travel planning experience.
 Course: CMSC 495 7380
 """
 
+import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
+import flask_migrate
 from config import Config
 # from app.models.models import Customer, Destination, Hotel, Rental, Flight
 
 # Flask extensions
 
-# Global variables to be used in models.py
+# Initialize sqlalchemy and migration extensions
 database = SQLAlchemy()
-migrate = Migrate()
+migrate = flask_migrate.Migrate()
 
 def create_app(config_class=Config):
     app = Flask(__name__)
     app.config.from_object(config_class)
 
-    # Initialize database extensions
+    # Register app and database with the extensions
     database.init_app(app)
     migrate.init_app(app, database)
 
@@ -42,7 +43,6 @@ def create_app(config_class=Config):
         # # Export app, db, Customer, and Destination for use in the test file
         # __all__ = ['app', 'db', 'Customer', 'Destination', 'Hotel', 'Rental', 'Flight']
 
-
     # Register blueprints
     from app.main import main
     app.register_blueprint(main)
@@ -52,5 +52,21 @@ def create_app(config_class=Config):
 
     from app.auth import auth
     app.register_blueprint(auth)
+
+    # Run migration steps programmatically
+    with app.app_context():
+        try:
+            # Step 2: Initialize migrations (only if the migrations folder doesn't exist)
+
+            if not os.path.exists('migrations'):
+                flask_migrate.init()
+
+            # Step 3: Generate a migration script
+            flask_migrate.migrate()
+
+            # Step 4: Apply the migration to the database
+            flask_migrate.upgrade()
+        except Exception as e:
+            print(f"Migration error: {e}")
 
     return app

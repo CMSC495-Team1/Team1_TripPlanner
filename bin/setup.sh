@@ -39,7 +39,9 @@ fi
 
 # initialize the database
 flask db init
+
 flask db migrate
+
 flask db upgrade
 
 echo "Virtual environment '$venv_name' created and activated."
