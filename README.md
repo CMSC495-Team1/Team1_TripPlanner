@@ -25,23 +25,25 @@ To set up the Trip Planner application locally, follow these steps:
    ```
    git clone https://github.com/CMSC495-Team1/Team1_TripPlanner.git
    ```
-
+ 
 2. **Set Up Local Environment**
-   - Make sure Python 3.8+ is installed on your system.
-   - Create a virtual environment and activate it:
+   - Make sure the latest version of Python is installed on your system.
+   - Give permissions to the `setup.sh` script in the bin folder of the project:
+     ``` bash
+     cd Team1_TripPlanner/bin
      ```
-     python -m venv env
-     source env/bin/activate  # On Windows, use `env\Scripts\activate`
+     ``` bash
+     chmod +x setup.sh
      ```
-   - Install the required dependencies:
+   - Run the script to install the required dependencies with the desired virtual environment name: 
+     ``` bash
+      . ./setup.sh <venv_name>
      ```
-     pip install -r requirements.txt
-     ```
-
+     
 3. **Run the Application**
    - Start the server:
      ```
-     python app.py
+     flask run
      ```
    - Open your browser and navigate to `http://localhost:5000` to access the application.
 

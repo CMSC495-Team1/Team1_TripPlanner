@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %} - Team1 Trip Planner</title>
+    <link rel="stylesheet" href="{{ url_for('main.static', filename='style.css') }}" />
+</head>
+
+<body>
+    <div id="topnav"></div>
+
+    {% block pagebody %}{% endblock %}
+
+    <div id="footer">
+        <div id='contact-container'><button class="button contact" id='contact-button'
+                onclick='toggleContactInfo();'><img src="{{ url_for('main.static', filename='icons/email_icon.png') }}" width="25"
+                                                    style="vertical-align:middle" alt="Email Icon"> &nbsp;Contact Us</button>
+            <div id="subcontact">
+                <div id="subcontact-container">
+                    <table id="contact_table">
+                        <tr>
+                            <th>NAME</th>
+                            <th>RESPONSIBILITIES</th>
+                            <th>EMAIL</th>
+                        </tr>
+                        <tr>
+                            <td>Galia Adelshin</td>
+                            <td>Project Manager</td>
+                            <td><a href="mailto: gadelshin@student.umgc.edu">gadelshin@student.umgc.edu</a></td>
+                        </tr>
+                        <tr>
+                            <td>Terence Boyce</td>
+                            <td>Test Director</td>
+                            <td><a href="mailto: tboyce11@student.umgc.edu">tboyce11@student.umgc.edu</a></td>
+                        </tr>
+                        <tr>
+                            <td>Jared Brick</td>
+                            <td>Software Designer</td>
+                            <td><a href="mailto: jbrick@student.umgc.edu">jbrick@student.umgc.edu</a></td>
+                        </tr>
+                        <tr>
+                            <td>Xavier Watson</td>
+                            <td>Software Designer</td>
+                            <td><a href="mailto: xwatson@student.umgc.edu">xwatson@student.umgc.edu</a></td>
+                        </tr>
+                        <tr>
+                            <td>Greg Chelchowski</td>
+                            <td>Requirements Manager / UX/UI Designer</td>
+                            <td><a href="mailto: gchelchowski@student.umgc.edu">gchelchowski@student.umgc.edu</a></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+   <script type='text/javascript'>
+       const banner_url = "{{ url_for('main.static', filename='images/banner.png') }}";
+   </script>
+    <script type='text/javascript' src="{{ url_for('main.static', filename='script.js') }}"></script>
+{% block extrabody %}{% endblock %}
+</body>
+
+</html>

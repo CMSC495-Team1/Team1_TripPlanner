@@ -25,3 +25,6 @@ Test\ Results\ -\ .html
 
 # Ignore personal environment variables
 .env
+
+# MacOS specific files
+.DS_Store
