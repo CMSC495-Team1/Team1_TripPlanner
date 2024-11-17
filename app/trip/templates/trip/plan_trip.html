@@ -10,7 +10,7 @@
         <div id="state-list">
             <label for="states-in-a-list"></label>
             <select size="21" name="" id="states-in-a-list" class="form-control" onchange="changeState();"
-                                                          onfocus="this.selectedIndex = -1;">
+                onfocus="this.selectedIndex = 0;">
                 {% for destination in destinations %}
                 <option value="{{ loop.index }}">{{ destination.state }}</option>
                 {% endfor %}
@@ -27,35 +27,36 @@
                      alt="{% if destinations %}{{ destinations[0].state }}
                           {% else %}Default{% endif %}">
             </div>
-            <div class="state-name-text"><h2 id="state-name">
-                {% if destinations %}{{ destinations[0].state }}{% else %}Destination{% endif %}
-            </h2>
-            <p id="state-description">
-                {% if destinations %}{{ destinations[0].description }}
-                {% else %}Description not available.
-                {% endif %}</p>
+            <div class="state-name-text">
+                <h2 id="state-name">{% if destinations %}{{ destinations[0].name }}{% else
+                    %}Destination{% endif %}
+                </h2>
+                <p id="state-description">{% if destinations %}{{ destinations[0].description }}{% else %}Description
+                    not
+                    available.{% endif %}</p>
             </div>
         </div>
 
         <div id="state-info">
-
-
             <br>
             <div class="plan-form">
                 <button class="button tripbutton" id="flightbutton" onclick="changeTrip('flight');">
                     <img src="{{ url_for('trip.static', filename='icons/flight_icon.png') }}" width="75" height="75"
                          style="vertical-align:middle" alt="Flight Icon">
-                    <br><br>Book a flight to <br/><span id="flight-text">{% if destinations %}{{ destinations[0].state }}{% endif %}</span>
+                    <br><br>Book a flight to <br /><span id="flight-text">{% if destinations %}{{ destinations[0].state
+                        }}{% endif %}</span>
                 </button>
                 <button class="button tripbutton" id="hotelbutton" onclick="changeTrip('hotel');">
                     <img src="{{ url_for('trip.static', filename='icons/hotel_icon.png') }}" width="75" height="75"
                          style="vertical-align:middle" alt="Hotel Icon">
-                    <br><br>Book a hotel in <br/><span id="hotel-text">{% if destinations %}{{ destinations[0].state }}{% endif %}</span>
+                    <br><br>Book a hotel in <br /><span id="hotel-text">{% if destinations %}{{ destinations[0].state
+                        }}{% endif %}</span>
                 </button>
                 <button class="button tripbutton" id="carbutton" onclick="changeTrip('car');">
                     <img src="{{ url_for('trip.static', filename='icons/car_icon.png') }}" width="75" height="75"
                          style="vertical-align:middle" alt="Car Icon">
-                    <br><br>Rent a car in <br/><span id="car-text">{% if destinations %}{{ destinations[0].state }}{% endif %}</span>
+                    <br><br>Rent a car in <br /><span id="car-text">{% if destinations %}{{ destinations[0].state }}{%
+                        endif %}</span>
                 </button>
             </div>
             <br>
@@ -65,10 +66,396 @@
     </div>
 </div>
 
+<!-- Trip Details window -->
+<div class="smalltripwindow" id="trip-details-window">
+    <div class="mainareatripdetails">
+        <div class="titlebar">
+            <h2>Trip Details</h2><br>
+        </div>
+        <form id="tripDetailsForm">
+            <table class='form_table'>
+                <tr>
+                    <td>Trip Name:</td>
+                    <td><input type="text" id="trip-details-name" required></td>
+                </tr>
+                <tr>
+                    <td>Destination:</td>
+                    <td><select id="destination-selection" name="destination">
+                            {% for destination in destinations %}
+                            <option value="{{ loop.index }}">{{ destination.state }}</option>
+                            {% endfor %}
+                        </select></td>
+                </tr>
+                <tr>
+                    <td>Start Date:</td>
+                    <td><input type="date" id="trip-details-start" required></td>
+                </tr>
+                <tr>
+                    <td>End Date:</td>
+                    <td><input type="date" id="trip-details-end" required></td>
+                </tr>
+            </table>
+        </form>
+        <button class="button startplanning" onclick="startBooking();">Start Booking
+        </button>
+        <button class="button startplanning" onclick="cancelBooking();">Cancel
+        </button>
+    </div>
+</div>
+
+<!-- Search Flight window -->
+<div class="smalltripwindow" id="search-flight-window">
+    <div class="mainareatripdetails">
+        <div class="titlebar">
+            <h2>Flight Search</h2><br>
+        </div>
+        <form id="flightSearchForm">
+            <table class='form_table'>
+                <tr>
+                    <td>From:</td>
+                    <td><select id="flight-origin-selection" name="flightOrigin">
+                            {% for destination in destinations %}
+                            <option value="{{ loop.index }}">{{ destination.state }}</option>
+                            {% endfor %}
+                        </select></td>
+                </tr>
+                <tr>
+                    <td>To:</td>
+                    <td><select class="trip-destination-selection" id="flight-destination-selection"
+                            name="flightDestination">
+                            {% for destination in destinations %}
+                            <option value="{{ loop.index }}">{{ destination.state }}</option>
+                            {% endfor %}
+                        </select></td>
+                </tr>
+                <tr>
+                    <td>Date:</td>
+                    <td><input type="date" class="trip-start-date" id="flight-date" name="flightDate" required></td>
+                </tr>
+                <tr>
+                    <td>Return Flight:</td>
+                    <td><input type="checkbox" id="returnFlightCheck"></td>
+                </tr>
+            </table>
+
+        </form>
+        <button class="button startplanning" onclick="searchFlight();" name="SearchFlight">Search Flights
+        </button>
+        <button class="button startplanning" onclick="cancelBooking();">Cancel
+        </button>
+    </div>
+</div>
+
+<!-- Select Flight window -->
+<div class="smalltripwindow" id="select-flight-window">
+    <div class="mainareatripdetails">
+        <div class="titlebar">
+            <h2>Select Flight</h2><br>
+        </div>
+        <span id="select-flight-text">Flights from (origin) to (destination) on (date)</span>
+        <table class='data_table' id="flight-table">
+            <tr>
+                <th></th>
+                <th>Departure</th>
+                <th>Arrival</th>
+                <th>Airline</th>
+            </tr>
+            <tr>
+                <td><input type="radio" value="1" name="flight-radio"></td>
+                <td>1:30 PM</td>
+                <td>3:30 PM</td>
+                <td>Southwest</td>
+            </tr>
+            <tr>
+                <td><input type="radio" value="2" name="flight-radio"></td>
+                <td>1:30 PM</td>
+                <td>3:45 PM</td>
+                <td>US Airways</td>
+            </tr>
+            <tr>
+                <td><input type="radio" value="3" name="flight-radio"></td>
+                <td>2:30 PM</td>
+                <td>4:30 PM</td>
+                <td>Spirit</td>
+            </tr>
+        </table>
+        <button class="button startplanning" onclick="selectFlight();">Select Flight
+        </button>
+        <button class="button startplanning" onclick="cancelBooking();">Cancel
+        </button>
+    </div>
+</div>
+
+<!-- Select Return Flight window -->
+<div class="smalltripwindow" id="select-return-flight-window">
+    <div class="mainareatripdetails">
+        <div class="titlebar">
+            <h2>Select Return Flight</h2><br>
+        </div>
+        <span id="select-return-flight-text">Flights from (origin) to (destination) on (date)</span>
+        <table class='data_table' id="return-flight-table">
+            <tr>
+                <th></th>
+                <th>Departure</th>
+                <th>Arrival</th>
+                <th>Airline</th>
+            </tr>
+            <tr>
+                <td><input type="radio" value="1" name="return-flight-radio"></td>
+                <td>3:00 PM</td>
+                <td>5:00 PM</td>
+                <td>Southwest</td>
+            </tr>
+            <tr>
+                <td><input type="radio" value="2" name="return-flight-radio"></td>
+                <td>3:45 PM</td>
+                <td>5:45 PM</td>
+                <td>US Airways</td>
+            </tr>
+            <tr>
+                <td><input type="radio" value="3" name="return-flight-radio"></td>
+                <td>8:10 PM</td>
+                <td>10:10 PM</td>
+                <td>Spirit</td>
+            </tr>
+        </table>
+
+        <button class="button startplanning" onclick="selectReturnFlight();">Select Return Flights
+        </button>
+        <button class="button startplanning" onclick="cancelBooking();">Cancel
+        </button>
+    </div>
+</div>
+
+<!-- Search Hotel window -->
+<div class="smalltripwindow" id="search-hotel-window">
+    <div class="mainareatripdetails">
+        <div class="titlebar">
+            <h2>Hotel Search</h2><br>
+        </div>
+        <form id="hotelSearchForm">
+            <table class='form_table'>
+                <tr>
+                    <td>Location:</td>
+                    <td><select class="trip-destination-selection" id="hotel-location-selection" name="destination">
+                            {% for destination in destinations %}
+                            <option value="{{ loop.index }}">{{ destination.state }}</option>
+                            {% endfor %}
+                        </select></td>
+                </tr>
+                <tr>
+                    <td>Start Date:</td>
+                    <td><input type="date" class="trip-start-date" id="hotel-start-date" required></td>
+                </tr>
+                <tr>
+                    <td>End Date:</td>
+                    <td><input type="date" class="trip-end-date" id="hotel-end-date" required></td>
+                </tr>
+            </table>
+        </form>
+        <button class="button startplanning" onclick="searchHotel();">Search Hotels
+        </button>
+        <button class="button startplanning" onclick="cancelBooking();">Cancel
+        </button>
+    </div>
+</div>
+
+<!-- Select Hotel window -->
+<div class="smalltripwindow" id="select-hotel-window">
+    <div class="mainareatripdetails">
+        <div class="titlebar">
+            <h2>Select Hotel</h2><br>
+        </div>
+        <span id="select-hotel-text">Hotels in (destination) from (startdate) to (enddate)</span>
+        <table class='data_table' id="hotel-table">
+            <tr>
+                <th></th>
+                <th>Hotel</th>
+                <th>Room Type</th>
+                <th>Cost</th>
+            </tr>
+            <tr>
+                <td><input type="radio" value="1" name="hotel-radio"></td>
+                <td>Holiday Inn</td>
+                <td>2 Double Beds</td>
+                <td>$300</td>
+            </tr>
+            <tr>
+                <td><input type="radio" value="2" name="hotel-radio"></td>
+                <td>Sonesta</td>
+                <td>1 King Bed</td>
+                <td>$275</td>
+            </tr>
+            <tr>
+                <td><input type="radio" value="3" name="hotel-radio"></td>
+                <td>Hilton</td>
+                <td>1 King Bed</td>
+                <td>$325</td>
+            </tr>
+        </table>
+
+        <button class="button startplanning" onclick="selectHotel();">Select Hotel
+        </button>
+        <button class="button startplanning" onclick="cancelBooking();">Cancel
+        </button>
+    </div>
+</div>
+
+
+<!-- Search Car window -->
+<div class="smalltripwindow" id="search-car-window">
+    <div class="mainareatripdetails">
+        <div class="titlebar">
+            <h2>Rental Car Search</h2><br>
+        </div>
+        <form id="carSearchForm">
+            <table class='form_table'>
+                <tr>
+                    <th></th>
+                    <th>Pick Up</th>
+                    <th>Drop Off</th>
+                </tr>
+                <tr>
+                    <td>Location:</td>
+                    <td><select class="trip-destination-selection" id="car-pickup-location-selection">
+                            {% for destination in destinations %}
+                            <option value="{{ loop.index }}">{{ destination.state }}</option>
+                            {% endfor %}
+                        </select></td>
+                    <td><select class="trip-destination-selection" id="car-dropoff-location-selection">
+                            {% for destination in destinations %}
+                            <option value="{{ loop.index }}">{{ destination.state }}</option>
+                            {% endfor %}
+                        </select></td>
+                </tr>
+                <tr>
+                    <td>Date:</td>
+                    <td><input type="date" class="trip-start-date" id="car-pickup-date" required></td>
+                    <td><input type="date" class="trip-end-date" id="car-dropoff-date" required></td>
+                </tr>
+                <tr>
+                    <td>Time:</td>
+                    <td><select id="car-pickup-time-selection">
+                            <option value="Morning">Morning</option>
+                            <option value="Afternoon">Afternoon</option>
+                            <option value="Evening">Evening</option>
+                        </select></td>
+                    <td><select id="car-dropoff-time-selection">
+                            <option value="Morning">Morning</option>
+                            <option value="Afternoon">Afternoon</option>
+                            <option value="Evening">Evening</option>
+                        </select></td>
+                </tr>
+                <tr>
+                    <td>Style:</td>
+                    <td><select id="car-style-selection">
+                            <option value="Any">Any</option>
+                            <option value="Minivan">Minivan</option>
+                            <option value="Pickup">Pickup</option>
+                            <option value="Sedan">Sedan</option>
+                            <option value="SUV">SUV</option>
+                        </select></td>
+                    <td></td>
+                </tr>
+            </table>
+        </form>
+        <button class="button startplanning" onclick="searchCar();">Search Cars
+        </button>
+        <button class="button startplanning" onclick="cancelBooking();">Cancel
+        </button>
+    </div>
+</div>
+
+<!-- Select Car window -->
+<div class="smalltripwindow" id="select-car-window">
+    <div class="mainareatripdetails">
+        <div class="titlebar">
+            <h2>Select Rental Car</h2><br>
+        </div>
+        Cars available to rent<br>
+        <span id="select-car-pickup-text"></span><br>
+        <span id="select-car-dropoff-text"></span><br>
+        <span id="select-car-style-text"></span>
+        <table class='data_table' id="car-table">
+            <tr>
+                <th></th>
+                <th>Year</th>
+                <th>Make</th>
+                <th>Model</th>
+                <th>Color</th>
+                <th>Cost</th>
+            </tr>
+            <tr>
+                <td><input type="radio" value="1" name="car-radio"></td>
+                <td>2024</td>
+                <td>Hyundai</td>
+                <td>Kona</td>
+                <td>Black</td>
+                <td>$125</td>
+            </tr>
+            <tr>
+                <td><input type="radio" value="2" name="car-radio"></td>
+                <td>2023</td>
+                <td>Hyundai</td>
+                <td>Venue</td>
+                <td>White</td>
+                <td>$100</td>
+            </tr>
+            <tr>
+                <td><input type="radio" value="3" name="car-radio"></td>
+                <td>2018</td>
+                <td>Ford</td>
+                <td>Focus</td>
+                <td>Green</td>
+                <td>$50</td>
+            </tr>
+        </table>
+
+        <button class="button startplanning" onclick="selectCar();">Select Car
+        </button>
+        <button class="button startplanning" onclick="cancelBooking();">Cancel
+        </button>
+    </div>
+</div>
+
+<!-- Confirmation window -->
+<div class="smalltripwindow" id="confirmation-window">
+    <div class="mainareatripdetails">
+        <div class="titlebar">
+            <h2>Confirm Booking</h2><br>
+        </div>
+        This section is under construction!<br>
+        Will display all details here soon!<br>
+
+        <fieldset class="confirm-trip-item-box">
+      <legend>Flight</legend>
+            Details of trip items will go in these boxes
+        </fieldset>
+<fieldset class="confirm-trip-item-box">
+      <legend>Return Flight</legend>
+            Details of trip items will go in these boxes
+        </fieldset>
+        <fieldset class="confirm-trip-item-box">
+      <legend>Hotel</legend>
+            Details of trip items will go in these boxes
+        </fieldset>
+        <fieldset class="confirm-trip-item-box">
+      <legend>Rental Car</legend>
+            Details of trip items will go in these boxes
+        </fieldset>
+
+
+        <button class="button startplanning" onclick="confirmBooking();">Confirm
+        </button>
+        <button class="button startplanning" onclick="cancelBooking();">Cancel
+        </button>
+    </div>
+</div>
+
+
 
 {% endblock %}
 {% block extrabody %}
-
 <script type='text/javascript'>
     const destinations = {{ destinations | tojson | safe }};
 
@@ -79,6 +466,7 @@
     const flightText = document.getElementById('flight-text');
     const hotelText = document.getElementById('hotel-text');
     const carText = document.getElementById('car-text');
+
 
     function changeState() {
         const selectedIndex = selection.selectedIndex;
@@ -96,19 +484,38 @@
         hotelText.innerText = destination.state;
         carText.innerText = destination.state;
     }
+
     const startPlanningButton = document.getElementById('startplanningbutton');
     const flightButton = document.getElementById('flightbutton');
     const hotelButton = document.getElementById('hotelbutton');
     const carButton = document.getElementById('carbutton');
+    const planContentWindow = document.getElementById('plancontent');
+    const tripDetailsWindow = document.getElementById("trip-details-window");
+    const searchFlightWindow = document.getElementById("search-flight-window");
+    const selectFlightWindow = document.getElementById("select-flight-window");
+    const selectReturnFlightWindow = document.getElementById("select-return-flight-window");
+    const searchHotelWindow = document.getElementById("search-hotel-window");
+    const selectHotelWindow = document.getElementById("select-hotel-window");
+    const searchCarWindow = document.getElementById("search-car-window");
+    const selectCarWindow = document.getElementById("select-car-window");
+    const confirmationWindow = document.getElementById("confirmation-window");
+
     var flightButtonActive = false;
     var hotelButtonActive = false;
     var carButtonActive = false;
     var startPlanningActive = false;
+    var returnFlightSelected = false;
+    //var itemsToBook = [false, false, false]; flight, hotel, car
+    var tripDetails = [];
+    var flightDetails = [];
+    var returnFlightDetails = [];
+    var hotelDetails = [];
+    var rentalCarDetails = [];
 
     //when selecting trip types on Plan Trip, causes them to be highlighted and records it in a boolean
     function changeTrip(tripType) {
         if (tripType === "car") {
-            if (carButtonActive === true) {
+            if (carButtonActive == true) {
                 carButtonActive = false;
                 carButton.style.border = "none";
             }
@@ -118,7 +525,7 @@
             }
         }
         else if (tripType === "hotel") {
-            if (hotelButtonActive === true) {
+            if (hotelButtonActive == true) {
                 hotelButtonActive = false;
                 hotelButton.style.border = "none";
             }
@@ -139,23 +546,299 @@
         }
         if (flightButtonActive || hotelButtonActive || carButtonActive) {
             startPlanningButton.style.backgroundColor = "blue";
+            startPlanningButton.style.cursor = "pointer";
             startPlanningActive = true;
         }
         else {
             startPlanningButton.style.backgroundColor = "gray";
+            startPlanningButton.style.cursor = "default";
             startPlanningActive = false;
         }
     }
 
-    //functionality needs ot be added to book whatever is active from here.
+
     function startPlanning() {
         if (startPlanningActive) {
-            alert("Start planning active!");
+            planContentWindow.style.display = "none";
+            tripDetailsWindow.style.display = "block";
+            if (selection.selectedIndex < 1) {
+                document.getElementById('destination-selection').selectedIndex = 0;
+            }
+            else {
+                document.getElementById('destination-selection').selectedIndex = selection.selectedIndex;
+            }
+
+            const today = new Date().toLocaleDateString('en-ca');
+            document.getElementById("trip-details-start").min = today;
+            document.getElementById("trip-details-end").min = today;
+        }
+
+    }
+
+    function startBooking() {
+        const tripName = document.getElementById('trip-details-name');
+        const tripNameText = tripName.value;
+        const destination = document.getElementById('destination-selection');
+        const destinationText = destination.options[destination.selectedIndex].text;
+        const startDate = document.getElementById('trip-details-start');
+        const startDateText = startDate.value;
+        const endDate = document.getElementById('trip-details-end');
+        const endDateText = endDate.value;
+        const date1 = new Date(startDateText);
+        const date2 = new Date(endDateText);
+        const destinationElements = document.getElementsByClassName('trip-destination-selection');
+        const startDateElements = document.getElementsByClassName('trip-start-date');
+        const endDateElements = document.getElementsByClassName('trip-end-date');
+        const today = new Date().toLocaleDateString('en-ca');
+
+        if (tripNameText === "") {
+            alert("Please give the trip a name.");
+        }
+        else if (startDateText === "") {
+            alert("Start Date must be chosen");
+        }
+        else if (endDateText === "") {
+            alert("End Date must be chosen");
+        }
+        else if (date1 > date2) {
+            alert("Start Date cannot be after the End Date.");
         }
         else {
-            alert("Start planning NOT active!");
+
+
+            tripDetails = [tripNameText, destinationText, startDateText, endDateText];
+            alert(tripDetails[0] + " " + tripDetails[1] + " " + tripDetails[2] + " " + tripDetails[3]);
+
+            for (i = 0; i < destinationElements.length; i++) {
+                destinationElements[i].value = destination.value;
+            }
+            for (i = 0; i < startDateElements.length; i++) {
+                startDateElements[i].value = startDateText;
+                startDateElements[i].min = today;
+            }
+            for (i = 0; i < endDateElements.length; i++) {
+                endDateElements[i].value = endDateText;
+                endDateElements[i].min = today;
+            }
+
+            tripDetailsWindow.style.display = "none";
+            if (flightButtonActive) {
+                searchFlightWindow.style.display = "block";
+            }
+            else if (hotelButtonActive) {
+                searchHotelWindow.style.display = "block";
+            }
+            else if (carButtonActive) {
+                searchCarWindow.style.display = "block";
+            }
+            else {
+                tripDetailsWindow.style.display = "block";
+                alert("Error: No trip items selected.");
+            }
         }
     }
+
+    function searchFlight() {
+        const selectFlightText = document.getElementById('select-flight-text');
+        const flightOrigin = document.getElementById('flight-origin-selection');
+        const flightOriginText = flightOrigin.options[flightOrigin.selectedIndex].text;
+        const flightDestination = document.getElementById('flight-destination-selection');
+        const flightDestinationText = flightDestination.options[flightDestination.selectedIndex].text;
+        const flightDate = document.getElementById('flight-date');
+        const flightDateText = flightDate.value;
+        if (flightOriginText === flightDestinationText) {
+            alert("State cannot be the same.");
+        }
+        else if (flightDateText === "") {
+            alert("Date must be chosen");
+        }
+        else {
+            returnFlightSelected = document.getElementById('returnFlightCheck').checked;
+            selectFlightText.innerHTML = "Flights from " + flightOriginText + " to "
+                + flightDestinationText + " on " + flightDateText;
+            searchFlightWindow.style.display = "none";
+            selectFlightWindow.style.display = "block";
+        }
+    }
+
+    function selectFlight() {
+        const flightTable = document.getElementById('flight-table');
+        const flightSelections = document.getElementsByName('flight-radio');
+        var flightSelection;
+        for (i = 0; i < flightSelections.length; i++) {
+            if (flightSelections[i].checked)
+                flightSelection = flightSelections[i].value;
+        }
+        var flightRow = flightTable.rows[flightSelection];
+        flightDetails = [flightRow.cells[1].textContent, flightRow.cells[2].textContent, flightRow.cells[3].textContent];
+        alert(flightDetails[0] + " " + flightDetails[1] + " " + flightDetails[2]);
+
+        selectFlightWindow.style.display = "none";
+        if (returnFlightSelected) {
+            const selectReturnFlightText = document.getElementById('select-return-flight-text');
+            const flightOrigin = document.getElementById('flight-origin-selection');
+            const flightOriginText = flightOrigin.options[flightOrigin.selectedIndex].text;
+            const flightDestination = document.getElementById('flight-destination-selection');
+            const flightDestinationText = flightDestination.options[flightDestination.selectedIndex].text;
+            const flightDate = document.getElementById('trip-details-end');
+            const flightDateText = flightDate.value;
+
+            selectReturnFlightText.innerHTML = "Flights from " + flightDestinationText + " to "
+                + flightOriginText + " on " + flightDateText;
+            selectReturnFlightWindow.style.display = "block";
+        }
+        else if (hotelButtonActive) {
+            searchHotelWindow.style.display = "block";
+        }
+        else if (carButtonActive) {
+            searchCarWindow.style.display = "block";
+        }
+        else {
+            confirmationWindow.style.display = "block";
+        }
+
+    }
+
+    function selectReturnFlight() {
+        const flightTable = document.getElementById('return-flight-table');
+        const flightSelections = document.getElementsByName('return-flight-radio');
+        var flightSelection;
+
+        for (i = 0; i < flightSelections.length; i++) {
+            if (flightSelections[i].checked)
+                flightSelection = flightSelections[i].value;
+        }
+        var flightRow = flightTable.rows[flightSelection];
+        returnFlightDetails = [flightRow.cells[1].textContent, flightRow.cells[2].textContent, flightRow.cells[3].textContent];
+        alert(returnFlightDetails[0] + " " + returnFlightDetails[1] + " " + returnFlightDetails[2]);
+
+        selectReturnFlightWindow.style.display = "none";
+        if (hotelButtonActive) {
+            searchHotelWindow.style.display = "block";
+
+        }
+        else if (carButtonActive) {
+            searchCarWindow.style.display = "block";
+
+        }
+        else {
+            confirmationWindow.style.display = "block";
+        }
+
+    }
+
+
+    function searchHotel() {
+        const selectHotelText = document.getElementById('select-hotel-text');
+        const hotelLocation = document.getElementById('hotel-location-selection');
+        const hotelLocationText = hotelLocation.options[hotelLocation.selectedIndex].text;
+        const hotelStartDate = document.getElementById('hotel-start-date');
+        const hotelStartDateText = hotelStartDate.value;
+        const hotelEndDate = document.getElementById('hotel-end-date');
+        const hotelEndDateText = hotelEndDate.value;
+
+        const date1 = new Date(hotelStartDateText);
+        const date2 = new Date(hotelEndDateText);
+
+        if (hotelStartDateText === "") {
+            alert("Start Date must be chosen");
+        }
+        else if (hotelEndDateText === "") {
+            alert("End Date must be chosen");
+        }
+        else if (date1 > date2) {
+            alert("Start Date cannot be after the End Date.");
+        }
+        else {
+            selectHotelText.innerHTML = "Hotels in " + hotelLocationText + " from " + hotelStartDateText + " to " + hotelEndDateText;
+            searchHotelWindow.style.display = "none";
+            selectHotelWindow.style.display = "block";
+        }
+    }
+
+    function selectHotel() {
+        const hotelTable = document.getElementById('hotel-table');
+        const hotelSelections = document.getElementsByName('hotel-radio');
+        var hotelSelection;
+        for (i = 0; i < hotelSelections.length; i++) {
+            if (hotelSelections[i].checked)
+                hotelSelection = hotelSelections[i].value;
+        }
+        var hotelRow = hotelTable.rows[hotelSelection];
+        hotelDetails = [hotelRow.cells[1].textContent, hotelRow.cells[2].textContent, hotelRow.cells[3].textContent];
+        alert(hotelDetails[0] + " " + hotelDetails[1] + " " + hotelDetails[2]);
+
+        selectHotelWindow.style.display = "none";
+        if (carButtonActive) {
+            searchCarWindow.style.display = "block";
+        }
+        else {
+            confirmationWindow.style.display = "block";
+        }
+    }
+
+    function searchCar() {
+        const selectCarPickupText = document.getElementById('select-car-pickup-text');
+        const selectCarDropOffText = document.getElementById('select-car-dropoff-text');
+        const selectCarStyleText = document.getElementById('select-car-style-text');
+        const carPickupLocation = document.getElementById('car-pickup-location-selection');
+        const carPickupLocationText = carPickupLocation.options[carPickupLocation.selectedIndex].text;
+        const carDropOffLocation = document.getElementById('car-dropoff-location-selection');
+        const carDropOffLocationText = carDropOffLocation.options[carDropOffLocation.selectedIndex].text;
+        const carPickupDate = document.getElementById('car-pickup-date');
+        const carPickupDateText = carPickupDate.value;
+        const carDropOffDate = document.getElementById('car-dropoff-date');
+        const carDropOffDateText = carDropOffDate.value;
+        const carPickupTime = document.getElementById('car-pickup-time-selection');
+        const carPickupTimeText = carPickupTime.options[carPickupTime.selectedIndex].text;
+        const carDropOffTime = document.getElementById('car-dropoff-time-selection');
+        const carDropOffTimeText = carDropOffTime.options[carDropOffTime.selectedIndex].text;
+        const carStyle = document.getElementById('car-style-selection');
+        const carStyleText = carStyle.options[carStyle.selectedIndex].text;
+
+        const date1 = new Date(carPickupDateText);
+        const date2 = new Date(carDropOffDateText);
+
+        if (carPickupDateText === "") {
+            alert("Pick Up Date must be chosen");
+        }
+        else if (carDropOffDateText === "") {
+            alert("Drop Off Date must be chosen");
+        }
+        else if (date1 > date2) {
+            alert("Pick Up Date cannot be after the Drop Off Date.");
+        }
+        else if (carPickupDateText === carDropOffDateText && carPickupTime.selectedIndex >= carDropOffTime.selectedIndex) {
+            alert("Pick Up must occur before Drop Off");
+        }
+        else {
+            selectCarPickupText.innerHTML = "Pick Up: " + carPickupTimeText +" of " + carPickupDateText + " in " + carPickupLocationText;
+            selectCarDropOffText.innerHTML = "Drop Off: "+ carDropOffTimeText +" of " + carDropOffDateText + " in " + carDropOffLocationText;
+            selectCarStyleText.innerHTML = "Style: " + carStyleText;
+            searchCarWindow.style.display = "none";
+            selectCarWindow.style.display = "block";
+        }
+    }
+
+function selectCar() {
+        const carTable = document.getElementById('car-table');
+        const carSelections = document.getElementsByName('car-radio');
+        var carSelection;
+        for (i = 0; i < carSelections.length; i++) {
+            if (carSelections[i].checked)
+                carSelection = carSelections[i].value;
+        }
+        var carRow = carTable.rows[carSelection];
+        carDetails = [carRow.cells[1].textContent, carRow.cells[2].textContent, carRow.cells[3].textContent, carRow.cells[4].textContent, carRow.cells[5].textContent];
+        alert(carDetails[0] + " " + carDetails[1] + " " + carDetails[2]+ " " + carDetails[3] + " " + carDetails[4]);
+
+        selectCarWindow.style.display = "none";
+        confirmationWindow.style.display = "block";
+    }
+
+
+
+
 
 </script>
 {% endblock %}
