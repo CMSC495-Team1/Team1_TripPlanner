@@ -142,22 +142,22 @@
     {
         "state": "New Hampshire",
         "description": "Joining the Union in 1788, New Hampshire boasts the White Mountain National Forest, perfect for outdoor adventure.",
-        "image_filename": " new_hampshire.jpg"
+        "image_filename": "new_hampshire.jpg"
     },
     {
         "state": "New Jersey",
         "description": "As a state since 1787, New Jersey draws visitors to the Atlantic City Boardwalk, a bustling seaside attraction.",
-        "image_filename": " new_jersey.jpg"
+        "image_filename": "new_jersey.jpg"
     },
     {
         "state": "New Mexico",
         "description": "Since 1912, New Mexico has been famous for Carlsbad Caverns, where unique cave formations attract explorers.",
-        "image_filename": "  new_mexico.jpg"
+        "image_filename": " new_mexico.jpg"
     },
     {
         "state": "New York",
         "description": "New York, established in 1788, is globally recognized for the Statue of Liberty, a beacon of freedom in New York Harbor.",
-        "image_filename": " new_york.jpg"
+        "image_filename": "new_york.jpg"
     },
     {
         "state": "North Carolina",
