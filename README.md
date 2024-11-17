@@ -41,7 +41,7 @@ To set up the Trip Planner application locally, follow these steps:
 3. **Run the Application**
    - Start the server:
      ```
-     python app.py
+     flask run
      ```
    - Open your browser and navigate to `http://localhost:5000` to access the application.
 
@@ -91,4 +91,3 @@ This project is licensed under the MIT License. See the LICENSE file for more de
 
 ## Contact
 For any questions, please reach out to the Project Manager, Galia Adelshin, at gadelshin@student.umgc.edu.
-
