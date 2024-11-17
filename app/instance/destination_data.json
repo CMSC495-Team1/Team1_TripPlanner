@@ -1,0 +1,257 @@
+[
+    {
+        "state": "Alabama",
+        "description": "Established in 1819, Alabama is renowned for the U.S. Space & Rocket Center in Huntsville, showcasing the state\u2019s contributions to space exploration.",
+        "image_filename": "alabama.jpg"
+    },
+    {
+        "state": "Alaska",
+        "description": "Founded in 1959, Alaska\u2019s claim to fame is Denali National Park, where North America\u2019s tallest peak offers awe-inspiring wilderness views.",
+        "image_filename": "alaska.jpg"
+    },
+    {
+        "state": "Arizona",
+        "description": "Since 1912, Arizona has captivated visitors with the Grand Canyon, a world-famous marvel of breathtaking geological formations and colors.",
+        "image_filename": "arizona.jpg"
+    },
+    {
+        "state": "Arkansas",
+        "description": "Added to the Union in 1836, Arkansas is beloved for Hot Springs National Park, a destination blending natural beauty with historic allure.",
+        "image_filename": "arkansas.jpg"
+    },
+    {
+        "state": "California",
+        "description": "Since 1850, California has been famous for the Golden Gate Bridge, an iconic San Francisco landmark recognized around the globe.",
+        "image_filename": "california.jpg"
+    },
+    {
+        "state": "Colorado",
+        "description": "Colorado, admitted in 1876, is celebrated for Rocky Mountain National Park, offering stunning alpine lakes and rugged mountain landscapes.",
+        "image_filename": "colorado.jpg"
+    },
+    {
+        "state": "Connecticut",
+        "description": "One of the original 13 colonies, established in 1788, Connecticut is noted for Mystic Seaport, a window into America\u2019s maritime heritage.",
+        "image_filename": "connecticut.jpg"
+    },
+    {
+        "state": "Delaware",
+        "description": "The first state, established in 1787, Delaware is famed for Rehoboth Beach, featuring a lively boardwalk and scenic Atlantic coastline.",
+        "image_filename": "delaware.jpg"
+    },
+    {
+        "state": "Florida",
+        "description": "Since 1845, Florida has enchanted visitors with Walt Disney World in Orlando, bringing magical adventures to guests of all ages.",
+        "image_filename": "florida.jpg"
+    },
+    {
+        "state": "Georgia",
+        "description": "Georgia, a state since 1788, is best known for the Savannah Historic District, a charming area with cobblestone streets and antebellum homes.",
+        "image_filename": "georgia.jpg"
+    },
+    {
+        "state": "Hawaii",
+        "description": "Joining the Union in 1959, Hawaii is celebrated for Waikiki Beach on Oahu, where white sands and surf combine for a tropical paradise.",
+        "image_filename": "hawaii.jpg"
+    },
+    {
+        "state": "Idaho",
+        "description": "Since 1890, Idaho\u2019s pride has been Shoshone Falls, dubbed the \u201cNiagara of the West\u201d for its spectacular, roaring cascades.",
+        "image_filename": "idaho.jpg"
+    },
+    {
+        "state": "Illinois",
+        "description": "Established in 1818, Illinois is known worldwide for Millennium Park in Chicago, where art and architecture meet in a modern oasis.",
+        "image_filename": "illinois.jpg"
+    },
+    {
+        "state": "Indiana",
+        "description": "Indiana, since 1816, is synonymous with the Indianapolis Motor Speedway, a historic raceway adored by motorsport fans.",
+        "image_filename": "indiana.jpg"
+    },
+    {
+        "state": "Iowa",
+        "description": "Brought into statehood in 1846, Iowa is cherished for the Field of Dreams Movie Site, a tribute to baseball in America\u2019s heartland.",
+        "image_filename": "iowa.jpg"
+    },
+    {
+        "state": "Kansas",
+        "description": "Founded in 1861, Kansas stands out for Monument Rocks, ancient chalk formations that offer a glimpse into prehistoric times.",
+        "image_filename": "kansas.jpg"
+    },
+    {
+        "state": "Kentucky",
+        "description": "Kentucky, one of the earliest states from 1792, boasts Mammoth Cave National Park, home to the world\u2019s most extensive cave system.",
+        "image_filename": "kentucky.jpg"
+    },
+    {
+        "state": "Louisiana",
+        "description": "Established in 1812, Louisiana shines with the French Quarter in New Orleans, a vibrant area famous for its music, food, and nightlife.",
+        "image_filename": "louisiana.jpg"
+    },
+    {
+        "state": "Maine",
+        "description": "Since 1820, Maine has been known for Acadia National Park, where rugged coastline meets lush forests, attracting nature enthusiasts.",
+        "image_filename": "maine.jpg"
+    },
+    {
+        "state": "Maryland",
+        "description": "Joining the Union in 1788, Maryland\u2019s highlight is the National Aquarium in Baltimore, a top destination for marine lovers.",
+        "image_filename": "maryland.jpg"
+    },
+    {
+        "state": "Massachusetts",
+        "description": "One of the original states from 1788, Massachusetts is celebrated for the Freedom Trail in Boston, a journey through rich American history.",
+        "image_filename": "massachusetts.jpg"
+    },
+    {
+        "state": "Michigan",
+        "description": "Michigan, added in 1837, is famous for Mackinac Island, known for its charming, car-free atmosphere and Victorian architecture.",
+        "image_filename": "michigan.jpg"
+    },
+    {
+        "state": "Minnesota",
+        "description": "Since 1858, Minnesota\u2019s pride has been the Mall of America, a massive complex for shopping, dining, and entertainment.",
+        "image_filename": "minnesota.jpg"
+    },
+    {
+        "state": "Mississippi",
+        "description": "Founded in 1817, Mississippi honors its past with Vicksburg National Military Park, preserving pivotal Civil War history.",
+        "image_filename": "mississippi.jpg"
+    },
+    {
+        "state": "Missouri",
+        "description": "Admitted in 1821, Missouri is well-known for the Gateway Arch in St. Louis, symbolizing the westward expansion of America.",
+        "image_filename": "missouri.jpg"
+    },
+    {
+        "state": "Montana",
+        "description": "Joining the Union in 1889, Montana is celebrated for Glacier National Park, with its breathtaking landscapes and pristine wilderness.",
+        "image_filename": "montana.jpg"
+    },
+    {
+        "state": "Nebraska",
+        "description": "Nebraska, established in 1867, is famed for Chimney Rock, a historic landmark along the Oregon Trail.",
+        "image_filename": "nebraska.jpg"
+    },
+    {
+        "state": "Nevada",
+        "description": "Founded in 1864, Nevada is world-famous for the Las Vegas Strip, a hub of casinos, nightlife, and entertainment.",
+        "image_filename": "nevada.jpg"
+    },
+    {
+        "state": "New Hampshire",
+        "description": "Joining the Union in 1788, New Hampshire boasts the White Mountain National Forest, perfect for outdoor adventure.",
+        "image_filename": " new_hampshire.jpg"
+    },
+    {
+        "state": "New Jersey",
+        "description": "As a state since 1787, New Jersey draws visitors to the Atlantic City Boardwalk, a bustling seaside attraction.",
+        "image_filename": " new_jersey.jpg"
+    },
+    {
+        "state": "New Mexico",
+        "description": "Since 1912, New Mexico has been famous for Carlsbad Caverns, where unique cave formations attract explorers.",
+        "image_filename": "  new_mexico.jpg"
+    },
+    {
+        "state": "New York",
+        "description": "New York, established in 1788, is globally recognized for the Statue of Liberty, a beacon of freedom in New York Harbor.",
+        "image_filename": " new_york.jpg"
+    },
+    {
+        "state": "North Carolina",
+        "description": "Founded in 1789, North Carolina is admired for Great Smoky Mountains National Park, a biodiverse haven.",
+        "image_filename": "north_carolina.jpg"
+    },
+    {
+        "state": "North Dakota",
+        "description": "Since 1889, North Dakota\u2019s pride is Theodore Roosevelt National Park, showcasing rugged landscapes and wildlife.",
+        "image_filename": "north_dakota.jpg"
+    },
+    {
+        "state": "Ohio",
+        "description": "Ohio, admitted in 1803, is famous for the Rock & Roll Hall of Fame in Cleveland, celebrating music history.",
+        "image_filename": "ohio.jpg"
+    },
+    {
+        "state": "Oklahoma",
+        "description": "Established in 1907, Oklahoma highlights the National Cowboy & Western Heritage Museum, honoring its frontier spirit.",
+        "image_filename": "oklahoma.jpg"
+    },
+    {
+        "state": "Oregon",
+        "description": "Since 1859, Oregon\u2019s natural wonder is Crater Lake National Park, home to the deepest lake in the U.S.",
+        "image_filename": "oregon.jpg"
+    },
+    {
+        "state": "Pennsylvania",
+        "description": "Pennsylvania, a founding state from 1787, holds the Liberty Bell, an enduring symbol of American independence.",
+        "image_filename": "pennsylvania.jpg"
+    },
+    {
+        "state": "Rhode Island",
+        "description": "Founded in 1790, Rhode Island is celebrated for The Breakers, a mansion reflecting the opulence of the Gilded Age.",
+        "image_filename": "rhode_island.jpg"
+    },
+    {
+        "state": "South Carolina",
+        "description": "South Carolina, since 1788, is known for Charleston\u2019s Historic District, rich with antebellum charm.",
+        "image_filename": "south_carolina.jpg"
+    },
+    {
+        "state": "South Dakota",
+        "description": "Added in 1889, South Dakota is iconic for Mount Rushmore, where presidents are carved into the Black Hills.",
+        "image_filename": "south_dakota.jpg"
+    },
+    {
+        "state": "Tennessee",
+        "description": "Joining the Union in 1796, Tennessee is famed for Great Smoky Mountains National Park, shared with North Carolina.",
+        "image_filename": "tennessee.jpg"
+    },
+    {
+        "state": "Texas",
+        "description": "Texas, a state since 1845, is remembered for the Alamo, a significant landmark in its fight for independence.",
+        "image_filename": "texas.jpg"
+    },
+    {
+        "state": "Utah",
+        "description": "Founded in 1896, Utah is distinguished by Zion National Park, known for its impressive red rock formations.",
+        "image_filename": "utah.jpg"
+    },
+    {
+        "state": "Vermont",
+        "description": "Vermont, since 1791, is famous for Stowe Mountain Resort, a top destination for winter sports and scenic views.",
+        "image_filename": "vermont.jpg"
+    },
+    {
+        "state": "Virginia",
+        "description": "Virginia, established in 1788, is notable for Colonial Williamsburg, offering an immersive journey into early American life.",
+        "image_filename": "virginia.jpg"
+    },
+    {
+        "state": "Washington",
+        "description": "Since 1889, Washington is best known for the Space Needle in Seattle, offering panoramic views of mountains and cityscape.",
+        "image_filename": "washington.jpg"
+    },
+    {
+        "state": "West Virginia",
+        "description": "Founded in 1863, West Virginia is home to New River Gorge Bridge, an iconic spot for outdoor adventure.",
+        "image_filename": "west_virginia.jpg"
+    },
+    {
+        "state": "Wisconsin",
+        "description": "Admitted in 1848, Wisconsin is famous for the Wisconsin Dells, with unique rock formations and water attractions.",
+        "image_filename": "wisconsin.jpg"
+    },
+    {
+        "state": "Wyoming",
+        "description": "Since 1890, Wyoming\u2019s natural treasure is Yellowstone National Park, famed for its geysers and geothermal wonders.",
+        "image_filename": "wyoming.jpg"
+    },
+    {
+        "state": "Washington DC",
+        "description": "Established as the nation\u2019s capital in 1790, Washington DC is home to iconic landmarks such as the U.S. Capitol and the Lincoln Memorial.",
+        "image_filename": "washington_dc.jpg"
+    }
+]

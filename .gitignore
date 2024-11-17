@@ -25,3 +25,12 @@ Test\ Results\ -\ .html
 
 # Ignore personal environment variables
 .env
+
+# MacOS specific files
+.DS_Store
+
+# flask_migration
+migrations/
+
+# ignore database
+app.db
