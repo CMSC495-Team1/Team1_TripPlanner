@@ -28,3 +28,9 @@ Test\ Results\ -\ .html
 
 # MacOS specific files
 .DS_Store
+
+# flask_migration
+migrations/
+
+# ignore database
+app.db
