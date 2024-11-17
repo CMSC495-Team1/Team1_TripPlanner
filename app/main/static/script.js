@@ -75,7 +75,7 @@ function displayNavBar() {
             + "<div id='loginmenu-container'><div id='loginmenu'><div class='plan-form'><form id='tripForm'><table id='logintable'>"
             + "        <tr><td>User ID:</td><td><input type='text' id='userID' required></td></tr>"
             + "        <tr><td>Password:</td><td><input type='password' id='password' required></td></tr>"
-            + "    </table><button type='submit'>Submit</button></form><br><a href='/forgotpassword'>Forgot password? Click here.</a></div></div></div>";
+            + "    </table><button type='submit'>Submit</button></form><br><a href='/forgot_password'>Forgot password? Click here.</a></div></div></div>";
     }
 }
 

@@ -452,7 +452,19 @@
     </div>
 </div>
 
+<!-- Booking Success window -->
+<div class="smalltripwindow" id="booking-success-window">
+    <div class="mainareatripdetails">
+        <div class="titlebar">
+            <h2>Booking Success</h2><br>
+        </div>
+        Trip successfully booked!<br>
+        It has been added to your trip list.<br>
 
+        <a href='/view_trips'><button class="button startplanning">View Trips
+        </button></a>
+    </div>
+</div>
 
 {% endblock %}
 {% block extrabody %}
@@ -499,6 +511,8 @@
     const searchCarWindow = document.getElementById("search-car-window");
     const selectCarWindow = document.getElementById("select-car-window");
     const confirmationWindow = document.getElementById("confirmation-window");
+
+    const bookingSuccessWindow = document.getElementById("booking-success-window");
 
     var flightButtonActive = false;
     var hotelButtonActive = false;
@@ -670,7 +684,10 @@
                 flightSelection = flightSelections[i].value;
         }
         var flightRow = flightTable.rows[flightSelection];
-        flightDetails = [flightRow.cells[1].textContent, flightRow.cells[2].textContent, flightRow.cells[3].textContent];
+        flightDetails = [];
+         for (i = 1; i < flightRow.cells.length; i++) {
+            flightDetails.push(flightRow.cells[i].textContent);
+        }
         alert(flightDetails[0] + " " + flightDetails[1] + " " + flightDetails[2]);
 
         selectFlightWindow.style.display = "none";
@@ -709,7 +726,10 @@
                 flightSelection = flightSelections[i].value;
         }
         var flightRow = flightTable.rows[flightSelection];
-        returnFlightDetails = [flightRow.cells[1].textContent, flightRow.cells[2].textContent, flightRow.cells[3].textContent];
+        returnFlightDetails = [];
+         for (i = 1; i < flightRow.cells.length; i++) {
+            returnFlightDetails.push(flightRow.cells[i].textContent);
+        }
         alert(returnFlightDetails[0] + " " + returnFlightDetails[1] + " " + returnFlightDetails[2]);
 
         selectReturnFlightWindow.style.display = "none";
@@ -765,7 +785,10 @@
                 hotelSelection = hotelSelections[i].value;
         }
         var hotelRow = hotelTable.rows[hotelSelection];
-        hotelDetails = [hotelRow.cells[1].textContent, hotelRow.cells[2].textContent, hotelRow.cells[3].textContent];
+         hotelDetails = [];
+         for (i = 1; i < hotelRow.cells.length; i++) {
+            hotelDetails.push(hotelRow.cells[i].textContent);
+        }
         alert(hotelDetails[0] + " " + hotelDetails[1] + " " + hotelDetails[2]);
 
         selectHotelWindow.style.display = "none";
@@ -829,14 +852,21 @@ function selectCar() {
                 carSelection = carSelections[i].value;
         }
         var carRow = carTable.rows[carSelection];
-        carDetails = [carRow.cells[1].textContent, carRow.cells[2].textContent, carRow.cells[3].textContent, carRow.cells[4].textContent, carRow.cells[5].textContent];
+        carDetails = [];
+         for (i = 1; i < carRow.cells.length; i++) {
+            carDetails.push(carRow.cells[i].textContent);
+        }
         alert(carDetails[0] + " " + carDetails[1] + " " + carDetails[2]+ " " + carDetails[3] + " " + carDetails[4]);
 
         selectCarWindow.style.display = "none";
         confirmationWindow.style.display = "block";
     }
 
+function confirmBooking(){
 
+confirmationWindow.style.display = "none";
+        bookingSuccessWindow.style.display = "block";
+}
 
 
 
