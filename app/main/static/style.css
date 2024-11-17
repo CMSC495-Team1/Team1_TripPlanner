@@ -94,16 +94,19 @@
 
 
   .login {
-    background-color: #000000;
-    border: 2px solid #0000CC;
+    background-color: #0D1F31;
+    border: 2px solid #87CEEB;
+    color: #87CEEB;
     position: absolute;
     right: 10px;
     top: 5px;
+font-weight: bold;
   }
 
   .login:hover {
-    background-color: #0000CC;
-    border: 2px solid #0000CC;
+    background-color: #87CEEB;
+    border: 2px solid #87CEEB;
+    color: #0D1F31;
     position: absolute;
     right: 10px;
     top: 5px;
@@ -174,7 +177,7 @@
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    cursor: pointer;
+    cursor: default;
     border-radius: 24px;
     padding: 10px 10px;
   }
@@ -190,7 +193,6 @@
   }
 
   #usernameButton {
-
     right: 10px;
   }
 
@@ -237,11 +239,12 @@
     top: 100%;
     right: 0%;
     max-width: 400px;
-    background-color: #2C3E50;
+    background-color: #0D1F31;
     max-height: 0px;
     overflow: hidden;
     transition: max-height 0.3s;
     z-index: 6;
+    border-radius: 0px 0px 0px 14px;
   }
 
   #loginmenu-container.open-menu {
@@ -299,6 +302,10 @@
     left: 50%;
     margin-top: -382px;
     margin-left: -652px;
+     background-color: #2C3E50;
+    color: white;
+    padding: 0px;
+    border-radius: 15px 15px 15px 15px;
   }
 
   #smallwindow {
@@ -364,13 +371,31 @@
   .mainarea {
     width: 1064px;
     height: 100%;
-    background-color: #2C3E50;
     color: white;
     padding: 0px;
-    border-radius: 0px 15px 15px 0px;
     text-align: center;
   }
 
+.mainareatripdetails
+{
+    width: 100%;
+    height: 100%;
+    color: white;
+    padding: 0px;
+    text-align: center;
+  }
+
+.large-title-bar {
+    height: 55px;
+    background-color: #0D1F31;
+    color: white;
+    padding: 0px;
+    border-radius: 15px 15px 0px 0px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
   #state-list {
     width: 200px;
@@ -390,6 +415,23 @@
   #tripForm {
     width: 300px;
   }
+
+
+  .smalltripwindow {
+    height: 400px;
+    width: 500px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -200px;
+    margin-left: -250px;
+    background-color: #2C3E50;
+    color: white;
+    padding: 0px;
+    border-radius: 15px 15px 15px 15px;
+    display: none;
+  }
+
 
   #state-info {
     padding: 10px;
@@ -424,21 +466,25 @@
     margin: 0px;
   }
 
-  #logintable{
+  .form_table{
     padding:5px;
     text-align: left;
+    margin-left: auto;
+    margin-right: auto
   }
 
 
-  #contact_table {
+  .data_table {
     background-color: white;
     color: black;
     border-collapse: collapse;
     font-size: 10px;
     text-align: left;
+    margin-left: auto;
+    margin-right: auto
   }
 
-  #contact_table tr th {
+  .data_table tr th {
     background-color: black;
     color: white;
     border: solid 2px;
@@ -448,17 +494,29 @@
     text-align: center;
   }
 
-  #contact_table tr td {
+  .data_table tr td {
     border: solid 2px;
     border-color: black;
     vertical-align: top;
     padding: 6px;
   }
 
-  #contact_table tr td a {
+  .data_table tr td a {
     color: #0000CC;
   }
 
-  #contact_table tr td a:hover {
+  .data_table tr td a:hover {
     color: #0D1F31;
+  }
+
+  .confirm-trip-item-box{
+  border: 1px solid gray;
+  width:80%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+   .confirm-trip-item-box legend{
+  color:gray;
+  font-weight:bold;
   }
