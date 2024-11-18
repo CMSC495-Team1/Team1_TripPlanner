@@ -652,6 +652,11 @@
         }
     }
 
+     function cancelBooking() {
+        document.getElementById('trip-details-window').style.display = "none";
+        document.getElementById('plancontent').style.display = "block";
+    }
+
     function searchFlight() {
         const selectFlightText = document.getElementById('select-flight-text');
         const flightOrigin = document.getElementById('flight-origin-selection');
