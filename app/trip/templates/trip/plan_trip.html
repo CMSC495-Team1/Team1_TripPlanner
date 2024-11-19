@@ -21,10 +21,8 @@
     <div class="mainarea">
         <div id="state-top">
             <div class="state-image">
-                <img id="destination-image"
-                     src="{% if destinations %}{{ url_for('trip.static', filename='images/states/' + destinations[0].image_filename) }}
-                          {% else %} {{ url_for('trip.static', filename='images/default_image.jpg') }}{% endif %}"
-                     alt="{% if destinations %}{{ destinations[0].state }}
+                <img id="destination-image" src="{% if destinations %}{{ url_for('trip.static', filename='images/states/' + destinations[0].image_filename) }}
+                          {% else %} {{ url_for('trip.static', filename='images/default_image.jpg') }}{% endif %}" alt="{% if destinations %}{{ destinations[0].state }}
                           {% else %}Default{% endif %}">
             </div>
             <div class="state-name-text">
@@ -42,19 +40,19 @@
             <div class="plan-form">
                 <button class="button tripbutton" id="flightbutton" onclick="changeTrip('flight');">
                     <img src="{{ url_for('trip.static', filename='icons/flight_icon.png') }}" width="75" height="75"
-                         style="vertical-align:middle" alt="Flight Icon">
+                        style="vertical-align:middle" alt="Flight Icon">
                     <br><br>Book a flight to <br /><span id="flight-text">{% if destinations %}{{ destinations[0].state
                         }}{% endif %}</span>
                 </button>
                 <button class="button tripbutton" id="hotelbutton" onclick="changeTrip('hotel');">
                     <img src="{{ url_for('trip.static', filename='icons/hotel_icon.png') }}" width="75" height="75"
-                         style="vertical-align:middle" alt="Hotel Icon">
+                        style="vertical-align:middle" alt="Hotel Icon">
                     <br><br>Book a hotel in <br /><span id="hotel-text">{% if destinations %}{{ destinations[0].state
                         }}{% endif %}</span>
                 </button>
                 <button class="button tripbutton" id="carbutton" onclick="changeTrip('car');">
                     <img src="{{ url_for('trip.static', filename='icons/car_icon.png') }}" width="75" height="75"
-                         style="vertical-align:middle" alt="Car Icon">
+                        style="vertical-align:middle" alt="Car Icon">
                     <br><br>Rent a car in <br /><span id="car-text">{% if destinations %}{{ destinations[0].state }}{%
                         endif %}</span>
                 </button>
@@ -428,19 +426,19 @@
         Will display all details here soon!<br>
 
         <fieldset class="confirm-trip-item-box">
-      <legend>Flight</legend>
-            Details of trip items will go in these boxes
-        </fieldset>
-<fieldset class="confirm-trip-item-box">
-      <legend>Return Flight</legend>
+            <legend>Flight</legend>
             Details of trip items will go in these boxes
         </fieldset>
         <fieldset class="confirm-trip-item-box">
-      <legend>Hotel</legend>
+            <legend>Return Flight</legend>
             Details of trip items will go in these boxes
         </fieldset>
         <fieldset class="confirm-trip-item-box">
-      <legend>Rental Car</legend>
+            <legend>Hotel</legend>
+            Details of trip items will go in these boxes
+        </fieldset>
+        <fieldset class="confirm-trip-item-box">
+            <legend>Rental Car</legend>
             Details of trip items will go in these boxes
         </fieldset>
 
@@ -462,7 +460,7 @@
         It has been added to your trip list.<br>
 
         <a href='/view_trips'><button class="button startplanning">View Trips
-        </button></a>
+            </button></a>
     </div>
 </div>
 
@@ -478,7 +476,7 @@
     const flightText = document.getElementById('flight-text');
     const hotelText = document.getElementById('hotel-text');
     const carText = document.getElementById('car-text');
-
+    let bookingStarted = false;
 
     function changeState() {
         const selectedIndex = selection.selectedIndex;
@@ -573,6 +571,7 @@
 
     function startPlanning() {
         if (startPlanningActive) {
+            bookingStarted = true;
             planContentWindow.style.display = "none";
             tripDetailsWindow.style.display = "block";
             if (selection.selectedIndex < 1) {
@@ -618,8 +617,6 @@
             alert("Start Date cannot be after the End Date.");
         }
         else {
-
-
             tripDetails = [tripNameText, destinationText, startDateText, endDateText];
             alert(tripDetails[0] + " " + tripDetails[1] + " " + tripDetails[2] + " " + tripDetails[3]);
 
@@ -652,10 +649,7 @@
         }
     }
 
-     function cancelBooking() {
-        document.getElementById('trip-details-window').style.display = "none";
-        document.getElementById('plancontent').style.display = "block";
-    }
+
 
     function searchFlight() {
         const selectFlightText = document.getElementById('select-flight-text');
@@ -690,7 +684,7 @@
         }
         var flightRow = flightTable.rows[flightSelection];
         flightDetails = [];
-         for (i = 1; i < flightRow.cells.length; i++) {
+        for (i = 1; i < flightRow.cells.length; i++) {
             flightDetails.push(flightRow.cells[i].textContent);
         }
         alert(flightDetails[0] + " " + flightDetails[1] + " " + flightDetails[2]);
@@ -732,7 +726,7 @@
         }
         var flightRow = flightTable.rows[flightSelection];
         returnFlightDetails = [];
-         for (i = 1; i < flightRow.cells.length; i++) {
+        for (i = 1; i < flightRow.cells.length; i++) {
             returnFlightDetails.push(flightRow.cells[i].textContent);
         }
         alert(returnFlightDetails[0] + " " + returnFlightDetails[1] + " " + returnFlightDetails[2]);
@@ -790,8 +784,8 @@
                 hotelSelection = hotelSelections[i].value;
         }
         var hotelRow = hotelTable.rows[hotelSelection];
-         hotelDetails = [];
-         for (i = 1; i < hotelRow.cells.length; i++) {
+        hotelDetails = [];
+        for (i = 1; i < hotelRow.cells.length; i++) {
             hotelDetails.push(hotelRow.cells[i].textContent);
         }
         alert(hotelDetails[0] + " " + hotelDetails[1] + " " + hotelDetails[2]);
@@ -840,15 +834,15 @@
             alert("Pick Up must occur before Drop Off");
         }
         else {
-            selectCarPickupText.innerHTML = "Pick Up: " + carPickupTimeText +" of " + carPickupDateText + " in " + carPickupLocationText;
-            selectCarDropOffText.innerHTML = "Drop Off: "+ carDropOffTimeText +" of " + carDropOffDateText + " in " + carDropOffLocationText;
+            selectCarPickupText.innerHTML = "Pick Up: " + carPickupTimeText + " of " + carPickupDateText + " in " + carPickupLocationText;
+            selectCarDropOffText.innerHTML = "Drop Off: " + carDropOffTimeText + " of " + carDropOffDateText + " in " + carDropOffLocationText;
             selectCarStyleText.innerHTML = "Style: " + carStyleText;
             searchCarWindow.style.display = "none";
             selectCarWindow.style.display = "block";
         }
     }
 
-function selectCar() {
+    function selectCar() {
         const carTable = document.getElementById('car-table');
         const carSelections = document.getElementsByName('car-radio');
         var carSelection;
@@ -858,22 +852,37 @@ function selectCar() {
         }
         var carRow = carTable.rows[carSelection];
         carDetails = [];
-         for (i = 1; i < carRow.cells.length; i++) {
+        for (i = 1; i < carRow.cells.length; i++) {
             carDetails.push(carRow.cells[i].textContent);
         }
-        alert(carDetails[0] + " " + carDetails[1] + " " + carDetails[2]+ " " + carDetails[3] + " " + carDetails[4]);
+        alert(carDetails[0] + " " + carDetails[1] + " " + carDetails[2] + " " + carDetails[3] + " " + carDetails[4]);
 
         selectCarWindow.style.display = "none";
         confirmationWindow.style.display = "block";
     }
 
-function confirmBooking(){
+    function confirmBooking() {
 
-confirmationWindow.style.display = "none";
+        confirmationWindow.style.display = "none";
         bookingSuccessWindow.style.display = "block";
-}
+    }
 
+    function cancelBooking() {
 
+        let result = confirm("Do you wish to cancel this booking?");
+
+        if (result) {
+            bookingStarted = false;
+            window.location.reload();
+        }
+    }
+
+    window.addEventListener('beforeunload', (event) => {
+        if (bookingStarted) {
+            event.preventDefault();
+            event.returnValue = '';
+        }
+    });
 
 </script>
 {% endblock %}
