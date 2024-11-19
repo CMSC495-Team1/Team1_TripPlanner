@@ -427,19 +427,19 @@
 
         <fieldset class="confirm-trip-item-box">
             <legend>Flight</legend>
-            Details of trip items will go in these boxes
+            <span id="confirm-flight-details"></span>
         </fieldset>
         <fieldset class="confirm-trip-item-box">
             <legend>Return Flight</legend>
-            Details of trip items will go in these boxes
+            <span id="confirm-return-flight-details"></span>
         </fieldset>
         <fieldset class="confirm-trip-item-box">
             <legend>Hotel</legend>
-            Details of trip items will go in these boxes
+            <span id="confirm-hotel-details"></span>
         </fieldset>
         <fieldset class="confirm-trip-item-box">
             <legend>Rental Car</legend>
-            Details of trip items will go in these boxes
+            <span id="confirm-car-details"></span>
         </fieldset>
 
 
@@ -509,6 +509,7 @@
     const searchCarWindow = document.getElementById("search-car-window");
     const selectCarWindow = document.getElementById("select-car-window");
     const confirmationWindow = document.getElementById("confirmation-window");
+        const confirmationElements = document.getElementsByClassName('confirm-trip-item-box');
 
     const bookingSuccessWindow = document.getElementById("booking-success-window");
 
@@ -517,7 +518,6 @@
     var carButtonActive = false;
     var startPlanningActive = false;
     var returnFlightSelected = false;
-    //var itemsToBook = [false, false, false]; flight, hotel, car
     var tripDetails = [];
     var flightDetails = [];
     var returnFlightDetails = [];
@@ -689,6 +689,10 @@
         }
         alert(flightDetails[0] + " " + flightDetails[1] + " " + flightDetails[2]);
 
+const confirmFlightDetails = document.getElementById('confirm-flight-details');
+confirmFlightDetails.innerHTML = flightDetails[0] + " " + flightDetails[1] + " " + flightDetails[2];
+confirmationElements[0].style.display = "block";
+
         selectFlightWindow.style.display = "none";
         if (returnFlightSelected) {
             const selectReturnFlightText = document.getElementById('select-return-flight-text');
@@ -730,6 +734,11 @@
             returnFlightDetails.push(flightRow.cells[i].textContent);
         }
         alert(returnFlightDetails[0] + " " + returnFlightDetails[1] + " " + returnFlightDetails[2]);
+
+
+        const confirmReturnFlightDetails = document.getElementById('confirm-return-flight-details');
+confirmReturnFlightDetails.innerHTML = returnFlightDetails[0] + " " + returnFlightDetails[1] + " " + returnFlightDetails[2];
+confirmationElements[1].style.display = "block";
 
         selectReturnFlightWindow.style.display = "none";
         if (hotelButtonActive) {
@@ -789,6 +798,10 @@
             hotelDetails.push(hotelRow.cells[i].textContent);
         }
         alert(hotelDetails[0] + " " + hotelDetails[1] + " " + hotelDetails[2]);
+
+               const confirmHotelDetails = document.getElementById('confirm-hotel-details');
+confirmHotelDetails.innerHTML = hotelDetails[0] + " " + hotelDetails[1] + " " + hotelDetails[2];
+confirmationElements[2].style.display = "block";
 
         selectHotelWindow.style.display = "none";
         if (carButtonActive) {
@@ -856,6 +869,11 @@
             carDetails.push(carRow.cells[i].textContent);
         }
         alert(carDetails[0] + " " + carDetails[1] + " " + carDetails[2] + " " + carDetails[3] + " " + carDetails[4]);
+
+               const confirmCarDetails = document.getElementById('confirm-car-details');
+confirmCarDetails.innerHTML = carDetails[0] + " " + carDetails[1] + " " + carDetails[2] + " " + carDetails[3] + " " + carDetails[4];
+confirmationElements[3].style.display = "block";
+
 
         selectCarWindow.style.display = "none";
         confirmationWindow.style.display = "block";
