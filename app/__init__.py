@@ -19,7 +19,7 @@ import pathlib
 
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate, init, migrate, upgrade
+import flask_migrate
 from flask_mail import Mail
 from config import Config
 from flask_bcrypt import Bcrypt
@@ -28,11 +28,12 @@ from flask_bcrypt import Bcrypt
 
 # Initialize sqlalchemy and migration extensions
 database = SQLAlchemy()
-migrate_database = Migrate()
+migrate_database = flask_migrate.Migrate()
 bcrypt = Bcrypt()
 mail = Mail()
 
 def create_app(config_class=Config):
+    # Imports in this scope aer to avoid circular dependencies
     app = Flask(__name__)
     app.config.from_object(config_class)
 
@@ -54,17 +55,15 @@ def create_app(config_class=Config):
     with app.app_context():
         try:
             # Step 2: Initialize migrations (only if the migrations folder doesn't exist)
-
             if not pathlib.Path('migrations').exists():
-                init()
+                flask_migrate.init()
 
             # Step 3: Generate a migration script
-            migrate()
+            flask_migrate.migrate()
 
             # Step 4: Apply the migration to the database
-            upgrade()
+            flask_migrate.upgrade()
 
-            # Import here to avoid circular dependencies
             from app.instance.import_data import import_data
             # Call the import_data function to import the data from JSON data file
             import_data(database)

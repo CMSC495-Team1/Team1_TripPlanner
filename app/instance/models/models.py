@@ -3,11 +3,14 @@ from datetime import datetime, timezone
 import secrets
 from itsdangerous import URLSafeTimedSerializer as Serializer
 from flask import current_app
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy import String, Integer, DateTime
 from typing import Optional
 
 from app import database, bcrypt
+
+# 30 minutes in seconds
+THIRTY_MINUTES = 1800
 
 class User(database.Model, UserMixin):
     __tablename__ = 'users'
@@ -37,7 +40,7 @@ class User(database.Model, UserMixin):
         """
         return bcrypt.check_password_hash(self.password_hash, password)
 
-    def get_reset_token(self, expires_sec: int = 1800) -> str:
+    def get_reset_token(self, expires_sec: int = THIRTY_MINUTES) -> str:
         """
         Generates a timed JSON Web Signature for password resets.
         """
@@ -49,9 +52,9 @@ class User(database.Model, UserMixin):
         """
         Verifies the provided reset token and returns the associated user.
         """
-        s = Serializer(current_app.config['SECRET_KEY'])
+        serializer = Serializer(current_app.config['SECRET_KEY'])
         try:
-            user_id = s.loads(token)['user_id']
+            user_id = serializer.loads(token, max_age=THIRTY_MINUTES)['user_id']
         except (ValueError, KeyError):
             return None
         return User.query.get(user_id)
