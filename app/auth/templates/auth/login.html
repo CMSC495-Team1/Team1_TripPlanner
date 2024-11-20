@@ -1,24 +1,33 @@
 {% extends "main/base.html" %}
-{% block content %}
-    <h2>Login</h2>
-    <form method="POST">
-        {{ form.hidden_tag() }}
-        <div>
-            {{ form.email.label }}
-            {{ form.email(size=32) }}
-        </div>
-        <div>
-            {{ form.password.label }}
-            {{ form.password(size=32) }}
-        </div>
-        <div>
-            {{ form.remember.label }}
-            {{ form.remember() }}
-        </div>
-        <div>
-            {{ form.submit() }}
-        </div>
-    </form>
-    <a href="{{ url_for('forgot_password') }}">Forgot your password?</a><br>
-    <a href="{{ url_for('register') }}">Don't have an account? Register here.</a>
+
+{% block title %}Login{% endblock %}
+
+{% block pagebody %}
+<div id="smallwindow">
+    <div class="titlebar">
+        <h2>Login</h2>
+    </div>
+    <div class="smallcontent">
+        <form method="POST" action="{{ url_for('auth.login') }}">
+            {{ form.hidden_tag() }}
+            <div>
+                {{ form.email.label }}
+                {{ form.email(size=32) }}
+            </div>
+            <div>
+                {{ form.password.label }}
+                {{ form.password(size=32) }}
+            </div>
+            <div>
+                {{ form.remember.label }}
+                {{ form.remember() }}
+            </div>
+            <div>
+                {{ form.submit() }}
+            </div>
+        </form>
+        <a href="{{ url_for('auth.forgot_password') }}">Forgot your password?</a><br>
+        <a href="{{ url_for('auth.register') }}">Don't have an account? Register here.</a>
+    </div>
+</div>
 {% endblock %}

@@ -62,10 +62,11 @@ document.addEventListener('click', function (event) {
 function displayNavBar() {
     if (userName !== "") {
         navBar.innerHTML = "<a href='/'><img src=' " + banner_url + "' alt='Team 1 Travel Planner banner'"
-            + " width='961' height='51'></a> <button class='button signup' id='usernameButton'" +
-            " onclick='toggleMenu();'>" + userName + "</button>"
+            + " width='961' height='51'></a> <button class='button signup' id='usernameButton'"
+            + " onclick='toggleMenu();'>" + userName + "</button>"
             + "<div id='submenu-container'><div id='submenu'><a href='/view_trips'><button class='submenu-button'>View Trips</button></a>"
             + "<a href='/account_settings'><button class='submenu-button'>Account Settings</button></a>"
+            + "<a href='/login'><button class='submenu-button'>Log In</button></a>"
             + "<button class='submenu-button' onclick='logOut();'>Log Out</button></div></div>";
     }
     else {
