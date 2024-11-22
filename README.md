@@ -1,4 +1,22 @@
 # Team1 Trip Planner
+<<<<<<< HEAD
+This is the repository for the Trip Planner project by CMSC495 Team1. The project aims to create a user-friendly tool to plan trips, considering preferences such as destination, budget, and available activities.
+
+## Team Members:
+- Galia (Project Manager)
+- Deepak Bhandari (Test Director)
+- Terence Boyce (Software Designer)
+- Jared Brick (Software Designer)
+- Greg Chelchowski (Requirements Manager/UX/UI Designer)
+
+## Contribution Guidelines:
+- Clone the repository and create a branch for your feature.
+- Commit your changes and submit a pull request.
+- All changes will be reviewed before being merged into the main branch.
+
+## How to Set Up:
+- Clone the repo and set up your local environment (details to be filled in by the team).
+=======
 
 This is the repository for the Trip Planner project by CMSC 495 Team1. The project aims to create a user-friendly tool
 to plan trips, considering preferences such as destination, budget, and available activities.
@@ -93,3 +111,4 @@ This project is licensed under the MIT License. See the LICENSE file for more de
 
 ## Contact
 For any questions, please reach out to the Project Manager, Galia Adelshin, at gadelshin@student.umgc.edu.
+>>>>>>> b140b4e226314b5c83d2cdf13899309a052af38c

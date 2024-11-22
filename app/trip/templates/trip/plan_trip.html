@@ -94,9 +94,9 @@
                 </tr>
             </table>
         </form>
-        <button class="button startplanning" onclick="startBooking();">Start Booking
+        <button class="button booking-button" onclick="startBooking();">Start Booking
         </button>
-        <button class="button startplanning" onclick="cancelBooking();">Cancel
+        <button class="button booking-button" onclick="cancelBooking();">Cancel
         </button>
     </div>
 </div>
@@ -132,14 +132,14 @@
                 </tr>
                 <tr>
                     <td>Return Flight:</td>
-                    <td><input type="checkbox" id="returnFlightCheck"></td>
+                    <td><input type="checkbox" id="returnFlightCheck" checked></td>
                 </tr>
             </table>
 
         </form>
-        <button class="button startplanning" onclick="searchFlight();" name="SearchFlight">Search Flights
+        <button class="button booking-button" onclick="searchFlight();" name="SearchFlight">Search Flights
         </button>
-        <button class="button startplanning" onclick="cancelBooking();">Cancel
+        <button class="button booking-button" onclick="cancelBooking();">Cancel
         </button>
     </div>
 </div>
@@ -157,29 +157,33 @@
                 <th>Departure</th>
                 <th>Arrival</th>
                 <th>Airline</th>
+                <th>Cost</th>
             </tr>
             <tr>
                 <td><input type="radio" value="1" name="flight-radio"></td>
                 <td>1:30 PM</td>
                 <td>3:30 PM</td>
                 <td>Southwest</td>
+                <td>$100</td>
             </tr>
             <tr>
                 <td><input type="radio" value="2" name="flight-radio"></td>
                 <td>1:30 PM</td>
                 <td>3:45 PM</td>
                 <td>US Airways</td>
+                <td>$120</td>
             </tr>
             <tr>
                 <td><input type="radio" value="3" name="flight-radio"></td>
                 <td>2:30 PM</td>
                 <td>4:30 PM</td>
                 <td>Spirit</td>
+                <td>$85</td>
             </tr>
         </table>
-        <button class="button startplanning" onclick="selectFlight();">Select Flight
+        <button class="button booking-button" onclick="selectFlight();">Select Flight
         </button>
-        <button class="button startplanning" onclick="cancelBooking();">Cancel
+        <button class="button booking-button" onclick="cancelBooking();">Cancel
         </button>
     </div>
 </div>
@@ -197,30 +201,34 @@
                 <th>Departure</th>
                 <th>Arrival</th>
                 <th>Airline</th>
+                <th>Cost</th>
             </tr>
             <tr>
                 <td><input type="radio" value="1" name="return-flight-radio"></td>
                 <td>3:00 PM</td>
                 <td>5:00 PM</td>
                 <td>Southwest</td>
+                <td>$110</td>
             </tr>
             <tr>
                 <td><input type="radio" value="2" name="return-flight-radio"></td>
                 <td>3:45 PM</td>
                 <td>5:45 PM</td>
                 <td>US Airways</td>
+                <td>$120</td>
             </tr>
             <tr>
                 <td><input type="radio" value="3" name="return-flight-radio"></td>
                 <td>8:10 PM</td>
                 <td>10:10 PM</td>
                 <td>Spirit</td>
+                <td>$90</td>
             </tr>
         </table>
 
-        <button class="button startplanning" onclick="selectReturnFlight();">Select Return Flights
+        <button class="button booking-button" onclick="selectReturnFlight();">Select Return Flight
         </button>
-        <button class="button startplanning" onclick="cancelBooking();">Cancel
+        <button class="button booking-button" onclick="cancelBooking();">Cancel
         </button>
     </div>
 </div>
@@ -251,9 +259,9 @@
                 </tr>
             </table>
         </form>
-        <button class="button startplanning" onclick="searchHotel();">Search Hotels
+        <button class="button booking-button" onclick="searchHotel();">Search Hotels
         </button>
-        <button class="button startplanning" onclick="cancelBooking();">Cancel
+        <button class="button booking-button" onclick="cancelBooking();">Cancel
         </button>
     </div>
 </div>
@@ -292,9 +300,9 @@
             </tr>
         </table>
 
-        <button class="button startplanning" onclick="selectHotel();">Select Hotel
+        <button class="button booking-button" onclick="selectHotel();">Select Hotel
         </button>
-        <button class="button startplanning" onclick="cancelBooking();">Cancel
+        <button class="button booking-button" onclick="cancelBooking();">Cancel
         </button>
     </div>
 </div>
@@ -357,9 +365,9 @@
                 </tr>
             </table>
         </form>
-        <button class="button startplanning" onclick="searchCar();">Search Cars
+        <button class="button booking-button" onclick="searchCar();">Search Cars
         </button>
-        <button class="button startplanning" onclick="cancelBooking();">Cancel
+        <button class="button booking-button" onclick="cancelBooking();">Cancel
         </button>
     </div>
 </div>
@@ -409,9 +417,9 @@
             </tr>
         </table>
 
-        <button class="button startplanning" onclick="selectCar();">Select Car
+        <button class="button booking-button" onclick="selectCar();">Select Car
         </button>
-        <button class="button startplanning" onclick="cancelBooking();">Cancel
+        <button class="button booking-button" onclick="cancelBooking();">Cancel
         </button>
     </div>
 </div>
@@ -422,30 +430,47 @@
         <div class="titlebar">
             <h2>Confirm Booking</h2><br>
         </div>
-        This section is under construction!<br>
-        Will display all details here soon!<br>
+        Trip Name: <span id="confirm-trip-name"></span><br>
+        Trip Cost: $<span id="confirm-trip-cost"></span><br>
+        <div id="confirm-trip-item-box-wrapper">
+            <fieldset class="confirm-trip-item-box">
+                <legend>Flight</legend>
+                Date: <span class="confirm-detail-item" id="confirm-flight-date"></span><br>
+                Departure: <span class="confirm-detail-item" id="confirm-flight-departure"></span><br>
+                Arrival: <span class="confirm-detail-item" id="confirm-flight-arrival"></span><br>
+                Airline: <span class="confirm-detail-item" id="confirm-flight-airline"></span><br>
+                Cost: <span class="confirm-detail-item" id="confirm-flight-cost"></span>
+            </fieldset>
+            <fieldset class="confirm-trip-item-box">
+                <legend>Return Flight</legend>
+                Date: <span class="confirm-detail-item" id="confirm-return-flight-date"></span><br>
+                Departure: <span class="confirm-detail-item" id="confirm-return-flight-departure"></span><br>
+                Arrival: <span class="confirm-detail-item" id="confirm-return-flight-arrival"></span><br>
+                Airline: <span class="confirm-detail-item" id="confirm-return-flight-airline"></span><br>
+                Cost: <span class="confirm-detail-item" id="confirm-return-flight-cost"></span>
+            </fieldset>
+            <fieldset class="confirm-trip-item-box">
+                <legend>Hotel</legend>
+                Check-In Date: <span class="confirm-detail-item" id="confirm-hotel-checkin-date"></span><br>
+                Check-Out Date: <span class="confirm-detail-item" id="confirm-hotel-checkout-date"></span><br>
+                Location: <span class="confirm-detail-item" id="confirm-hotel-location"></span><br>
+                Hotel: <span class="confirm-detail-item" id="confirm-hotel-name"></span><br>
+                Room Type: <span class="confirm-detail-item" id="confirm-hotel-roomtype"></span><br>
+                Cost: <span class="confirm-detail-item" id="confirm-hotel-cost"></span>
+            </fieldset>
+            <fieldset class="confirm-trip-item-box">
+                <legend>Rental Car</legend>
 
-        <fieldset class="confirm-trip-item-box">
-            <legend>Flight</legend>
-            <span id="confirm-flight-details"></span>
-        </fieldset>
-        <fieldset class="confirm-trip-item-box">
-            <legend>Return Flight</legend>
-            <span id="confirm-return-flight-details"></span>
-        </fieldset>
-        <fieldset class="confirm-trip-item-box">
-            <legend>Hotel</legend>
-            <span id="confirm-hotel-details"></span>
-        </fieldset>
-        <fieldset class="confirm-trip-item-box">
-            <legend>Rental Car</legend>
-            <span id="confirm-car-details"></span>
-        </fieldset>
+                Pick Up: <span class="confirm-detail-item" id="confirm-car-pickup"></span><br>
+                Drop Off: <span class="confirm-detail-item" id="confirm-car-dropoff"></span><br>
+                Description: <span class="confirm-detail-item" id="confirm-car-description"></span><br>
+                Cost: <span class="confirm-detail-item" id="confirm-car-cost"></span><br>
+            </fieldset>
+        </div>
 
-
-        <button class="button startplanning" onclick="confirmBooking();">Confirm
+        <button class="button booking-button" onclick="confirmBooking();">Confirm
         </button>
-        <button class="button startplanning" onclick="cancelBooking();">Cancel
+        <button class="button booking-button" onclick="cancelBooking();">Cancel
         </button>
     </div>
 </div>
@@ -459,7 +484,7 @@
         Trip successfully booked!<br>
         It has been added to your trip list.<br>
 
-        <a href='/view_trips'><button class="button startplanning">View Trips
+        <a href='/view_trips'><button class="button booking-button">View Trips
             </button></a>
     </div>
 </div>
@@ -509,7 +534,8 @@
     const searchCarWindow = document.getElementById("search-car-window");
     const selectCarWindow = document.getElementById("select-car-window");
     const confirmationWindow = document.getElementById("confirmation-window");
-        const confirmationElements = document.getElementsByClassName('confirm-trip-item-box');
+    const confirmationElements = document.getElementsByClassName('confirm-trip-item-box');
+    const tripCostText = document.getElementById("confirm-trip-cost");
 
     const bookingSuccessWindow = document.getElementById("booking-success-window");
 
@@ -523,6 +549,7 @@
     var returnFlightDetails = [];
     var hotelDetails = [];
     var rentalCarDetails = [];
+    var tripCost = 0;
 
     //when selecting trip types on Plan Trip, causes them to be highlighted and records it in a boolean
     function changeTrip(tripType) {
@@ -580,7 +607,12 @@
             else {
                 document.getElementById('destination-selection').selectedIndex = selection.selectedIndex;
             }
-
+            tripDetails = [];
+            flightDetails = [];
+            returnFlightDetails = [];
+            hotelDetails = [];
+            rentalCarDetails = [];
+            tripCost = 0;
             const today = new Date().toLocaleDateString('en-ca');
             document.getElementById("trip-details-start").min = today;
             document.getElementById("trip-details-end").min = today;
@@ -618,7 +650,9 @@
         }
         else {
             tripDetails = [tripNameText, destinationText, startDateText, endDateText];
-            alert(tripDetails[0] + " " + tripDetails[1] + " " + tripDetails[2] + " " + tripDetails[3]);
+
+            const confirmTripName = document.getElementById('confirm-trip-name');
+            confirmTripName.innerHTML = tripNameText;
 
             for (i = 0; i < destinationElements.length; i++) {
                 destinationElements[i].value = destination.value;
@@ -669,6 +703,7 @@
             returnFlightSelected = document.getElementById('returnFlightCheck').checked;
             selectFlightText.innerHTML = "Flights from " + flightOriginText + " to "
                 + flightDestinationText + " on " + flightDateText;
+            flightDetails = [flightOriginText, flightDestinationText, flightDateText];
             searchFlightWindow.style.display = "none";
             selectFlightWindow.style.display = "block";
         }
@@ -683,17 +718,29 @@
                 flightSelection = flightSelections[i].value;
         }
         var flightRow = flightTable.rows[flightSelection];
-        flightDetails = [];
         for (i = 1; i < flightRow.cells.length; i++) {
             flightDetails.push(flightRow.cells[i].textContent);
         }
-        alert(flightDetails[0] + " " + flightDetails[1] + " " + flightDetails[2]);
 
-const confirmFlightDetails = document.getElementById('confirm-flight-details');
-confirmFlightDetails.innerHTML = flightDetails[0] + " " + flightDetails[1] + " " + flightDetails[2];
-confirmationElements[0].style.display = "block";
+        const confirmFlightCost = document.getElementById('confirm-flight-cost');
+        const confirmFlightDate = document.getElementById('confirm-flight-date');
+        const confirmFlightDeparture = document.getElementById('confirm-flight-departure');
+        const confirmFlightArrival = document.getElementById('confirm-flight-arrival');
+        const confirmFlightAirline = document.getElementById('confirm-flight-airline');
 
+        confirmFlightDate.innerHTML = flightDetails[2];
+        confirmFlightDeparture.innerHTML = flightDetails[0] + " at " + flightDetails[3];
+        confirmFlightArrival.innerHTML = flightDetails[1] + " at " + flightDetails[4];
+        confirmFlightAirline.innerHTML = flightDetails[5];
+        confirmFlightCost.innerHTML = flightDetails[6];
+
+        const flightCost = parseFloat(flightDetails[6].replace(/[^0-9.-]+/g, ""));
+        tripCost += flightCost;
+        tripCostText.innerHTML = tripCost;
+
+        confirmationElements[0].style.display = "block";
         selectFlightWindow.style.display = "none";
+
         if (returnFlightSelected) {
             const selectReturnFlightText = document.getElementById('select-return-flight-text');
             const flightOrigin = document.getElementById('flight-origin-selection');
@@ -705,6 +752,9 @@ confirmationElements[0].style.display = "block";
 
             selectReturnFlightText.innerHTML = "Flights from " + flightDestinationText + " to "
                 + flightOriginText + " on " + flightDateText;
+
+            returnFlightDetails = [flightDestinationText, flightOriginText, flightDateText];
+
             selectReturnFlightWindow.style.display = "block";
         }
         else if (hotelButtonActive) {
@@ -729,17 +779,30 @@ confirmationElements[0].style.display = "block";
                 flightSelection = flightSelections[i].value;
         }
         var flightRow = flightTable.rows[flightSelection];
-        returnFlightDetails = [];
+
         for (i = 1; i < flightRow.cells.length; i++) {
             returnFlightDetails.push(flightRow.cells[i].textContent);
         }
-        alert(returnFlightDetails[0] + " " + returnFlightDetails[1] + " " + returnFlightDetails[2]);
 
 
-        const confirmReturnFlightDetails = document.getElementById('confirm-return-flight-details');
-confirmReturnFlightDetails.innerHTML = returnFlightDetails[0] + " " + returnFlightDetails[1] + " " + returnFlightDetails[2];
-confirmationElements[1].style.display = "block";
+        const confirmReturnFlightCost = document.getElementById('confirm-return-flight-cost');
+        const confirmReturnFlightDate = document.getElementById('confirm-return-flight-date');
+        const confirmReturnFlightDeparture = document.getElementById('confirm-return-flight-departure');
+        const confirmReturnFlightArrival = document.getElementById('confirm-return-flight-arrival');
+        const confirmReturnFlightAirline = document.getElementById('confirm-return-flight-airline');
 
+        confirmReturnFlightDate.innerHTML = returnFlightDetails[2];
+        confirmReturnFlightDeparture.innerHTML = returnFlightDetails[0] + " at " + returnFlightDetails[3];
+        confirmReturnFlightArrival.innerHTML = returnFlightDetails[1] + " at " + returnFlightDetails[4];
+        confirmReturnFlightAirline.innerHTML = returnFlightDetails[5];
+        confirmReturnFlightCost.innerHTML = returnFlightDetails[6];
+
+        const returnFlightCost = parseFloat(returnFlightDetails[6].replace(/[^0-9.-]+/g, ""));
+        tripCost += returnFlightCost;
+        tripCostText.innerHTML = tripCost;
+
+
+        confirmationElements[1].style.display = "block";
         selectReturnFlightWindow.style.display = "none";
         if (hotelButtonActive) {
             searchHotelWindow.style.display = "block";
@@ -779,6 +842,8 @@ confirmationElements[1].style.display = "block";
         }
         else {
             selectHotelText.innerHTML = "Hotels in " + hotelLocationText + " from " + hotelStartDateText + " to " + hotelEndDateText;
+
+            hotelDetails = [hotelLocationText, hotelStartDateText, hotelEndDateText];
             searchHotelWindow.style.display = "none";
             selectHotelWindow.style.display = "block";
         }
@@ -793,15 +858,31 @@ confirmationElements[1].style.display = "block";
                 hotelSelection = hotelSelections[i].value;
         }
         var hotelRow = hotelTable.rows[hotelSelection];
-        hotelDetails = [];
         for (i = 1; i < hotelRow.cells.length; i++) {
             hotelDetails.push(hotelRow.cells[i].textContent);
         }
-        alert(hotelDetails[0] + " " + hotelDetails[1] + " " + hotelDetails[2]);
 
-               const confirmHotelDetails = document.getElementById('confirm-hotel-details');
-confirmHotelDetails.innerHTML = hotelDetails[0] + " " + hotelDetails[1] + " " + hotelDetails[2];
-confirmationElements[2].style.display = "block";
+
+        const confirmHotelCheckinDate = document.getElementById('confirm-hotel-checkin-date');
+        const confirmHotelCheckoutDate = document.getElementById('confirm-hotel-checkout-date');
+        const confirmHotelLocation = document.getElementById('confirm-hotel-location');
+        const confirmHotelName = document.getElementById('confirm-hotel-name');
+        const confirmHotelRoomType = document.getElementById('confirm-hotel-roomtype');
+        const confirmHotelCost = document.getElementById('confirm-hotel-cost');
+
+        confirmHotelLocation.innerHTML = hotelDetails[0];
+        confirmHotelCheckinDate.innerHTML = hotelDetails[1];
+        confirmHotelCheckoutDate.innerHTML = hotelDetails[2];
+        confirmHotelName.innerHTML = hotelDetails[3];
+        confirmHotelRoomType.innerHTML = hotelDetails[4];
+        confirmHotelCost.innerHTML = hotelDetails[5];
+
+        const hotelCost = parseFloat(hotelDetails[5].replace(/[^0-9.-]+/g, ""));
+        tripCost += hotelCost;
+        tripCostText.innerHTML = tripCost;
+
+
+        confirmationElements[2].style.display = "block";
 
         selectHotelWindow.style.display = "none";
         if (carButtonActive) {
@@ -850,6 +931,8 @@ confirmationElements[2].style.display = "block";
             selectCarPickupText.innerHTML = "Pick Up: " + carPickupTimeText + " of " + carPickupDateText + " in " + carPickupLocationText;
             selectCarDropOffText.innerHTML = "Drop Off: " + carDropOffTimeText + " of " + carDropOffDateText + " in " + carDropOffLocationText;
             selectCarStyleText.innerHTML = "Style: " + carStyleText;
+            carDetails = [carPickupTimeText, carPickupDateText, carPickupLocationText, carDropOffTimeText, carDropOffDateText, carDropOffLocationText];
+
             searchCarWindow.style.display = "none";
             selectCarWindow.style.display = "block";
         }
@@ -864,15 +947,26 @@ confirmationElements[2].style.display = "block";
                 carSelection = carSelections[i].value;
         }
         var carRow = carTable.rows[carSelection];
-        carDetails = [];
         for (i = 1; i < carRow.cells.length; i++) {
             carDetails.push(carRow.cells[i].textContent);
         }
-        alert(carDetails[0] + " " + carDetails[1] + " " + carDetails[2] + " " + carDetails[3] + " " + carDetails[4]);
 
-               const confirmCarDetails = document.getElementById('confirm-car-details');
-confirmCarDetails.innerHTML = carDetails[0] + " " + carDetails[1] + " " + carDetails[2] + " " + carDetails[3] + " " + carDetails[4];
-confirmationElements[3].style.display = "block";
+        const confirmCarDetails = document.getElementById('confirm-car-details');
+        confirmationElements[3].style.display = "block";
+
+        const confirmCarPickup = document.getElementById('confirm-car-pickup');
+        const confirmCarDropOff = document.getElementById('confirm-car-dropoff');
+        const confirmCarDescription = document.getElementById('confirm-car-description');
+        const confirmCarCost = document.getElementById('confirm-car-cost');
+
+        confirmCarPickup.innerHTML = carDetails[0] + " of " + carDetails[1] + " in " + carDetails[2];
+        confirmCarDropOff.innerHTML = carDetails[3] + " of " + carDetails[4] + " in " + carDetails[5];
+        confirmCarDescription.innerHTML = carDetails[6] + " " + carDetails[7] + " " + carDetails[8] + "  (" + carDetails[9] + ")";
+        confirmCarCost.innerHTML = carDetails[10];
+
+        const carCost = parseFloat(carDetails[10].replace(/[^0-9.-]+/g, ""));
+        tripCost += carCost;
+        tripCostText.innerHTML = tripCost;
 
 
         selectCarWindow.style.display = "none";
@@ -880,7 +974,7 @@ confirmationElements[3].style.display = "block";
     }
 
     function confirmBooking() {
-
+        bookingStarted = false;
         confirmationWindow.style.display = "none";
         bookingSuccessWindow.style.display = "block";
     }
