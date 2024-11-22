@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 # Java build files
 *.class
 
@@ -56,9 +54,7 @@ Thumbs.db
 *.tmp
 *.swp
 *.swo
-=======
-=======
->>>>>>> b140b4e226314b5c83d2cdf13899309a052af38c
+
 # Ignore Python bytecode
 __pycache__/
 *.pyc
@@ -83,19 +79,9 @@ coverage/
 *.log
 Test\ Results\ -\ .html
 
-
-# Ignore personal environment variables
-.env
-
 # MacOS specific files
 .DS_Store
 
-# flask_migration
+# instance specific directories
 migrations/
-
-# ignore database
-app.db
-<<<<<<< HEAD
->>>>>>> b140b4e226314b5c83d2cdf13899309a052af38c
-=======
->>>>>>> b140b4e226314b5c83d2cdf13899309a052af38c
+instance/

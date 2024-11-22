@@ -6,7 +6,7 @@ from jinja2 import TemplateNotFound
 from app.auth import auth
 from app.auth.forms import RegistrationForm, LoginForm, ResetPasswordForm, RequestResetForm
 from app import database, mail
-from app.instance.models.user import User
+from app.models.user import User
 
 
 @auth.route('/register', methods=['GET', 'POST'])

@@ -33,14 +33,12 @@ bcrypt = Bcrypt()
 mail = Mail()
 login = LoginManager()
 
+
 def create_app(config_class=Config):
-    # Imports in this scope aer to avoid circular dependencies
     app = Flask(__name__)
     app.config.from_object(config_class)
 
     login.init_app(app)
-
-    # Register app and database with the extensions
     database.init_app(app)
     migrate_database.init_app(app, database)
 
@@ -55,23 +53,71 @@ def create_app(config_class=Config):
     app.register_blueprint(auth)
 
     # Run migration steps programmatically
-    with app.app_context():
+    with (app.app_context()):
         try:
-            # Step 2: Initialize migrations (only if the migrations folder doesn't exist)
-            if not pathlib.Path('migrations').exists():
+            migrations_dir = pathlib.Path('migrations')
+            db_file = pathlib.Path(app.config['SQLALCHEMY_DATABASE_URI'].replace('sqlite:///', ''))
+
+            # If no migrations folder exists, start fresh
+            if not migrations_dir.exists():
+                print("Initializing new migration repository...")
                 flask_migrate.init()
 
-            # Step 3: Generate a migration script
-            flask_migrate.migrate()
+                # Create initial database tables
+                print("Creating initial database tables...")
+                database.create_all()
 
-            # Step 4: Apply the migration to the database
-            flask_migrate.upgrade()
+                # Create and apply initial migration
+                print("Creating initial migration...")
+                flask_migrate.migrate()
+                print("Applying initial migration...")
+                try:
+                    flask_migrate.upgrade()
+                except Exception as upgrade_error:
+                    if "Can't locate revision" in str(upgrade_error):
+                        print("Stamping initial database state...")
+                        flask_migrate.stamp()
+                        flask_migrate.upgrade()
+                    else:
+                        raise upgrade_error
 
-            from app.database.import_data import import_data
-            # Call the import_data function to import the data from JSON data file
+            # Import data only after successful migration
+            print("Importing initial data...")
+            from app.data.import_data import import_data
             import_data(database)
 
+            print("Database initialization complete!")
+
         except Exception as e:
-            print(f"Migration error: {e}")
+            print(f"Migration error: {str(e)}")
+            print("Attempting to recover...")
+
+            # Recovery procedure
+            try:
+                if migrations_dir.exists():
+                    print("Removing existing migrations...")
+                    import shutil
+                    shutil.rmtree(migrations_dir)
+
+                if db_file.exists():
+                    print("Removing existing database...")
+                    db_file.unlink()
+
+                print("Creating fresh database...")
+                database.create_all()
+
+                print("Initializing fresh migrations...")
+                flask_migrate.init()
+                flask_migrate.migrate()
+                flask_migrate.upgrade()
+
+                print("Importing data...")
+                from app.data.import_data import import_data
+                import_data(database)
+
+                print("Recovery complete!")
+            except Exception as recovery_error:
+                print(f"Recovery failed: {str(recovery_error)}")
+                raise
 
     return app
