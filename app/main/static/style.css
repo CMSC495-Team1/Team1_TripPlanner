@@ -1,0 +1,549 @@
+  h1 {
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 35px;
+    text-align: center;
+  }
+
+  h2 {
+    color: #87CEEB;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    text-align: center;
+    margin: 0px;
+  }
+
+
+  p {
+    padding: 20px;
+    color: black;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin: auto;
+    text-align: center;
+  }
+
+  body {
+    margin: 0;
+    border: none;
+    background-color: #d8ca9f;
+    color: white;
+    font-family: Verdana, Arial, sans-serif;
+    padding: 0px;
+    position: relative;
+  }
+
+
+  #footer {
+    position: fixed;
+    bottom: 0%;
+    right: 1%;
+  }
+
+
+  a:link {
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+  }
+
+  a:visited {
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: red;
+    font-weight: bold;
+    text-decoration: none;
+  }
+
+
+  .button {
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 24px;
+    width: 100px;
+    padding: 10px 10px;
+  }
+
+  .signup {
+    background-color: #2C3E50;
+    border: 2px solid #87CEEB;
+    color: #87CEEB;
+    position: absolute;
+    right: 120px;
+    top: 5px;
+
+  }
+
+  .signup:hover {
+    background-color: #87CEEB;
+    border: 2px solid #87CEEB;
+    color: #2C3E50;
+    position: absolute;
+    right: 120px;
+    top: 5px;
+
+  }
+
+
+  .login {
+    background-color: #0D1F31;
+    border: 2px solid #87CEEB;
+    color: #87CEEB;
+    position: absolute;
+    right: 10px;
+    top: 5px;
+font-weight: bold;
+  }
+
+  .login:hover {
+    background-color: #87CEEB;
+    border: 2px solid #87CEEB;
+    color: #0D1F31;
+    position: absolute;
+    right: 10px;
+    top: 5px;
+  }
+
+  .plan {
+    background-color: #000077;
+    height: 58px;
+    width: 270px;
+    border-radius: 4px;
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  .plan:hover {
+    background-color: #000077;
+    height: 58px;
+    width: 270px;
+    border-radius: 4px;
+    font-size: 24px;
+    font-weight: bold;
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  .contact {
+    background-color: #0D1F31;
+    height: 45px;
+    width: 150px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 24px 24px 0px 0px;
+  }
+
+  .contact:hover {
+    background-color: #000077;
+  }
+
+  .tripbutton {
+    background-color: #0000CC;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 24px;
+    height: 200px;
+    width: 200px;
+    padding: 10px 10px;
+    margin: 5px;
+  }
+
+  .tripbutton:hover {
+    background-color: #0000CC;
+    border: 2px solid #2C3E50;
+    transform: scale(1.1);
+  }
+
+  .startplanning {
+  width: auto;
+    background-color: gray;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: default;
+    border-radius: 24px;
+    padding: 10px 10px;
+  }
+
+  .booking-button {
+  width: auto;
+    background-color: #0D1F31;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 24px;
+    padding: 10px 10px;
+  }
+
+  #username {
+    width: 100px;
+    text-align: center;
+    color: #87CEEB;
+    position: absolute;
+    right: 120px;
+    top: 30%;
+
+  }
+
+  #usernameButton {
+    right: 10px;
+  }
+
+  #contact-button {
+    right: 100%;
+  }
+
+  #submenu-container {
+    position: absolute;
+    top: 100%;
+    right: 10px;
+    width: 220px;
+    background-color: #2C3E50;
+    max-height: 0px;
+    overflow: hidden;
+    transition: max-height 0.3s;
+    z-index: 6;
+  }
+
+  #submenu-container.open-menu {
+    max-height: 400px;
+  }
+
+  .submenu-button {
+
+    cursor: pointer;
+    width: 100%;
+    background-color: #2C3E50;
+    color: white;
+    display: flex;
+    text-decoration: none;
+    padding: 20px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin: auto;
+    text-align: center;
+  }
+
+  .submenu-button:hover {
+    background-color: #000077;
+  }
+
+  #loginmenu-container {
+    position: absolute;
+    top: 100%;
+    right: 0%;
+    max-width: 400px;
+    background-color: #0D1F31;
+    max-height: 0px;
+    overflow: hidden;
+    transition: max-height 0.3s;
+    z-index: 6;
+    border-radius: 0px 0px 0px 14px;
+  }
+
+  #loginmenu-container.open-menu {
+    max-height: 400px;
+  }
+
+  #contact-container {
+    position: absolute;
+    bottom: 0%;
+    right: 1%;
+    max-width: 800px;
+    overflow: hidden;
+    z-index: 5;
+    text-align: right;
+  }
+
+  #subcontact {
+    max-height: 0px;
+    background-color: #0D1F31;
+    transition: max-height ease .5s;
+  }
+
+  #subcontact-container {
+    padding: 10px;
+  }
+
+  #subcontact.open-menu {
+    max-height: 400px;
+  }
+
+
+
+  #topnav {
+    background-color: #2C3E50;
+    height: 51px;
+    position: relative;
+  }
+
+  #indexcontent {
+    height: 58px;
+    width: 270px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -29px;
+    margin-left: -135px;
+  }
+
+  #plancontent {
+    height: 764px;
+    width: 1304px;
+    display: flex;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -382px;
+    margin-left: -652px;
+     background-color: #2C3E50;
+    color: white;
+    padding: 0px;
+    border-radius: 15px 15px 15px 15px;
+  }
+
+  #smallwindow {
+    height: 400px;
+    width: 500px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -200px;
+    margin-left: -250px;
+    background-color: #2C3E50;
+    color: white;
+    padding: 0px;
+    border-radius: 15px 15px 15px 15px;
+  }
+
+  .sidebar {
+    width: 259px;
+    background-color: #0D1F31;
+    color: white;
+    padding: 0px;
+    border-radius: 15px 0px 0px 15px;
+    text-align: center;
+  }
+
+  .titlebar {
+    height: 55px;
+    background-color: #0D1F31;
+    color: white;
+    padding: 0px;
+    border-radius: 15px 15px 0px 0px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #state-top{
+    position: relative;
+    text-align: center;
+    color: white;
+    width: 1064px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 0px 15px 0px 0px;
+    height: 50%;
+  }
+
+
+.state-image {
+    width: 100%;
+    height: 100%;
+    mask-image: linear-gradient(to bottom, black 50%, transparent 90%);
+   }
+
+  #destination-image{
+    width: 100%;
+    height: 100%;
+  }
+
+  .mainarea {
+    width: 1064px;
+    height: 100%;
+    color: white;
+    padding: 0px;
+    text-align: center;
+  }
+
+.mainareatripdetails
+{
+    width: 100%;
+    height: 100%;
+    color: white;
+    padding: 0px;
+    text-align: center;
+  }
+
+.large-title-bar {
+    height: 55px;
+    background-color: #0D1F31;
+    color: white;
+    padding: 0px;
+    border-radius: 15px 15px 0px 0px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #state-list {
+    width: 200px;
+    padding: 20px;
+    height: 150px;
+  }
+
+  #states-in-a-list {
+    font-size: 22px;
+  }
+
+  .plan-form {
+    padding: 20px;
+    text-align: center;
+  }
+
+  #tripForm {
+    width: 300px;
+  }
+
+
+  .smalltripwindow {
+    height: 400px;
+    width: 500px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -200px;
+    margin-left: -250px;
+    background-color: #2C3E50;
+    color: white;
+    padding: 0px;
+    border-radius: 15px 15px 15px 15px;
+    display: none;
+    overflow: hidden;
+  }
+
+
+  #state-info {
+    padding: 10px;
+    height: 50%;
+  }
+
+.state-name-text{
+    text-align: center;
+    position: absolute;
+    width: 100%;
+    bottom: 0%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    }
+
+  #state-name{
+   color: #87CEEB;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
+    margin: 0px;
+    font-weight: bolder;
+    background-color: rgb(13 31 49 / 0.75);
+    width: 100%;
+
+  }
+
+  #state-description{
+  color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    text-align: center;
+    margin: 0px;
+  }
+
+  .form_table{
+    padding:5px;
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto
+  }
+
+
+  .data_table {
+    background-color: white;
+    color: black;
+    border-collapse: collapse;
+    font-size: 10px;
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto
+  }
+
+  .data_table tr th {
+    background-color: black;
+    color: white;
+    border: solid 2px;
+    border-color: black;
+    vertical-align: top;
+    padding: 6px;
+    text-align: center;
+  }
+
+  .data_table tr td {
+    border: solid 2px;
+    border-color: black;
+    vertical-align: top;
+    padding: 6px;
+  }
+
+  .data_table tr td a {
+    color: #0000CC;
+  }
+
+  .data_table tr td a:hover {
+    color: #0D1F31;
+  }
+
+  .confirm-trip-item-box{
+    border: 1px solid gray;
+    width:80%;
+    margin-left: auto;
+    margin-right: auto;
+    display: none;
+    color:gray;
+    font-weight:bold;
+    text-align: left;
+  }
+
+   .confirm-trip-item-box legend{
+    color:gray;
+    font-weight:bold;
+  }
+
+  .confirm-detail-item{
+    font-weight:normal;
+  }
+
+  #confirm-trip-item-box-wrapper{
+    height:250px;
+    overflow-y:auto;
+  }

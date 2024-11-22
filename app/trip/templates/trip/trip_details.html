@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Trip Details</title>
+</head>
+<body>
+    <h1>Trip Details</h1>
+    <form method="POST" action="/trip/trip_details/">
+        <label for="trip_name">Trip Name:</label>
+        <input type="text" id="trip_name" name="trip_name" value="Your Trip to {{ state }}" required><br>
+
+        <label for="destination">Destination:</label>
+        <input type="text" id="destination" name="state" value="{{ state }}" readonly><br>
+
+        <label for="start_date">Start Date:</label>
+        <input type="date" id="start_date" name="start_date" required><br>
+
+        <label for="end_date">End Date:</label>
+        <input type="date" id="end_date" name="end_date" required><br>
+
+        {% if error %}
+            <p style="color: red;">{{ error }}</p>
+        {% endif %}
+
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
