@@ -1,5 +1,4 @@
 # Team1 Trip Planner
-<<<<<<< HEAD
 This is the repository for the Trip Planner project by CMSC495 Team1. The project aims to create a user-friendly tool to plan trips, considering preferences such as destination, budget, and available activities.
 
 ## Team Members:
@@ -51,13 +50,13 @@ To set up the Trip Planner application locally, follow these steps:
    - Make sure latest version of Python (3.13 +) is installed on your system.
      - Run the provided setup script to create a virtual environment and install dependencies:
      - First, give it permission to run:
-       ```
-       chmod +x setup.sh
-       ```
-        - Then run the script. Make sure to include the period and space before the script name:
-       ```
-       . ./setup.sh
-       ```
+     ```
+     chmod +x setup.sh
+     ```
+      - Then run the script. Make sure to include the period and space before the script name:
+     ```
+     . ./setup.sh
+     ```
 3. **Run the Application**
    - Start the server to ensure the application is running correctly:
      ```
