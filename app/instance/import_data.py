@@ -10,7 +10,7 @@ def import_data(database):
 
     # Iterate over each destination in the JSON data
     for destination_data in destinations:
-        from app.instance.models.models import Destination
+        from app.instance.models.destination import Destination
         # Check if the destination already exists in the database
         destination_found = Destination.query.filter_by(state=destination_data['state']).first()
 

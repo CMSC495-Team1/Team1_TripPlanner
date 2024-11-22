@@ -1,11 +1,12 @@
+import sqlalchemy
 from flask import abort, render_template, flash, redirect, url_for
-from flask_login import login_user, logout_user
+from flask_login import login_user, logout_user, current_user
 from flask_mail import Message
 from jinja2 import TemplateNotFound
 from app.auth import auth
 from app.auth.forms import RegistrationForm, LoginForm, ResetPasswordForm, RequestResetForm
-from app.instance.models.models import User
 from app import database, mail
+from app.instance.models.user import User
 
 
 @auth.route('/register', methods=['GET', 'POST'])
@@ -14,7 +15,9 @@ def register():
 
     if form.validate_on_submit():
         # Create a new user object
-        user = User(username=form.username.data,
+        user = User(first_name=form.first_name.data,
+                    last_name=form.last_name.data,
+                    username=form.username.data,
                     email=form.email.data,
                     password=form.password.data)
 
@@ -23,30 +26,30 @@ def register():
 
         flash('Your account has been created! You are now able to log in.', 'success')
 
-        return redirect(url_for('login'))
+        return redirect(url_for('auth.login'))
     return render_template('auth/register.html', title='Register', form=form)
+
 
 @auth.route("/login", methods=['GET', 'POST'])
 def login():
+
+    if current_user.is_authenticated:
+        return redirect(url_for('trip.plan_trip'))
+
     form = LoginForm()
 
     if form.validate_on_submit():
-        user = User.query.filter_by(email=form.email.data).first()
+        user= database.session.scalar(
+            sqlalchemy.select(User).where(User.username == form.username.data)
+        )
 
-        if user and user.check_password(form.password.data):
-            login_user(user, remember=form.remember.data)
-            flash('Login successful!', 'success')
-            return redirect(url_for('main/index'))
-        else:
-            flash('Login Unsuccessful. Please check your email and password.', 'danger')
-    return render_template('auth/login.html', form=form)
+        if user is None or not user.check_password(form.password.data):
+            flash('Invalid username or password')
+            return redirect(url_for('auth.login'))
 
-
-@auth.route("/logout")
-def logout():
-    logout_user()
-    flash('You have been logged out.', 'info')
-    return redirect(url_for('index'))
+        login_user(user, remember=form.remember.data)
+        return redirect(url_for('trip.plan_trip'))
+    return render_template('auth/login.html', title='Login', form=form)
 
 
 @auth.route("/forgot_password", methods=['GET', 'POST'])
@@ -58,8 +61,17 @@ def forgot_password():
             token = user.get_reset_token()
             send_reset_email(user, token)
             flash('An email has been sent with instructions to reset your password.', 'info')
-            return redirect(url_for('login'))
-    return render_template('forgot_password.html', form=form)
+            return redirect(url_for('auth.login'))
+    return render_template('auth/forgot_password.html', form=form)
+
+
+@auth.route("/logout")
+def logout():
+    logout_user()
+    flash('You have been logged out.', 'info')
+    return redirect(url_for('main/index'))
+
+
 
 def send_reset_email(user, token):
     msg = Message('Password Reset Request',
@@ -87,8 +99,6 @@ def reset_password(token):
         return redirect(url_for('login'))
 
     return render_template('auth/reset_password.html', form=form)
-
-
 
 
 

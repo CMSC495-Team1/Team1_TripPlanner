@@ -81,17 +81,24 @@ function displayNavBar() {
 }
 
 
-//simple log out action. temporary
 function logOut() {
-    const currentUrl = window.location.href;
-    userName = "";
-    displayNavBar();
-    if (currentUrl.includes("account_settings")||currentUrl.includes("view_trips")){
-        location.href= "/";
-    }
-
-//simple log in action. temporary
-// function logIn() {
-//     userName = "username";
-//     displayNavBar();
+    fetch('/auth/logout', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+        .then(response => {
+            if (response.ok) {
+                userName = "";
+                displayNavBar();
+                const currentUrl = window.location.href;
+                if (currentUrl.includes("account_settings") || currentUrl.includes("view_trips")) {
+                    location.href = "/";
+                }
+            } else {
+                console.error('Logout failed');
+            }
+        })
+        .catch(error => console.error('Error:', error));
 }

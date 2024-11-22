@@ -23,7 +23,7 @@ import flask_migrate
 from flask_mail import Mail
 from config import Config
 from flask_bcrypt import Bcrypt
-
+from flask_login import LoginManager
 # Flask extensions
 
 # Initialize sqlalchemy and migration extensions
@@ -31,11 +31,14 @@ database = SQLAlchemy()
 migrate_database = flask_migrate.Migrate()
 bcrypt = Bcrypt()
 mail = Mail()
+login = LoginManager()
 
 def create_app(config_class=Config):
     # Imports in this scope aer to avoid circular dependencies
     app = Flask(__name__)
     app.config.from_object(config_class)
+
+    login.init_app(app)
 
     # Register app and database with the extensions
     database.init_app(app)

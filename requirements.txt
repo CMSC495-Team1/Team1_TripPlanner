@@ -9,6 +9,7 @@ click
 colorama
 db
 destination
+email-validator
 Flask
 Flask-Bcrypt
 Flask-Login

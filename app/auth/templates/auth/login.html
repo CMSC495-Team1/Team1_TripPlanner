@@ -11,8 +11,8 @@
         <form method="POST" action="{{ url_for('auth.login') }}">
             {{ form.hidden_tag() }}
             <div>
-                {{ form.email.label }}
-                {{ form.email(size=32) }}
+                {{ form.username.label }}
+                {{ form.username(size=32) }}
             </div>
             <div>
                 {{ form.password.label }}
