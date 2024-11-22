@@ -3,6 +3,7 @@ from flask import Flask, render_template, url_for
 import sys
 from pathlib import Path
 from app import create_app
+from config import database_path
 
 # Add the project root to the Python path to resolve module imports
 sys.path.append(str(Path(__file__).resolve().parent.parent))
@@ -15,8 +16,7 @@ def app():
     app.config['TESTING'] = True
 
     # Use the same database path as the application
-    REPO_ROOT = Path(__file__).resolve().parent.parent
-    app.config['SQLALCHEMY_DATABASE_URI'] = f"sqlite:///{REPO_ROOT / 'app' / 'instance' / 'app.db'}"
+    app.config['SQLALCHEMY_DATABASE_URI'] = f"sqlite:///{database_path}"
 
     yield app
 

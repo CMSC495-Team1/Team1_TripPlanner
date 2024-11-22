@@ -62,10 +62,11 @@ document.addEventListener('click', function (event) {
 function displayNavBar() {
     if (userName !== "") {
         navBar.innerHTML = "<a href='/'><img src=' " + banner_url + "' alt='Team 1 Travel Planner banner'"
-            + " width='961' height='51'></a> <button class='button signup' id='usernameButton'" +
-            " onclick='toggleMenu();'>" + userName + "</button>"
+            + " width='961' height='51'></a> <button class='button signup' id='usernameButton'"
+            + " onclick='toggleMenu();'>" + userName + "</button>"
             + "<div id='submenu-container'><div id='submenu'><a href='/view_trips'><button class='submenu-button'>View Trips</button></a>"
             + "<a href='/account_settings'><button class='submenu-button'>Account Settings</button></a>"
+            + "<a href='/login'><button class='submenu-button'>Log In</button></a>"
             + "<button class='submenu-button' onclick='logOut();'>Log Out</button></div></div>";
     }
     else {
@@ -80,17 +81,24 @@ function displayNavBar() {
 }
 
 
-//simple log out action. temporary
 function logOut() {
-    const currentUrl = window.location.href;
-    userName = "";
-    displayNavBar();
-    if (currentUrl.includes("account_settings")||currentUrl.includes("view_trips")){
-        location.href= "/";
-    }
-
-//simple log in action. temporary
-// function logIn() {
-//     userName = "username";
-//     displayNavBar();
+    fetch('/logout', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+        .then(response => {
+            if (response.ok) {
+                userName = "";
+                displayNavBar();
+                const currentUrl = window.location.href;
+                if (currentUrl.includes("account_settings") || currentUrl.includes("view_trips")) {
+                    location.href = "/";
+                }
+            } else {
+                console.error('Logout failed');
+            }
+        })
+        .catch(error => console.error('Error:', error));
 }

@@ -20,28 +20,29 @@ import pathlib
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 import flask_migrate
+from flask_mail import Mail
 from config import Config
-
+from flask_bcrypt import Bcrypt
+from flask_login import LoginManager
 # Flask extensions
 
 # Initialize sqlalchemy and migration extensions
 database = SQLAlchemy()
-migrate = flask_migrate.Migrate()
+migrate_database = flask_migrate.Migrate()
+bcrypt = Bcrypt()
+mail = Mail()
+login = LoginManager()
 
 def create_app(config_class=Config):
+    # Imports in this scope aer to avoid circular dependencies
     app = Flask(__name__)
     app.config.from_object(config_class)
 
+    login.init_app(app)
+
     # Register app and database with the extensions
     database.init_app(app)
-    migrate.init_app(app, database)
-
-    # TODO: Do we need this?
-    # os.makedirs(app.instance_path, exist_ok=True)
-
-        #TODO: Do we need this?
-        # # Export app, db, Customer, and Destination for use in the test file
-        # __all__ = ['app', 'db', 'Customer', 'Destination', 'Hotel', 'Rental', 'Flight']
+    migrate_database.init_app(app, database)
 
     # Register blueprints
     from app.main import main
@@ -57,7 +58,6 @@ def create_app(config_class=Config):
     with app.app_context():
         try:
             # Step 2: Initialize migrations (only if the migrations folder doesn't exist)
-
             if not pathlib.Path('migrations').exists():
                 flask_migrate.init()
 
@@ -67,7 +67,6 @@ def create_app(config_class=Config):
             # Step 4: Apply the migration to the database
             flask_migrate.upgrade()
 
-            # Import here to avoid circular import
             from app.instance.import_data import import_data
             # Call the import_data function to import the data from JSON data file
             import_data(database)

@@ -1,12 +1,8 @@
-from flask import abort, render_template
-from jinja2 import TemplateNotFound
+from flask import render_template
 from app.main import main
+from flask_login import login_required
 
-
-@main.route('/', defaults={'page': 'index'})
-@main.route('/<page>')
-def show(page):
-    try:
-        return render_template(f'main/{page}.html')
-    except TemplateNotFound:
-        abort(404)
+@main.route('/')
+@main.route('/index')
+def index():
+    return render_template(f'main/index.html')

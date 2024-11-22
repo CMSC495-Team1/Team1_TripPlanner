@@ -1,7 +1,7 @@
 from flask import abort, render_template, request, redirect, url_for
 from jinja2 import TemplateNotFound
 from app.trip import trip
-from app.instance.models.models import Destination
+from app.instance.models.destination import Destination
 
 
 @trip.route('/plan_trip/', methods=['GET', 'POST'])
