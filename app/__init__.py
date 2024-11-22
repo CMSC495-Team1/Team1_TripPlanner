@@ -67,7 +67,7 @@ def create_app(config_class=Config):
             # Step 4: Apply the migration to the database
             flask_migrate.upgrade()
 
-            from app.instance.import_data import import_data
+            from app.database.import_data import import_data
             # Call the import_data function to import the data from JSON data file
             import_data(database)
 
