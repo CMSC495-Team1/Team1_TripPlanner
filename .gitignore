@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Java build files
 *.class
 
@@ -54,3 +55,41 @@ Thumbs.db
 *.tmp
 *.swp
 *.swo
+=======
+# Ignore Python bytecode
+__pycache__/
+*.pyc
+*.pyo
+
+# Ignore virtual environment directories
+.venv/
+env/
+venv/
+
+# Ignore IDE specific files (e.g., PyCharm)
+.idea/
+
+# Ignore build and distribution directories
+dist/
+build/
+*.egg-info/
+
+# Ignore test coverage and other generated files
+coverage/
+*.cover
+*.log
+Test\ Results\ -\ .html
+
+
+# Ignore personal environment variables
+.env
+
+# MacOS specific files
+.DS_Store
+
+# flask_migration
+migrations/
+
+# ignore database
+app.db
+>>>>>>> b140b4e226314b5c83d2cdf13899309a052af38c
