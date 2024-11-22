@@ -82,7 +82,7 @@ function displayNavBar() {
 
 
 function logOut() {
-    fetch('/auth/logout', {
+    fetch('/logout', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
