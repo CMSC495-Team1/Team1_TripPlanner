@@ -2,23 +2,36 @@
 
 {% block title %}View Trips{% endblock %}
 
-
 {% block pagebody %}
 <div id="smallwindow">
     <div class="titlebar">
         <h2>Upcoming Trips</h2>
     </div>
     <div class="plan-form">
-        <table id='logintable'>
-            <tr>
-                <td>blahblah</td>
-                <td>must update</td>
-            </tr>
-            <tr>
-                <td>blahblah</td>
-                <td>must update</td>
-            </tr>
-        </table>
+        {% if trips %}
+            <table id='logintable'>
+                <thead>
+                    <tr>
+                        <th>Trip Name</th>
+                        <th>State</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for trip in trips %}
+                        <tr>
+                            <td>{{ trip.trip_name }}</td>
+                            <td>{{ trip.state }}</td>
+                            <td>{{ trip.start_date.strftime('%Y-%m-%d') }}</td>
+                            <td>{{ trip.end_date.strftime('%Y-%m-%d') }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No trips are currently scheduled.</p>
+        {% endif %}
     </div>
 </div>
 {% endblock %}

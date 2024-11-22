@@ -22,11 +22,13 @@ from flask_sqlalchemy import SQLAlchemy
 import flask_migrate
 from config import Config
 
+
 # Flask extensions
 
 # Initialize sqlalchemy and migration extensions
 database = SQLAlchemy()
 migrate = flask_migrate.Migrate()
+
 
 def create_app(config_class=Config):
     app = Flask(__name__)
@@ -39,9 +41,9 @@ def create_app(config_class=Config):
     # TODO: Do we need this?
     # os.makedirs(app.instance_path, exist_ok=True)
 
-        #TODO: Do we need this?
-        # # Export app, db, Customer, and Destination for use in the test file
-        # __all__ = ['app', 'db', 'Customer', 'Destination', 'Hotel', 'Rental', 'Flight']
+    #TODO: Do we need this?
+    # # Export app, db, Customer, and Destination for use in the test file
+    # __all__ = ['app', 'db', 'Customer', 'Destination', 'Hotel', 'Rental', 'Flight']
 
     # Register blueprints
     from app.main import main

@@ -83,3 +83,86 @@ def test_plan_trip_missing_fields(client):
     })
     assert b"Please give the trip a name." in response.data
     assert response.status_code == 200
+
+
+# Test for rendering the Sign-Up page
+def test_sign_up_page(client):
+    response = client.get('/sign_up/')
+    assert response.status_code == 200  # Ensure the page loads correctly
+    assert b'Sign Up' in response.data  # Check if the page contains "Sign Up"
+
+
+# Test for rendering the Forgot Password page
+def test_forgot_password_page(client):
+    response = client.get('/forgot_password/')
+    assert response.status_code == 200  # Ensure the page loads correctly
+    assert b'Forgot Password' in response.data  # Check if the page contains "Forgot Password"
+
+
+# Test for rendering the Account Settings page
+def test_account_settings_page(client):
+    response = client.get('/account_settings/')
+    assert response.status_code == 200  # Ensure the page loads correctly
+    assert b'Account Settings' in response.data  # Check if the page contains "Account Settings"
+
+
+# Test for rendering the View Trips page
+def test_view_trips_page(client):
+    response = client.get('/view_trips/')
+    assert response.status_code == 200  # Ensure the page loads correctly
+    assert b'Upcoming Trips' in response.data  # Check if the page contains "Upcoming Trips"
+
+
+# Test the Trip Details page with missing required fields
+def test_hotel_booking_missing_fields(client):
+    response = client.post('/search_hotel/', data={
+        'destination': '',
+        'start_date': '',
+        'end_date': ''
+    })
+    print(response.data.decode())  # Debug output
+    assert response.status_code == 200  # Ensure the form reloads with errors
+    assert b"All fields are required to search for hotels." in response.data
+
+
+# Test for invalid dates in trip planning
+def test_trip_invalid_dates(client):
+    response = client.post('/plan_trip/', data={
+        'state': 'California',
+        'trip_name': 'Test Trip',
+        'start_date': '2024-12-31',
+        'end_date': '2024-12-01'  # End date is before start date
+    }, follow_redirects=True)
+
+    assert response.status_code == 200  # Ensure the page reloads with errors
+    assert b"Start Date cannot be after the End Date." in response.data
+
+
+# Test for rendering the main index page
+def test_index_page(client):
+    response = client.get('/')
+    assert response.status_code == 200  # Ensure the page loads correctly
+    assert b'Plan a Trip' in response.data  # Check for the "Plan a Trip" button
+
+
+# Test for rendering the Trip Confirmation page after a complete booking flow
+def test_booking_confirmation_page(client):
+    # Simulate booking a trip
+    client.post('/plan_trip/', data={
+        'state': 'Florida',
+        'trip_name': 'Vacation to Florida',
+        'start_date': '2024-11-25',
+        'end_date': '2024-12-05'
+    })
+    response = client.get('/view_trips/')
+    assert response.status_code == 200  # Ensure the trips page loads correctly
+    assert b'Upcoming Trips' in response.data
+
+
+# Test for rendering static assets
+def test_static_assets(client):
+    response = client.get('/main/static/script.js')
+    assert response.status_code == 200  # Ensure the JS file is served correctly
+
+    response = client.get('/main/static/style.css')
+    assert response.status_code == 200  # Ensure the CSS file is served correctly

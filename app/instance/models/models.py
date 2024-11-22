@@ -2,6 +2,8 @@ from typing import Optional
 from sqlalchemy import String as sqlString
 import sqlalchemy.orm as orm
 from app import database
+from werkzeug.security import generate_password_hash, check_password_hash
+
 
 class User(database.Model):
     """
@@ -12,26 +14,36 @@ class User(database.Model):
     the column, such as whether it is a primary key, its data type, and other constraints.
     """
 
-    id: orm.Mapped[int] = orm.mapped_column(primary_key = True)
+    id: orm.Mapped[int] = orm.mapped_column(primary_key=True)
 
     username: orm.Mapped[str] = orm.mapped_column(sqlString(256),
-                                                  index = True,
-                                                  unique = True,
-                                                  nullable = False)
+                                                  index=True,
+                                                  unique=True,
+                                                  nullable=False)
 
     email: orm.Mapped[str] = orm.mapped_column(sqlString(256),
-                                               index = True,
-                                               unique = True,
-                                               nullable = False)
+                                               index=True,
+                                               unique=True,
+                                               nullable=False)
     # Optional allows the column to be empty.
     password_hash: orm.Mapped[Optional[str]] = orm.mapped_column(sqlString(256))
 
     # __repr__ method tells Python how to print objects of this class, which is going to be useful for debugging.
+
+    # Set password using a hash
+    def set_password(self, password):
+        self.password_hash = generate_password_hash(password)
+
+    # Check password hash
+    def check_password(self, password):
+        return check_password_hash(self.password_hash, password)
+
     def __repr__(self):
         return f'<Use {self.username}>'
 
+
 class Destination(database.Model):
-    id: orm.Mapped[int] = orm.mapped_column(primary_key = True)
+    id: orm.Mapped[int] = orm.mapped_column(primary_key=True)
 
     country: orm.Mapped[Optional[str]] = orm.mapped_column(sqlString(256),
                                                            index=True,
@@ -41,7 +53,7 @@ class Destination(database.Model):
                                                          index=True,
                                                          unique=True)
 
-    city: orm.Mapped[Optional[str]] = orm.mapped_column(sqlString(256), index= True)
+    city: orm.Mapped[Optional[str]] = orm.mapped_column(sqlString(256), index=True)
 
     description: orm.Mapped[Optional[str]] = orm.mapped_column(sqlString(512))
 
@@ -49,6 +61,22 @@ class Destination(database.Model):
 
     def __repr__(self):
         return f'<Destination: {self.country}, {self.state}, {self.city}>'
+
+
+class Trip(database.Model):
+    __tablename__ = 'trips'
+    id = database.Column(database.Integer, primary_key=True)
+    trip_name = database.Column(database.String(100), nullable=False)
+    state = database.Column(database.String(50), nullable=False)
+    start_date = database.Column(database.Date, nullable=False)
+    end_date = database.Column(database.Date, nullable=False)
+    user_id = database.Column(database.Integer, database.ForeignKey('user.id'), nullable=False)
+
+    user = database.relationship('User', backref='trips', lazy=True)
+
+
+    def __repr__(self):
+        return f"<Trip {self.trip_name} ({self.state})>"
 
 # class Hotel(database.Model):
 #     id = database.Column(database.Integer, primary_key=True)
