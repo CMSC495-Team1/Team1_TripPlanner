@@ -40,6 +40,8 @@ def create_app(config_class=Config):
     app.config.from_object(config_class)
 
     login.init_app(app)
+    login.login_view = 'auth.login'
+    
     database.init_app(app)
     migrate_database.init_app(app, database)
 

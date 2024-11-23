@@ -83,10 +83,8 @@ function displayNavBar() {
 
 function logOut() {
     fetch('/logout', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        }
+        method: 'GET',
+        credentials: 'same-origin'  // This ensures cookies/session data are sent
     })
         .then(response => {
             if (response.ok) {
