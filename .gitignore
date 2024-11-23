@@ -85,3 +85,7 @@ Test\ Results\ -\ .html
 # instance specific directories
 migrations/
 instance/
+
+# Xavier's Custom files for Pycharm HTMX support
+package.json
+htmx.web-types.json
