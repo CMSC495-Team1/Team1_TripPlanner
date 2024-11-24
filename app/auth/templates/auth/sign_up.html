@@ -2,30 +2,67 @@
 
 {% block title %}Sign Up{% endblock %}
 
-
 {% block pagebody %}
 <div id="smallwindow">
+    <div class="mainareatripdetails">
     <div class="titlebar">
         <h2>Sign Up</h2><br>
     </div>
-    <div class="smallcontent">
-        <div class="plan-form">
             <form id="tripForm">
-                <label for="firstName">First Name:</label>
-                <input type="text" id="firstName" required><br>
-                <label for="lastName">Last Name:</label>
-                <input type="text" id="lastName" required><br>
-                <label for="email">Email address:</label>
-                <input type="email" id="email" required><br>
-                <label for="userID">User ID:</label>
-                <input type="text" id="userID" required><br>
-                <label for="password">Password:</label>
-                <input type="password" id="password" required><br>
-                <label for="password2">Verify Password:</label>
-                <input type="password" id="password2" required><br>
+                <table class='form_table'>
+                    <tr>
+                        <td>
+                            First Name:
+                        </td>
+                        <td>
+                            <input type="text" id="firstName" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Last Name:
+                        </td>
+                        <td>
+                            <input type="text" id="lastName" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Email Address:
+                        </td>
+                        <td>
+                            <input type="email" id="email" required>
+                        </td>
+                    </tr>
+                     <tr>
+                        <td>
+                            User ID:
+                        </td>
+                        <td>
+                            <input type="text" id="userID" required>
+                        </td>
+                    </tr>
+                     <tr>
+                        <td>
+                            Password:
+                        </td>
+                        <td>
+                            <input type="password" id="password" required>
+                        </td>
+                    </tr>
+                     <tr>
+                        <td>
+                            Verify Password:
+                        </td>
+                        <td>
+                            <input type="password" id="password2" required>
+                        </td>
+                    </tr>
+                </table>
+
+                <br>
                 <button type="submit">Submit</button>
             </form>
         </div>
     </div>
-</div>
 {% endblock %}

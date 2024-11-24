@@ -1,5 +1,5 @@
 const navBar = document.getElementById('topnav');
-let userName = "username";
+let userName = "";
 
 
 displayNavBar();
