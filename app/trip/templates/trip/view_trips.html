@@ -4,21 +4,82 @@
 
 
 {% block pagebody %}
-<div id="smallwindow">
-    <div class="titlebar">
-        <h2>Upcoming Trips</h2>
+<div id="plancontent">
+    <div class="sidebar">
+        <h1>View a Trip</h1>
+        <label for="state-list">Trip Date</label>
+        <div id="state-list">
+            <label for="states-in-a-list"></label>
+            <select size="21" name="" id="states-in-a-list" class="form-control" onchange="changeTrip();"
+                onfocus="this.selectedIndex = -1;">
+                <option value="12/09/2024">12/09/2024</option>
+  <option value="10/04/2024">10/04/2024</option>
+  <option value="03/30/2024">03/30/2024</option>
+  <option value="10/15/2023">10/15/2023</option>
+            </select>
+        </div>
     </div>
-    <div class="plan-form">
-        <table id='logintable'>
-            <tr>
-                <td>blahblah</td>
-                <td>must update</td>
-            </tr>
-            <tr>
-                <td>blahblah</td>
-                <td>must update</td>
-            </tr>
-        </table>
+
+    <div class="mainarea">
+
+            <br>
+<span id="viewTripsInitialText">To view the details of a trip, select it from the list on the left.</span>
+            <br>
+
+<div id="view-trips-details-main">
+    Trip Name: <span id="confirm-trip-name"></span><br>
+        Trip Cost: $<span id="confirm-trip-cost"></span><br>
+        <div id="confirm-trip-item-box-wrapper">
+            <fieldset class="confirm-trip-item-box">
+                <legend>Flight</legend>
+                Date: <span class="confirm-detail-item" id="confirm-flight-date"></span><br>
+                Departure: <span class="confirm-detail-item" id="confirm-flight-departure"></span><br>
+                Arrival: <span class="confirm-detail-item" id="confirm-flight-arrival"></span><br>
+                Airline: <span class="confirm-detail-item" id="confirm-flight-airline"></span><br>
+                Cost: <span class="confirm-detail-item" id="confirm-flight-cost"></span>
+            </fieldset>
+            <fieldset class="confirm-trip-item-box">
+                <legend>Return Flight</legend>
+                Date: <span class="confirm-detail-item" id="confirm-return-flight-date"></span><br>
+                Departure: <span class="confirm-detail-item" id="confirm-return-flight-departure"></span><br>
+                Arrival: <span class="confirm-detail-item" id="confirm-return-flight-arrival"></span><br>
+                Airline: <span class="confirm-detail-item" id="confirm-return-flight-airline"></span><br>
+                Cost: <span class="confirm-detail-item" id="confirm-return-flight-cost"></span>
+            </fieldset>
+            <fieldset class="confirm-trip-item-box">
+                <legend>Hotel</legend>
+                Check-In Date: <span class="confirm-detail-item" id="confirm-hotel-checkin-date"></span><br>
+                Check-Out Date: <span class="confirm-detail-item" id="confirm-hotel-checkout-date"></span><br>
+                Location: <span class="confirm-detail-item" id="confirm-hotel-location"></span><br>
+                Hotel: <span class="confirm-detail-item" id="confirm-hotel-name"></span><br>
+                Room Type: <span class="confirm-detail-item" id="confirm-hotel-roomtype"></span><br>
+                Cost: <span class="confirm-detail-item" id="confirm-hotel-cost"></span>
+            </fieldset>
+            <fieldset class="confirm-trip-item-box">
+                <legend>Rental Car</legend>
+
+                Pick Up: <span class="confirm-detail-item" id="confirm-car-pickup"></span><br>
+                Drop Off: <span class="confirm-detail-item" id="confirm-car-dropoff"></span><br>
+                Description: <span class="confirm-detail-item" id="confirm-car-description"></span><br>
+                Cost: <span class="confirm-detail-item" id="confirm-car-cost"></span><br>
+            </fieldset>
+        </div>
+
+            <button class="button startplanning" id="canceltripbutton" onclick="cancelTrip();">Cancel Trip
+            </button>
+</div>
     </div>
 </div>
+<script>
+    const selection = document.getElementById('trips-in-a-list');
+    const viewSelectedTripsDetails = document.getElementById('view-trips-details-main');
+    const viewTripsInitialText = document.getElementById('viewTripsInitialText');
+
+
+      function changeTrip() {
+        viewTripsInitialText.style.display = "none";
+        viewSelectedTripsDetails.style.display = "block";
+    }
+
+</script>
 {% endblock %}

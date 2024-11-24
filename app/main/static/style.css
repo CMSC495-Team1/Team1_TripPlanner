@@ -416,7 +416,7 @@ font-weight: bold;
     height: 150px;
   }
 
-  #states-in-a-list {
+  #states-in-a-list, #trips-in-a-list {
     font-size: 22px;
   }
 
@@ -570,3 +570,9 @@ font-weight: bold;
 #confirm-trip-cost-box{
     width:20%;
 }
+
+#view-trips-details-main{
+    height:100%;
+    overflow-y:auto;
+    display: none;
+    }
