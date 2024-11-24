@@ -2,28 +2,45 @@
 
 {% block title %}Account Settings{% endblock %}
 
-
 {% block pagebody %}
 <div id="smallwindow">
     <div class="titlebar">
         <h2>Account Settings</h2>
     </div>
-    <div class="plan-form">
-        <table id='logintable'>
-            <tr>
-                <td><label for='userID'>User ID:</label></td>
-                <td><input type='text' id='userID'></td>
-            </tr>
-            <tr>
-                <td><label for='password'>Password:</label></td>
-                <td><input type='password' id='password'></td>
-            </tr>
 
-            <tr>
-                <td><label for='email'>Email:</label></td>
-                <td><input type='email' id='email'></td>
-            </tr>
-        </table><button type='submit'>Submit</button>
+    <div class="smallcontent">
+        <form method="POST">
+            <table class='form_table'>
+                <tr>
+                    <td>
+                        User ID
+                    </td>
+                    <td>
+                        <input type='text' id='userID'>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Password
+                    </td>
+                    <td>
+                        <input type='password' id='password'>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Email
+                    </td>
+                    <td>
+                        <input type='email' id='email'>
+                    </td>
+                </tr>
+            </table>
+            <br>
+            <div>
+                <button>Submit</button>
+            </div>
+        </form>
     </div>
 </div>
 {% endblock %}

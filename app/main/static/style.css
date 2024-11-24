@@ -195,15 +195,7 @@ font-weight: bold;
     padding: 10px 10px;
   }
 
-  #username {
-    width: 100px;
-    text-align: center;
-    color: #87CEEB;
-    position: absolute;
-    right: 120px;
-    top: 30%;
 
-  }
 
   #usernameButton {
     right: 10px;
@@ -334,6 +326,7 @@ font-weight: bold;
     border-radius: 15px 15px 15px 15px;
   }
 
+
   .sidebar {
     width: 259px;
     background-color: #0D1F31;
@@ -397,6 +390,14 @@ font-weight: bold;
     text-align: center;
   }
 
+  .smallcontent{
+  width: 100%;
+    height: 100%;
+    color: white;
+    padding: 0px;
+    text-align: center;
+    }
+
 .large-title-bar {
     height: 55px;
     background-color: #0D1F31;
@@ -424,9 +425,7 @@ font-weight: bold;
     text-align: center;
   }
 
-  #tripForm {
-    width: 300px;
-  }
+
 
 
   .smalltripwindow {

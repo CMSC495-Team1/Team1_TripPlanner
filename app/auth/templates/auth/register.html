@@ -10,34 +10,62 @@
     <div class="smallcontent">
         <form method="POST" action="{{ url_for('auth.register')}}">
             {{ form.hidden_tag() }}
-            <div>
+             <table class='form_table'>
+                    <tr>
+                        <td>
                 {{ form.first_name.label }}
+                        </td>
+                        <td>
                 {{ form.first_name(size=32) }}
-            </div>
-            <div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
                 {{ form.last_name.label }}
+                        </td>
+                        <td>
                 {{ form.last_name(size=32) }}
-            </div>
-            <div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
                 {{ form.username.label }}
+                        </td>
+                        <td>
                 {{ form.username(size=32) }}
-            </div>
-            <div>
+                        </td>
+                    </tr>
+                     <tr>
+                        <td>
                 {{ form.email.label }}
+                        </td>
+                        <td>
                 {{ form.email(size=32) }}
-            </div>
-            <div>
+                        </td>
+                    </tr>
+                     <tr>
+                        <td>
                 {{ form.password.label }}
+                        </td>
+                        <td>
                 {{ form.password(size=32) }}
-            </div>
-            <div>
+                        </td>
+                    </tr>
+                     <tr>
+                        <td>
                 {{ form.confirm_password.label }}
+                        </td>
+                        <td>
                 {{ form.confirm_password(size=32) }}
-            </div>
+                        </td>
+                    </tr>
+                </table>
+<br>
             <div>
                 {{ form.submit() }}
             </div>
         </form>
+        <br>
         <a href="{{ url_for('auth.login') }}">Already have an account? Login here.</a>
     </div>
 </div>
