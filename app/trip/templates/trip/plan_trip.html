@@ -10,7 +10,7 @@
         <div id="state-list">
             <label for="states-in-a-list"></label>
             <select size="21" name="" id="states-in-a-list" class="form-control" onchange="changeState();"
-                onfocus="this.selectedIndex = 0;">
+                onfocus="this.selectedIndex = -1;">
                 {% for destination in destinations %}
                 <option value="{{ loop.index }}">{{ destination.state }}</option>
                 {% endfor %}
@@ -26,7 +26,7 @@
                           {% else %}Default{% endif %}">
             </div>
             <div class="state-name-text">
-                <h2 id="state-name">{% if destinations %}{{ destinations[0].name }}{% else
+                <h2 id="state-name">{% if destinations %}{{ destinations[0].state }}{% else
                     %}Destination{% endif %}
                 </h2>
                 <p id="state-description">{% if destinations %}{{ destinations[0].description }}{% else %}Description
@@ -430,8 +430,14 @@
         <div class="titlebar">
             <h2>Confirm Booking</h2><br>
         </div>
-        Trip Name: <span id="confirm-trip-name"></span><br>
-        Trip Cost: $<span id="confirm-trip-cost"></span><br>
+        <fieldset class="confirm-trip-default-box" id="confirm-trip-name-box">
+                <legend>Trip Name</legend>
+            <span id="confirm-trip-name"></span>
+        </fieldset>
+        <fieldset class="confirm-trip-default-box" id="confirm-trip-cost-box">
+                <legend>Trip Cost</legend>
+            $<span id="confirm-trip-cost"></span>
+        </fieldset>
         <div id="confirm-trip-item-box-wrapper">
             <fieldset class="confirm-trip-item-box">
                 <legend>Flight</legend>
@@ -668,6 +674,10 @@
 
             tripDetailsWindow.style.display = "none";
             if (flightButtonActive) {
+                if (destination.selectedIndex===0){
+                    const flightOrigin = document.getElementById('flight-origin-selection');
+                    flightOrigin.selectedIndex = 1;
+                }
                 searchFlightWindow.style.display = "block";
             }
             else if (hotelButtonActive) {
