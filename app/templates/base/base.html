@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Travel Sync{% endblock %}</title>
+
+    {# Required CDN Links #}
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.14/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/htmx.org@2.0.3"
+            integrity="sha384-0895/pl2MU10Hqc6jd4RvrthNlDiE9U1tWmX7WRESftEDRosgxNsQG/Ze9YMRzHq" crossorigin="anonymous">
+    </script>
+
+    {% block styles %}{% endblock %}
+</head>
+<body class="flex flex-col min-h-screen">
+    {# Include navbar component #}
+    {% include 'base/components/navbar.html' %}
+
+    {# Include flash messages component #}
+    {% include 'base/components/flash_messages.html' %}
+
+    {# Main content area #}
+    <main class="flex-grow">
+        {% block content %}{% endblock %}
+    </main>
+
+    {# Include footer component #}
+    {% include 'base/components/footer.html' %}
+
+    {% block scripts %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="max-w-2xl mx-auto mt-8">
+    <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+        <div class="bg-green-600 text-white px-6 py-4">
+            <h2 class="text-xl font-bold">Booking Confirmed!</h2>
+        </div>
+        
+        <div class="p-6">
+            <div class="mb-6 text-center">
+                <div class="text-green-600 mb-4">
+                    <svg class="h-12 w-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                </div>
+                <p class="text-gray-600">Thank you for your booking. Your flight is confirmed!</p>
+            </div>
+
+            <div class="border-t border-gray-200 pt-6">
+                <h3 class="text-lg font-semibold mb-4">Booking Details</h3>
+                <div class="grid grid-cols-2 gap-4 text-sm">
+                    <div>
+                        <p class="text-gray-600">Booking Reference</p>
+                        <p class="font-medium">{{ booking.id }}</p>
+                    </div>
+                    <div>
+                        <p class="text-gray-600">Status</p>
+                        <p class="font-medium uppercase">{{ booking.status }}</p>
+                    </div>
+                    <div>
+                        <p class="text-gray-600">Flight Number</p>
+                        <p class="font-medium">{{ booking.flight.flight_number }}</p>
+                    </div>
+                    <div>
+                        <p class="text-gray-600">Seat Number</p>
+                        <p class="font-medium">{{ booking.seat_number }}</p>
+                    </div>
+                    <div>
+                        <p class="text-gray-600">From</p>
+                        <p class="font-medium">{{ booking.flight.origin.city }}, {{ booking.flight.origin.country }}</p>
+                    </div>
+                    <div>
+                        <p class="text-gray-600">To</p>
+                        <p class="font-medium">{{ booking.flight.destination.city }}, {{ booking.flight.destination.country }}</p>
+                    </div>
+                    <div>
+                        <p class="text-gray-600">Departure</p>
+                        <p class="font-medium">{{ booking.flight.departure_time.strftime('%d %b %Y %H:%M') }}</p>
+                    </div>
+                    <div>
+                        <p class="text-gray-600">Arrival</p>
+                        <p class="font-medium">{{ booking.flight.arrival_time.strftime('%d %b %Y %H:%M') }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-6 flex justify-center">
+                <a href="{{ url_for('flights.search') }}" 
+                   class="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                    Book Another Flight
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

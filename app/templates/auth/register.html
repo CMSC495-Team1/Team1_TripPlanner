@@ -1,0 +1,114 @@
+{% extends "base/base.html" %}
+{% block title %}Register - Travel Sync{% endblock %}
+{% block content %}
+
+<div class="min-h-screen bg-base-200 flex items-center justify-center px-4">
+    <div class="card w-full max-w-lg bg-base-100 shadow-xl">
+        <div class="card-body">
+            <h2 class="card-title text-2xl font-bold justify-center mb-6">Create Your Account</h2>
+            
+            <form method="POST">
+                {{ form.hidden_tag() }}
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    <div class="form-control">
+                        <label class="label">
+                            <span class="label-text">First Name</span>
+                        </label>
+                        {{ form.first_name(class="input input-bordered w-full", placeholder="Enter your first name") }}
+                        {% if form.first_name.errors %}
+                            {% for error in form.first_name.errors %}
+                                <label class="label">
+                                    <span class="label-text-alt text-error">{{ error }}</span>
+                                </label>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+
+                    <div class="form-control">
+                        <label class="label">
+                            <span class="label-text">Last Name</span>
+                        </label>
+                        {{ form.last_name(class="input input-bordered w-full", placeholder="Enter your last name") }}
+                        {% if form.last_name.errors %}
+                            {% for error in form.last_name.errors %}
+                                <label class="label">
+                                    <span class="label-text-alt text-error">{{ error }}</span>
+                                </label>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="form-control">
+                    <label class="label">
+                        <span class="label-text">Username</span>
+                    </label>
+                    {{ form.username(class="input input-bordered w-full", placeholder="Choose a username") }}
+                    {% if form.username.errors %}
+                        {% for error in form.username.errors %}
+                            <label class="label">
+                                <span class="label-text-alt text-error">{{ error }}</span>
+                            </label>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+
+                <div class="form-control">
+                    <label class="label">
+                        <span class="label-text">Email</span>
+                    </label>
+                    {{ form.email(class="input input-bordered w-full", placeholder="Enter your email") }}
+                    {% if form.email.errors %}
+                        {% for error in form.email.errors %}
+                            <label class="label">
+                                <span class="label-text-alt text-error">{{ error }}</span>
+                            </label>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+
+                <div class="form-control">
+                    <label class="label">
+                        <span class="label-text">Password</span>
+                    </label>
+                    {{ form.password(class="input input-bordered w-full", placeholder="Create a password") }}
+                    {% if form.password.errors %}
+                        {% for error in form.password.errors %}
+                            <label class="label">
+                                <span class="label-text-alt text-error">{{ error }}</span>
+                            </label>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+
+                <div class="form-control">
+                    <label class="label">
+                        <span class="label-text">Confirm Password</span>
+                    </label>
+                    {{ form.confirm_password(class="input input-bordered w-full", placeholder="Confirm your password") }}
+                    {% if form.confirm_password.errors %}
+                        {% for error in form.confirm_password.errors %}
+                            <label class="label">
+                                <span class="label-text-alt text-error">{{ error }}</span>
+                            </label>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+
+                <div class="mt-6">
+                    {{ form.submit(class="btn btn-primary w-full") }}
+                </div>
+
+                <div class="divider">OR</div>
+
+                <div class="text-center">
+                    Already have an account? 
+                    <a href="{{ url_for('auth.login') }}" class="link link-primary">Login</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

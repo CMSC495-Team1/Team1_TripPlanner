@@ -4,7 +4,7 @@ from app.models.destination import Destination
 
 def import_data(database):
     # Path to your JSON file relative to import_data.py
-    destination_data = os.path.join(os.path.dirname(__file__), 'destination_data.json')
+    destination_data = os.path.join(os.path.dirname(__file__), 'state_data.json')
     # Load the JSON data from the file
     with open(destination_data, 'r') as file:
         destinations = json.load(file)

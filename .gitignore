@@ -1,91 +1,11 @@
-# Java build files
-*.class
-
-# Logs
-*.log
-*.log.*
-
-# Package files
-*.jar
-*.war
-*.ear
-
-# Maven
-target/
-pom.xml.tag
-pom.xml.releaseBackup
-pom.xml.versionsBackup
-pom.xml.next
-release.properties
-
-# Gradle
-.gradle/
-build/
-
-# IntelliJ IDEA files
-.idea/
-*.iml
-*.iws
-out/
-
-# NetBeans files
-nbproject/private/
-build/
-nbbuild/
-dist/
-nbdist/
-.nb-gradle/
-
-# Eclipse files
-.project
-.classpath
-.settings/
-
-# VS Code
-.vscode/
-
-# Mac OS files
-.DS_Store
-
-# Windows Thumbs.db files
-Thumbs.db
-
-# Temporary files
-*.tmp
-*.swp
-*.swo
-
-# Ignore Python bytecode
+venv/
 __pycache__/
 *.pyc
-*.pyo
-
-# Ignore virtual environment directories
-.venv/
-env/
-venv/
-
-# Ignore IDE specific files (e.g., PyCharm)
-.idea/
-
-# Ignore build and distribution directories
-dist/
-build/
-*.egg-info/
-
-# Ignore test coverage and other generated files
-coverage/
-*.cover
-*.log
-Test\ Results\ -\ .html
-
-# MacOS specific files
-.DS_Store
-
-# instance specific directories
-migrations/
 instance/
-
-# Xavier's Custom files for Pycharm HTMX support
+.DS_Store
+.idea/
+migrations/
+node_modules/
 package.json
-htmx.web-types.json
+package-lock.json
+tailwind.config.js

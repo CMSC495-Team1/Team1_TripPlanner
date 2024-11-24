@@ -1,0 +1,119 @@
+{% extends "base/base.html" %}
+{% block title %}Trip Planner - Travel Sync{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-base-100">
+    <div class="container mx-auto px-4 py-8">
+        {# Welcome Section #}
+        <div class="mb-8">
+            {# Display a welcome message with the user's first name #}
+            <h1 class="text-3xl font-bold">Welcome, {{ current_user.first_name }}!</h1>
+            {# Brief description or tagline for the dashboard #}
+            <p class="text-base-content/70">Plan your next adventure</p>
+        </div>
+
+        {# Quick Actions Section #}
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            {# Card for searching flights #}
+            <div class="card bg-primary text-primary-content">
+                <div class="card-body">
+                    <h2 class="card-title">Search Flights</h2>
+                    {# Description for the search flights action #}
+                    <p>Find the best deals for your next trip</p>
+                    <div class="card-actions justify-end">
+                        {# Button to initiate flight search #}
+                        <button class="btn">Search Now</button>
+                    </div>
+                </div>
+            </div>
+
+            {# Card for viewing and managing trips #}
+            <div class="card bg-secondary text-secondary-content">
+                <div class="card-body">
+                    <h2 class="card-title">My Trips</h2>
+                    {# Description for the my trips action #}
+                    <p>View and manage your upcoming trips</p>
+                    <div class="card-actions justify-end">
+                        {# Button to view trips #}
+                        <button class="btn">View Trips</button>
+                    </div>
+                </div>
+            </div>
+
+            {# Card for updating travel preferences #}
+            <div class="card bg-accent text-accent-content">
+                <div class="card-body">
+                    <h2 class="card-title">Travel Preferences</h2>
+                    {# Description for the travel preferences action #}
+                    <p>Update your travel preferences</p>
+                    <div class="card-actions justify-end">
+                        {# Button to update travel preferences #}
+                        <button class="btn">Update</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {# Recent Searches or Saved Trips Section #}
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {# Card for displaying recent searches #}
+            <div class="card bg-base-100 shadow-lg">
+                <div class="card-body">
+                    <h2 class="card-title">Recent Searches</h2>
+                    <div class="overflow-x-auto">
+                        {# Table to display recent searches #}
+                        <table class="table table-zebra">
+                            <thead>
+                                <tr>
+                                    <th>From</th>
+                                    <th>To</th>
+                                    <th>Date</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {# Example row for a recent search #}
+                                <tr>
+                                    <td>New York</td>
+                                    <td>Los Angeles</td>
+                                    <td>Dec 25, 2024</td>
+                                    <td><button class="btn btn-xs">Search Again</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            {# Card for displaying upcoming trips #}
+            <div class="card bg-base-100 shadow-lg">
+                <div class="card-body">
+                    <h2 class="card-title">Upcoming Trips</h2>
+                    <div class="overflow-x-auto">
+                        {# Table to display upcoming trips #}
+                        <table class="table table-zebra">
+                            <thead>
+                                <tr>
+                                    <th>Destination</th>
+                                    <th>Departure</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {# Example row for an upcoming trip #}
+                                <tr>
+                                    <td>Miami</td>
+                                    <td>Jan 15, 2025</td>
+                                    <td><span class="badge badge-success">Confirmed</span></td>
+                                    <td><button class="btn btn-xs">View Details</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

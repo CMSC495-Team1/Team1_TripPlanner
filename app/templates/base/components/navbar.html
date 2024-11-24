@@ -1,0 +1,48 @@
+{# Navbar component #}
+<div class="navbar bg-base-100 shadow-lg">
+    <div class="navbar-start">
+        {# Dropdown menu for mobile view #}
+        <div class="dropdown">
+            {# Button to toggle the dropdown menu #}
+            <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+                {# Hamburger icon for the dropdown button #}
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16"></path>
+                </svg>
+            </div>
+            {# Dropdown menu items #}
+            <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                <li><a href="{{ url_for('index.home') }}">Home</a></li>
+                {# Show logout option if user is authenticated #}
+                {% if current_user.is_authenticated %}
+                <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
+                {% endif %}
+            </ul>
+        </div>
+        {# Brand name or logo linking to the home page #}
+        <a href="{{ url_for('index.home') }}" class="btn btn-ghost text-xl">TravelSync</a>
+    </div>
+
+    {# Right side of the navbar #}
+    <div class="navbar-end">
+        {# Show user profile dropdown if user is authenticated #}
+        {% if current_user.is_authenticated %}
+        <div class="dropdown dropdown-end">
+            {# Avatar button to toggle the profile dropdown #}
+            <div tabindex="0" role="button" class="avatar placeholder">
+                <div class="bg-neutral text-neutral-content rounded-full w-8">
+                    {# Display user's initials #}
+                    <span>{{ current_user.first_name[0] }}{{ current_user.last_name[0] }}</span>
+                </div>
+            </div>
+            {# Profile dropdown menu items #}
+            <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
+            </ul>
+        </div>
+        {% else %}
+        {# Show login button if user is not authenticated #}
+        <a href="{{ url_for('auth.login') }}" class="btn btn-ghost">Login</a>
+        {% endif %}
+    </div>
+</div>

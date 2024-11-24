@@ -1,0 +1,18 @@
+{% macro show_flash_messages() %}
+    {# Retrieve flashed messages with categories #}
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {# Check if there are any messages to display #}
+        {% if messages %}
+            {# Toast notifications appear at the top center of the screen #}
+            <div class="toast toast-top toast-center">
+                {# Loop through each flashed message #}
+                {% for category, message in messages %}
+                    {# Display the message with appropriate styling based on the category #}
+                    <div class="alert {{ 'alert-error' if category == 'error' else 'alert-success' }} shadow-lg">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+{% endmacro %}
