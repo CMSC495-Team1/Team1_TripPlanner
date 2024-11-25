@@ -7,7 +7,87 @@
 </head>
 
 <body>
-    <div id="topnav"></div>
+    <div id="topnav">
+<a href='/'>
+	<img src="{{ url_for('main.static', filename='images/banner.png') }}" alt='Team 1 Travel Planner banner' width='961' height='51'>
+</a>
+
+<div id="logged-in-bar">
+<button class='button signup' id='usernameButton' onclick='toggleMenu();'>
+	userName
+</button>
+<div id='submenu-container'>
+	<div id='submenu'>
+		<a href='/view_trips'>
+			<button class='submenu-button'>
+				View Trips
+			</button>
+		</a>
+            	<a href='/account_settings'>
+			<button class='submenu-button'>
+				Account Settings
+			</button>
+		</a>
+            	<a href='/login'>
+			<button class='submenu-button'>
+				Log In
+			</button>
+		</a>
+            	<button class='submenu-button' onclick='logOut();'>
+			Log Out
+		</button>
+	</div>
+</div>
+</div>
+
+        <div id="logged-out-bar">
+<a href='/sign_up'>
+	<button class='button signup'>
+		SIGN UP
+	</button>
+</a>
+<button class='button login' id='login-button' onclick='toggleLoginMenu();'>
+	LOGIN
+</button>
+<div id='loginmenu-container'>
+	<div id='loginmenu'>
+		<div class='plan-form'>
+			 <form method="POST" action="{{ url_for('auth.login') }}">
+            {{ form.hidden_tag() }}
+            <table class='form_table'>
+                    <tr>
+                        <td>
+                {{ form.username.label }}
+                        </td>
+                        <td>
+                {{ form.username(size=32) }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                {{ form.password.label }}
+                        </td>
+                        <td>
+                {{ form.password(size=32) }}
+                        </td>
+                    </tr>
+                </table>
+                {{ form.remember.label }}
+                {{ form.remember() }}
+            <br>
+            <br>
+            <div>
+                {{ form.submit() }}
+            </div>
+        </form><br>
+        <a href="{{ url_for('auth.forgot_password') }}">Forgot your password?</a><br>
+            <br>
+        <a href="{{ url_for('auth.register') }}">Don't have an account? Register here.</a>
+		</div>
+	</div>
+</div>
+</div>
+    </div>
 
     {% block pagebody %}{% endblock %}
 

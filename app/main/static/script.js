@@ -2,7 +2,6 @@ const navBar = document.getElementById('topnav');
 let userName = "";
 
 
-displayNavBar();
 
 
 //To open and close the user menu
@@ -58,27 +57,7 @@ document.addEventListener('click', function (event) {
 });
 
 
-//Used to create the navigation bar at the top of the page. differs depending on whether a user is logged in or not.
-function displayNavBar() {
-    if (userName !== "") {
-        navBar.innerHTML = "<a href='/'><img src=' " + banner_url + "' alt='Team 1 Travel Planner banner'"
-            + " width='961' height='51'></a> <button class='button signup' id='usernameButton'"
-            + " onclick='toggleMenu();'>" + userName + "</button>"
-            + "<div id='submenu-container'><div id='submenu'><a href='/view_trips'><button class='submenu-button'>View Trips</button></a>"
-            + "<a href='/account_settings'><button class='submenu-button'>Account Settings</button></a>"
-            + "<a href='/login'><button class='submenu-button'>Log In</button></a>"
-            + "<button class='submenu-button' onclick='logOut();'>Log Out</button></div></div>";
-    }
-    else {
-        navBar.innerHTML = "<a href='/'><img src='" + banner_url + "' alt='Team 1 Travel Planner banner'"
-            + " width='961' height='51'></a> <a href='/sign_up'><button class='button signup'>SIGN UP</button></a> "
-            + "<button class='button login' id='login-button' onclick='toggleLoginMenu();'>LOGIN</button>"
-            + "<div id='loginmenu-container'><div id='loginmenu'><div class='plan-form'><form id='tripForm'><table id='logintable'>"
-            + "        <tr><td>User ID:</td><td><input type='text' id='userID' required></td></tr>"
-            + "        <tr><td>Password:</td><td><input type='password' id='password' required></td></tr>"
-            + "    </table><button type='submit'>Submit</button></form><br><a href='/forgot_password'>Forgot password? Click here.</a></div></div></div>";
-    }
-}
+
 
 
 function logOut() {

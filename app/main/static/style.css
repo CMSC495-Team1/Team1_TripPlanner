@@ -608,3 +608,11 @@ font-weight: bold;
     margin-left: auto;
     margin-right: auto;
   }
+
+  #logged-in-bar{
+    display: inline-block;
+  }
+
+   #logged-out-bar{
+    display: none;
+  }
