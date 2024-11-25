@@ -520,7 +520,7 @@ font-weight: bold;
     color: #0D1F31;
   }
 
-.confirm-trip-item-box{
+.confirm-trip-item-box, .view-trip-item-box{
     border: 1px solid #0D1F31;
     width:80%;
     margin-left: auto;
@@ -532,12 +532,14 @@ font-weight: bold;
     color:white;
 }
 
-.confirm-trip-item-box legend{
+.confirm-trip-item-box legend, .view-trip-item-box legend{
     color:#87CEEB;
     font-weight:bold;
   }
 
-  .confirm-detail-item{
+
+
+  .confirm-detail-item, .trip-detail-item{
     font-weight:normal;
     color:white;
   }
@@ -547,7 +549,12 @@ font-weight: bold;
     overflow-y:auto;
   }
 
-  .confirm-trip-default-box{
+#view-trip-item-box-wrapper{
+    height:700px;
+    overflow-y:auto;
+  }
+
+  .confirm-trip-default-box, .view-trip-default-box{
     border: 1px solid #0D1F31;
     margin-left: auto;
     margin-right: auto;
@@ -558,16 +565,16 @@ font-weight: bold;
     font-size: 15px;
 }
 
-.confirm-trip-default-box legend{
+.confirm-trip-default-box legend, .view-trip-default-box legend{
     font-size: 10px;
     color: #87CEEB;
 }
 
-#confirm-trip-name-box{
+#confirm-trip-name-box, #view-trip-name-box{
     width:55%;
 }
 
-#confirm-trip-cost-box{
+#confirm-trip-cost-box, #view-trip-cost-box{
     width:20%;
 }
 
@@ -576,3 +583,28 @@ font-weight: bold;
     overflow-y:auto;
     display: none;
     }
+
+  #trip-content {
+    height: 764px;
+    width: 1304px;
+    display: flex;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -382px;
+    margin-left: -652px;
+     background-color: #2C3E50;
+    color: white;
+    padding: 0px;
+    border-radius: 15px 15px 15px 15px;
+  }
+
+  .view-trips-main-area {
+    width: 1064px;
+    height: 100%;
+    color: white;
+    padding: 0px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
