@@ -154,3 +154,18 @@ document.addEventListener('DOMContentLoaded', function() {
         loginForm.addEventListener('submit', handleLoginSubmit);
     }
 });
+
+//To open and close the contact window
+let contactContainer = document.getElementById("subcontact");
+let contactButton = document.getElementById("contact-button");
+
+function toggleContactInfo() {
+    contactContainer.classList.toggle("open-menu");
+}
+
+document.addEventListener('click', function (event) {
+    let isClickInside = (contactContainer.contains(event.target) || contactButton.contains(event.target));
+    if (!isClickInside && contactContainer.classList.contains("open-menu")) {
+        contactContainer.classList.remove("open-menu");
+    }
+});
