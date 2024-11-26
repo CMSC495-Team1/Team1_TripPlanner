@@ -6,7 +6,7 @@ from flask import current_app
 from sqlalchemy.orm import Mapped, mapped_column
 from sqlalchemy import String, Integer, DateTime
 from typing import Optional
-
+from sqlalchemy.orm import relationship
 import app
 
 from app import database, bcrypt
@@ -31,6 +31,7 @@ class User(database.Model, UserMixin):
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.now(timezone.utc))
     reset_token: Mapped[Optional[str]] = mapped_column(String(100), unique=True, nullable=True)
     reset_token_expiration: Mapped[Optional[datetime]] = mapped_column(DateTime, nullable=True)
+    trips = relationship("Trip", back_populates="user", cascade="all, delete-orphan")
 
     def __init__(self, first_name: str, last_name: str, username: str, email: str, password: str):
         self.first_name = first_name
