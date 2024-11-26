@@ -9,8 +9,8 @@ from app import database, mail
 from app.models.user import User
 
 
-@auth.route('/register', methods=['GET', 'POST'])
-def register():
+@auth.route('/sign_up', methods=['GET', 'POST'])
+def sign_up():
     form = RegistrationForm()
 
     if form.validate_on_submit():
@@ -27,29 +27,43 @@ def register():
         flash('Your account has been created! You are now able to log in.', 'success')
 
         return redirect(url_for('auth.login'))
-    return render_template('auth/register.html', title='Register', form=form)
+    return render_template('auth/sign_up.html', title='Register', form=form)
 
 
 @auth.route("/login", methods=['GET', 'POST'])
 def login():
-
     if current_user.is_authenticated:
         return redirect(url_for('trip.plan_trip'))
 
     form = LoginForm()
-
     if form.validate_on_submit():
-        user= database.session.scalar(
+        user = database.session.scalar(
             sqlalchemy.select(User).where(User.username == form.username.data)
         )
 
         if user is None or not user.check_password(form.password.data):
-            flash('Invalid username or password')
-            return redirect(url_for('auth.login'))
+            return 'Invalid username or password', 401
 
         login_user(user, remember=form.remember.data)
-        return redirect(url_for('trip.plan_trip'))
-    return render_template('auth/login.html', title='Login', form=form)
+        return f'{user.first_name}:{user.username}', 200  # Return both first name and username
+
+    return redirect(url_for('main.index'))
+
+@auth.route("/login_form")
+def login_form():
+    form = LoginForm()
+    return render_template('auth/login_form.html', form=form)
+
+@auth.route("/check_login")
+def check_login():
+    if current_user.is_authenticated:
+        return f'{current_user.first_name}:{current_user.username}', 200
+    return '', 401
+
+@auth.route("/logout")
+def logout():
+    logout_user()
+    return redirect(url_for('main.index'))
 
 
 @auth.route("/forgot_password", methods=['GET', 'POST'])
@@ -63,14 +77,6 @@ def forgot_password():
             flash('An email has been sent with instructions to reset your password.', 'info')
             return redirect(url_for('auth.login'))
     return render_template('auth/forgot_password.html', form=form)
-
-
-@auth.route("/logout")
-def logout():
-    logout_user()
-    flash('You have been logged out.', 'info')
-    return redirect(url_for('main.index'))
-
 
 
 def send_reset_email(user, token):
@@ -99,16 +105,6 @@ def reset_password(token):
         return redirect(url_for('login'))
 
     return render_template('auth/reset_password.html', form=form)
-
-
-
-@auth.route('/sign_up/', defaults={'page': 'sign_up'})
-@auth.route('/auth/<page>')
-def sign_up(page):
-    try:
-        return render_template(f'auth/{page}.html')
-    except TemplateNotFound:
-        abort(404)
 
 
 # @auth.route('/forgot_password/', defaults={'page': 'forgot_password'})
