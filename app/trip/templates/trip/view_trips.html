@@ -2,166 +2,101 @@
 
 {% block title %}View Trips{% endblock %}
 
-
 {% block pagebody %}
 <div id="trip-content">
     <div class="sidebar">
         <h1>View a Trip</h1>
         <label for="state-list">Trip Date</label>
         <div id="state-list">
-            <label for="states-in-a-list"></label>
-            <select size="21" name="" id="states-in-a-list" class="form-control" onchange="changeTrip();"
-                onfocus="this.selectedIndex = -1;">
-                <option value="12/09/2024">12/09/2024</option>
-                <option value="10/04/2024">10/04/2024</option>
-                <option value="03/30/2024">03/30/2024</option>
-                 <option value="10/15/2023">10/15/2023</option>
+            {% if trips and trips|length > 0 %}
+            <select size="21" name="" id="trips-in-a-list" class="form-control" onchange="changeTrip();" onfocus="this.selectedIndex = -1;">
+                {% for trip in trips %}
+                <option value="{{ loop.index }}">{{ trip.start_date }} - {{ trip.trip_name }}</option>
+                {% endfor %}
             </select>
+            {% else %}
+            <p>No trips scheduled. Start planning your first trip!</p>
+            {% endif %}
         </div>
     </div>
 
     <div class="view-trips-main-area">
+        <br>
+        <span id="view-trips-initial-text">To view the details of a trip, select it from the list on the left.</span>
+        <br>
 
-            <br>
-<span id="view-trips-initial-text">To view the details of a trip, select it from the list on the left.</span>
-            <br>
-
-<div id="view-trips-details-main">
-    <fieldset class="view-trip-default-box" id="view-trip-name-box">
+        <div id="view-trips-details-main">
+            <fieldset class="view-trip-default-box" id="view-trip-name-box">
                 <legend>Trip Name</legend>
-            <span id="view-trip-name"></span>
-        </fieldset>
-        <fieldset class="view-trip-default-box" id="view-trip-cost-box">
+                <span id="view-trip-name"></span>
+            </fieldset>
+            <fieldset class="view-trip-default-box" id="view-trip-cost-box">
                 <legend>Trip Cost</legend>
-            $<span id="view-trip-cost"></span>
-        </fieldset>
-        <div id="view-trip-item-box-wrapper">
-            <fieldset class="view-trip-item-box" id="view-trip-flight-box">
-                <legend>Flight</legend>
-                Date: <span class="view-detail-item" id="view-flight-date"></span><br>
-                Departure: <span class="view-detail-item" id="view-flight-departure"></span><br>
-                Arrival: <span class="view-detail-item" id="view-flight-arrival"></span><br>
-                Airline: <span class="view-detail-item" id="view-flight-airline"></span><br>
-                Cost: <span class="view-detail-item" id="view-flight-cost"></span>
+                $<span id="view-trip-cost"></span>
             </fieldset>
-            <fieldset class="view-trip-item-box" id="view-trip-return-flight-box">
-                <legend>Return Flight</legend>
-                Date: <span class="view-detail-item" id="view-return-flight-date"></span><br>
-                Departure: <span class="view-detail-item" id="view-return-flight-departure"></span><br>
-                Arrival: <span class="view-detail-item" id="view-return-flight-arrival"></span><br>
-                Airline: <span class="view-detail-item" id="view-return-flight-airline"></span><br>
-                Cost: <span class="view-detail-item" id="view-return-flight-cost"></span>
-            </fieldset>
-            <fieldset class="view-trip-item-box" id="view-trip-hotel-box">
-                <legend>Hotel</legend>
-                Check-In Date: <span class="view-detail-item" id="view-hotel-checkin-date"></span><br>
-                Check-Out Date: <span class="view-detail-item" id="view-hotel-checkout-date"></span><br>
-                Location: <span class="view-detail-item" id="view-hotel-location"></span><br>
-                Hotel: <span class="view-detail-item" id="view-hotel-name"></span><br>
-                Room Type: <span class="view-detail-item" id="view-hotel-roomtype"></span><br>
-                Cost: <span class="view-detail-item" id="view-hotel-cost"></span>
-            </fieldset>
-            <fieldset class="view-trip-item-box" id="view-trip-car-box">
-                <legend>Rental Car</legend>
-                Pick Up: <span class="view-detail-item" id="view-car-pickup"></span><br>
-                Drop Off: <span class="view-detail-item" id="view-car-dropoff"></span><br>
-                Description: <span class="view-detail-item" id="view-car-description"></span><br>
-                Cost: <span class="view-detail-item" id="view-car-cost"></span><br>
-            </fieldset>
+            <div id="view-trip-item-box-wrapper">
+                <fieldset class="view-trip-item-box" id="view-trip-flight-box">
+                    <legend>Flight</legend>
+                    Date: <span class="view-detail-item" id="view-flight-date"></span><br>
+                    Departure: <span class="view-detail-item" id="view-flight-departure"></span><br>
+                    Arrival: <span class="view-detail-item" id="view-flight-arrival"></span><br>
+                    Airline: <span class="view-detail-item" id="view-flight-airline"></span><br>
+                    Cost: <span class="view-detail-item" id="view-flight-cost"></span>
+                </fieldset>
+                <fieldset class="view-trip-item-box" id="view-trip-return-flight-box">
+                    <legend>Return Flight</legend>
+                    Date: <span class="view-detail-item" id="view-return-flight-date"></span><br>
+                    Departure: <span class="view-detail-item" id="view-return-flight-departure"></span><br>
+                    Arrival: <span class="view-detail-item" id="view-return-flight-arrival"></span><br>
+                    Airline: <span class="view-detail-item" id="view-return-flight-airline"></span><br>
+                    Cost: <span class="view-detail-item" id="view-return-flight-cost"></span>
+                </fieldset>
+                <fieldset class="view-trip-item-box" id="view-trip-hotel-box">
+                    <legend>Hotel</legend>
+                    Check-In Date: <span class="view-detail-item" id="view-hotel-checkin-date"></span><br>
+                    Check-Out Date: <span class="view-detail-item" id="view-hotel-checkout-date"></span><br>
+                    Location: <span class="view-detail-item" id="view-hotel-location"></span><br>
+                    Hotel: <span class="view-detail-item" id="view-hotel-name"></span><br>
+                    Room Type: <span class="view-detail-item" id="view-hotel-roomtype"></span><br>
+                    Cost: <span class="view-detail-item" id="view-hotel-cost"></span>
+                </fieldset>
+                <fieldset class="view-trip-item-box" id="view-trip-car-box">
+                    <legend>Rental Car</legend>
+                    Pick Up: <span class="view-detail-item" id="view-car-pickup"></span><br>
+                    Drop Off: <span class="view-detail-item" id="view-car-dropoff"></span><br>
+                    Description: <span class="view-detail-item" id="view-car-description"></span><br>
+                    Cost: <span class="view-detail-item" id="view-car-cost"></span><br>
+                </fieldset>
+            </div>
         </div>
-
-
-</div>
     </div>
 </div>
+
 <script type='text/javascript'>
-    //const tripSelection = document.getElementById('view-trip-item-box');
-    const viewSelectedTripsDetails = document.getElementById('view-trips-details-main');
     const viewTripsInitialText = document.getElementById('view-trips-initial-text');
+    const viewTripName = document.getElementById('view-trip-name');
+    const viewTripCost = document.getElementById('view-trip-cost');
     const viewTripsFlightBox = document.getElementById('view-trip-flight-box');
     const viewTripsReturnFlightBox = document.getElementById('view-trip-return-flight-box');
     const viewTripsHotelBox = document.getElementById('view-trip-hotel-box');
     const viewTripsCarBox = document.getElementById('view-trip-car-box');
 
-    const viewTripName = document.getElementById('view-trip-name');
-    const viewTripCost = document.getElementById('view-trip-cost');
+    const trips = {{ trips | tojson | safe }};
+    function changeTrip() {
+        const selectedTripIndex = document.getElementById('trips-in-a-list').selectedIndex;
+        if (selectedTripIndex >= 0) {
+            const selectedTrip = trips[selectedTripIndex];
 
-    const viewFlightDate = document.getElementById('view-flight-date');
-    const viewFlightDeparture = document.getElementById('view-flight-departure');
-    const viewFlightArrival = document.getElementById('view-flight-arrival');
-    const viewFlightAirline = document.getElementById('view-flight-airline');
-    const viewFlightCost = document.getElementById('view-flight-cost');
+            viewTripsInitialText.style.display = 'none';
+            viewTripName.innerText = selectedTrip.trip_name;
+            viewTripCost.innerText = selectedTrip.cost || '0.00'; // Adjust based on your data
 
-    const viewReturnFlightDate = document.getElementById('view-return-flight-date');
-    const viewReturnFlightDeparture = document.getElementById('view-return-flight-departure');
-    const viewReturnFlightArrival = document.getElementById('view-return-flight-arrival');
-    const viewReturnFlightAirline = document.getElementById('view-return-flight-airline');
-    const viewReturnFlightCost = document.getElementById('view-return-flight-cost');
-
-    const viewHotelCheckinDate = document.getElementById('view-hotel-checkin-date');
-    const viewHotelCheckoutDate = document.getElementById('view-hotel-checkout-date');
-    const viewHotelLocation = document.getElementById('view-hotel-location');
-    const viewHotelName = document.getElementById('view-hotel-name');
-    const viewHotelRoomType = document.getElementById('view-hotel-roomtype');
-    const viewHotelCost = document.getElementById('view-hotel-cost');
-
-    const viewCarPickup = document.getElementById('view-car-pickup');
-    const viewCarDropoff = document.getElementById('view-car-dropoff');
-    const viewCarDescription = document.getElementById('view-car-description');
-    const viewCarCost = document.getElementById('view-car-cost');
-
-
-      function changeTrip() {
-        viewTripsInitialText.style.display = "none";
-        viewTripsFlightBox.style.display = "none";
-        viewTripsReturnFlightBox.style.display = "none";
-        viewTripsHotelBox.style.display = "none";
-        viewTripsCarBox.style.display = "none";
-        viewSelectedTripsDetails.style.display = "block";
-        viewTripName.innerHTML="name goes here";
-        viewTripCost.innerHTML="cost goes here";
-
-
-        //Needs check for if trip contains flight
-        if(true){
-        viewTripsFlightBox.style.display = "block";
-        viewFlightDate.innerHTML= "Flight date here";
-        viewFlightDeparture.innerHTML= "Flight departure info here";
-        viewFlightArrival.innerHTML= "Flight arrival info here";
-        viewFlightAirline.innerHTML= "Flight airline name here";
-        viewFlightCost.innerHTML= "Flight cost here";
-        }
-
-        //Needs check for if trip contains return flight
-        if(true){
-        viewTripsReturnFlightBox.style.display = "block";
-        viewReturnFlightDate.innerHTML= "Flight date here";
-        viewReturnFlightDeparture.innerHTML= "Flight departure info here";
-        viewReturnFlightArrival.innerHTML= "Flight arrival info here";
-        viewReturnFlightAirline.innerHTML= "Flight airline name here";
-        viewReturnFlightCost.innerHTML= "Flight cost here";
-        }
-
-        //Needs check for if trip contains hotel
-        if(true){
-        viewTripsHotelBox.style.display = "block";
-        viewHotelCheckinDate.innerHTML= "Hotel check-in date here";
-        viewHotelCheckoutDate.innerHTML= "Hotel check-out date here";
-        viewHotelLocation.innerHTML= "Hotel location here";
-        viewHotelName.innerHTML= "Hotel name here";
-        viewHotelRoomType.innerHTML= "Hotel roomtype here";
-        viewHotelCost.innerHTML= "Hotel cost here";
-        }
-
-        //Needs check for if trip contains car
-        if(true){
-        viewTripsCarBox.style.display = "block";
-        viewCarPickup.innerHTML= "Car pickup info here";
-        viewCarDropoff.innerHTML= "Car dropoff info here";
-        viewCarDescription.innerHTML= "Car description here";
-        viewCarCost.innerHTML= "Car cost here";
+            // Example: Populate additional fields based on the selected trip
+            viewTripsFlightBox.style.display = selectedTrip.flight ? 'block' : 'none';
+            viewTripsReturnFlightBox.style.display = selectedTrip.return_flight ? 'block' : 'none';
+            viewTripsHotelBox.style.display = selectedTrip.hotel ? 'block' : 'none';
+            viewTripsCarBox.style.display = selectedTrip.car ? 'block' : 'none';
         }
     }
-
 </script>
 {% endblock %}
