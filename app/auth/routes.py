@@ -49,6 +49,8 @@ def login():
 
     return redirect(url_for('main.index'))
 
+
+
 @auth.route("/login_form")
 def login_form():
     form = LoginForm()
@@ -107,13 +109,10 @@ def reset_password(token):
     return render_template('auth/reset_password.html', form=form)
 
 
-# @auth.route('/forgot_password/', defaults={'page': 'forgot_password'})
-# @auth.route('/auth/<page>')
-# def forgot_password(page):
-#     try:
-#         return render_template(f'auth/{page}.html')
-#     except TemplateNotFound:
-#         abort(404)
+@auth.route('/auth/register', methods=['GET', 'POST'])
+def register():
+    return sign_up()
+
 
 
 @auth.route('/account_settings/', defaults={'page': 'account_settings'})
